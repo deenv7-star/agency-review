@@ -4,7 +4,7 @@
 @font-face{font-family:"DNA Hebrew";src:url("../fonts/aduma-bold-he.otf") format("opentype");font-weight:700 900;font-style:normal;font-display:swap;unicode-range:U+0590-05FF,U+FB1D-FB4F}
 @font-face{font-family:"DNA Latin";src:url("../fonts/graphik-regular-latin.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0000-024F}
 @font-face{font-family:"DNA Latin";src:url("../fonts/graphik-bold-latin.otf") format("opentype");font-weight:700 900;font-style:normal;font-display:swap;unicode-range:U+0000-024F}
-:root{--ink:#111;--ink-2:#0b0b0b;--paper:#f3efe5;--acid:#d9ff43;--muted:#77736b;--muted-d:#b9b6ae;--line:rgba(17,17,17,.18);--line-d:rgba(255,255,255,.16);--display:"DNA Hebrew","DNA Latin",Arial,sans-serif;--pad:max(24px,calc((100vw - 1240px)/2))}
+:root{--blue:#4050ff;--ink:#111;--ink-2:#0b0b0b;--paper:#f3efe5;--acid:#d9ff43;--muted:#77736b;--muted-d:#b9b6ae;--line:rgba(17,17,17,.18);--line-d:rgba(255,255,255,.16);--display:"DNA Hebrew","DNA Latin",Arial,sans-serif;--pad:max(24px,calc((100vw - 1240px)/2))}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--display);direction:rtl;text-align:right;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -35,7 +35,7 @@ button{font-family:inherit;cursor:pointer}
 .nav-dd-panel a[aria-current="page"]{color:var(--acid)}
 .nav-dd-panel a[aria-current="page"] small{color:rgba(217,255,67,.6)}
 .talk{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.55);padding:11px 20px;border-radius:50px;font-size:13px;font-weight:800;color:#fff;backdrop-filter:blur(8px);transition:background .2s,color .2s,border-color .2s}
-.talk:hover{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.talk:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .nav-burger{display:none}
 .nav-overlay{position:fixed;inset:0;z-index:200;background:rgba(11,11,11,.985);color:#fff;display:flex;flex-direction:column;padding:26px 24px 40px;overflow-y:auto}
 .nav-overlay[hidden]{display:none}
@@ -67,7 +67,7 @@ button{font-family:inherit;cursor:pointer}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
 .btn{display:inline-flex;align-items:center;gap:10px;border-radius:50px;padding:15px 28px;font-size:15px;font-weight:900;border:1px solid transparent;transition:transform .2s,background .2s,color .2s,border-color .2s}
 .btn:hover{transform:translateY(-2px)}
-.btn-acid{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+.btn-acid{background:var(--blue);color:#fff;border-color:var(--blue)}
 .btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 .btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none;flex:none}
@@ -175,7 +175,7 @@ button{font-family:inherit;cursor:pointer}
 .cookie-banner p a{color:#fff;border-bottom:1px solid rgba(255,255,255,.4)}
 .cookie-actions{display:flex;gap:10px;margin-top:14px}
 .cookie-actions button{flex:1;border-radius:50px;padding:10px 12px;font-size:12.5px;font-weight:900;border:1px solid rgba(255,255,255,.45);background:none;color:#fff}
-.cookie-actions .cookie-accept{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.cookie-actions .cookie-accept{background:var(--blue);border-color:var(--blue);color:#fff}
 .cookie-dismiss{position:absolute;top:10px;inset-inline-start:12px;background:none;border:0;color:rgba(255,255,255,.6);font-size:17px}
 .cookie-manage{position:fixed;bottom:16px;inset-inline-start:16px;z-index:290;background:rgba(15,15,15,.9);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:9px 16px;font-size:11.5px;font-weight:800;backdrop-filter:blur(8px)}
 
