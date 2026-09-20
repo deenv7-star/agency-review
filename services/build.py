@@ -22,7 +22,7 @@ WA = "https://wa.me/972525979520"
 
 def vid(src, poster, title, desc, tag, sound=False):
     st = ('<button class="sound-toggle" data-sound-toggle type="button" aria-label="הפעלת סאונד">'
-          '<svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12"/></svg>'
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5.2 6.5 9H3.8v6h2.7L11 18.8z"/><path d="M14.6 9.4a4.6 4.6 0 0 1 0 5.2M17.2 7a8.3 8.3 0 0 1 0 10"/></svg>'
           '<span>עם סאונד</span></button>') if sound else ''
     return (f'<article class="work-card">'
             f'<video muted loop playsinline preload="none" poster="../media/{poster}" data-src="../media/{src}"></video>{st}'
@@ -40,7 +40,7 @@ def site(url, title, desc, tag="LIVE SITE"):
 def linkcard(href, title, desc, tag):
     return (f'<a class="work-card link-card" href="{href}">'
             f'<span class="work-label"><b>{title}</b><small>{desc}</small><i>{tag}</i></span>'
-            f'<svg class="link-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg></a>')
+            f'<svg class="link-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.25 12H4.75M11 5.75 4.75 12 11 18.25"/></svg></a>')
 
 SERVICES = [
 dict(
@@ -287,18 +287,18 @@ def nav_markup(prefix, current_slug):
         return "\n".join(out)
     dd_links = links()
     ov_links = links()
-    return f'''<header class="nav wrap"><a aria-label="DNA STUDIO - דף הבית" class="logo" href="../index.html"><img alt="DNA STUDIO" src="{LOGO_W}" width="878" height="414"/><i aria-hidden="true"></i></a><nav aria-label="ניווט ראשי" class="navlinks"><div class="nav-dd" data-nav-dd><button aria-expanded="false" aria-haspopup="true" class="nav-dd-btn" type="button">שירותים<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="nav-dd-panel">
+    return f'''<header class="nav wrap"><a aria-label="DNA STUDIO - דף הבית" class="logo" href="../index.html"><img alt="DNA STUDIO" src="{LOGO_W}" width="878" height="414"/><i aria-hidden="true"></i></a><nav aria-label="ניווט ראשי" class="navlinks"><div class="nav-dd" data-nav-dd><button aria-expanded="false" aria-haspopup="true" class="nav-dd-btn" type="button">שירותים<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 9.6l5.6 5.6 5.6-5.6"/></svg></button><div class="nav-dd-panel">
 {dd_links}
-</div></div><a href="../work.html">עבודות</a><a href="../gpt.html">GPT Ads</a></nav><a class="talk" href="../index.html#contact">בואו נדבר</a><button aria-expanded="false" aria-label="פתיחת תפריט" class="nav-burger" data-nav-burger type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button></header>
-<div class="nav-overlay" data-nav-overlay hidden><div class="nav-overlay-top"><img alt="DNA STUDIO" src="{LOGO_W}" width="878" height="414"/><button aria-label="סגירת תפריט" class="nav-overlay-close" data-nav-close type="button">✕</button></div><p class="nav-overlay-label">SERVICES / שירותים</p>
+</div></div><a href="../work.html">עבודות</a><a href="../gpt.html">GPT Ads</a></nav><a class="talk" href="../index.html#contact">בואו נדבר</a><button aria-expanded="false" aria-label="פתיחת תפריט" class="nav-burger" data-nav-burger type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 8.2h15M4.5 15.8h15"/></svg></button></header>
+<div class="nav-overlay" data-nav-overlay hidden><div class="nav-overlay-top"><img alt="DNA STUDIO" src="{LOGO_W}" width="878" height="414"/><button aria-label="סגירת תפריט" class="nav-overlay-close" data-nav-close type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 6.6l10.8 10.8M17.4 6.6 6.6 17.4"/></svg></button></div><p class="nav-overlay-label">SERVICES / שירותים</p>
 {ov_links}
 <p class="nav-overlay-label">MORE / עוד</p>
 <a href="../work.html">עבודות<small>WORK</small></a>
 <a href="../gpt.html">GPT Ads<small>OPENAI ADS</small></a>
 <a href="{WA}">בואו נדבר<small>WHATSAPP</small></a></div>'''
 
-CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12.5 5 5L20 6.5"/></svg>'
-ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m5-5-5 5 5 5"/></svg>'
+CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 12.6l4.7 4.7L19.2 7.4"/></svg>'
+ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.25 12H4.75M11 5.75 4.75 12 11 18.25"/></svg>'
 
 def build(s):
     works_html = ""
@@ -314,7 +314,7 @@ def build(s):
     steps = "".join(f'<div class="step"><b>0{i+1}</b><h3>{t}</h3><p>{d}</p></div>' for i, (t, d) in enumerate(s["steps"]))
     offer = "\n".join(f'<div class="offer-item">{CHECK}<div><b>{t}</b><span>{d}</span></div></div>' for t, d in s["offer"])
     caps = "".join(f"<span>{c}</span>" for c in s["caps"])
-    faq = "\n".join(f"<details><summary>{q}<i class=\"fx\"></i></summary><p>{a}</p></details>" for q, a in s["faq"])
+    faq = "\n".join(f"<details><summary>{q}<svg class=\"fx\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5.5v13M5.5 12h13\"/></svg></summary><p>{a}</p></details>" for q, a in s["faq"])
     hero_caps = "\n".join(f'<span><b>0{i+1}</b>{c}</span>' for i, c in enumerate(s["hero_caps"]))
 
     return f'''<!DOCTYPE html>
@@ -360,7 +360,7 @@ def build(s):
 <a class="cta-mail" href="mailto:deenv7@gmail.com">deenv7@gmail.com</a></section>
 </main>
 <footer class="footer"><div class="footer-brand"><img alt="DNA STUDIO" src="{LOGO_B}" width="878" height="414"/><p>קריאייטיב · פרסום · טכנולוגיה</p></div><nav aria-label="קישורי פוטר" class="footer-nav"><a href="../index.html#services">מה אנחנו עושים</a><a href="../work.html">עבודות</a><a href="../gpt.html">GPT Ads</a><a href="../index.html#about">אודות</a><a href="../accessibility.html">נגישות</a><a href="../privacy.html">פרטיות</a></nav><div class="footer-social"><a href="{WA}">WhatsApp</a><a href="mailto:deenv7@gmail.com">Email</a><a href="https://www.instagram.com/dnastudio.il/">Instagram</a></div><div class="footer-copy"><span>© 2026 DNA STUDIO</span><span>{s["title"]}</span></div></footer>
-<aside aria-labelledby="cookie-title" class="cookie-banner" hidden id="cookie-banner"><button aria-label="סגירה" class="cookie-dismiss" data-cookie="reject" type="button">×</button><div><strong id="cookie-title">הפרטיות שלכם, בלי אותיות קטנות.</strong><p>האתר משתמש בכלים של Google Analytics ו-Meta כדי להבין שימוש ולשפר שיווק. הם יופעלו רק אם תאשרו. <a href="../privacy.html">לפרטים</a></p></div><div class="cookie-actions"><button data-cookie="reject" type="button">רק הכרחיים</button><button class="cookie-accept" data-cookie="accept" type="button">מאשר/ת</button></div></aside><button aria-controls="cookie-banner" class="cookie-manage" type="button">הגדרות פרטיות</button>
+<aside aria-labelledby="cookie-title" class="cookie-banner" hidden id="cookie-banner"><button aria-label="סגירה" class="cookie-dismiss" data-cookie="reject" type="button"><svg style="width:15px;height:15px;display:block;margin:auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 6.6l10.8 10.8M17.4 6.6 6.6 17.4"/></svg></button><div><strong id="cookie-title">הפרטיות שלכם, בלי אותיות קטנות.</strong><p>האתר משתמש בכלים של Google Analytics ו-Meta כדי להבין שימוש ולשפר שיווק. הם יופעלו רק אם תאשרו. <a href="../privacy.html">לפרטים</a></p></div><div class="cookie-actions"><button data-cookie="reject" type="button">רק הכרחיים</button><button class="cookie-accept" data-cookie="accept" type="button">מאשר/ת</button></div></aside><button aria-controls="cookie-banner" class="cookie-manage" type="button">הגדרות פרטיות</button>
 <script>window.DNA_ANALYTICS={{GA4_ID:'G-QS0QFDYPB9',META_PIXEL_ID:'1357660540755927'}};</script>
 <script src="../assets/services.js"></script>
 </body></html>'''

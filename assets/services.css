@@ -24,7 +24,7 @@ button{font-family:inherit;cursor:pointer}
 .nav-dd{position:relative}
 .nav-dd-btn{display:inline-flex;align-items:center;gap:7px;background:none;border:0;color:#fff;font-size:13px;font-weight:800;opacity:.92;padding:8px 0}
 .nav-dd-btn:hover{opacity:1;color:var(--acid)}
-.nav-dd-btn svg{width:11px;height:11px;stroke:currentColor;stroke-width:2.4;fill:none;transition:transform .25s}
+.nav-dd-btn svg{width:11px;height:11px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
 .nav-dd[data-open] .nav-dd-btn svg{transform:rotate(180deg)}
 .nav-dd-panel{position:absolute;top:calc(100% + 10px);inset-inline-start:50%;translate:-50% 0;min-width:250px;background:rgba(13,13,13,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line-d);border-radius:16px;padding:8px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .22s,visibility .22s;box-shadow:0 24px 60px rgba(0,0,0,.4)}
 [dir="rtl"] .nav-dd-panel{translate:50% 0}
@@ -53,7 +53,7 @@ button{font-family:inherit;cursor:pointer}
   .navlinks{display:none}
   .talk{min-height:40px;padding:8px 14px;margin-inline-end:50px}
   .nav-burger{display:grid;place-items:center;position:absolute;inset-inline-end:8px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:none;color:#fff}
-  .nav-burger svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none}
+  .nav-burger svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 }
 
 /* ---------- hero ---------- */
@@ -70,7 +70,7 @@ button{font-family:inherit;cursor:pointer}
 .btn-acid{background:var(--acid);color:var(--ink);border-color:var(--acid)}
 .btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
-.btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none;flex:none}
+.btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .hero-stat{font-size:12.5px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.5);font-family:"DNA Latin","DNA Hebrew",Arial;text-transform:uppercase}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:30px}}
 
@@ -101,7 +101,7 @@ button{font-family:inherit;cursor:pointer}
 .site-card .site-preview{position:absolute;inset:0;overflow:hidden}
 .site-card iframe{position:absolute;top:0;left:0;width:1440px;height:1920px;border:0;transform:scale(.32);transform-origin:top left;pointer-events:none;background:#fff}
 .sound-toggle{position:absolute;top:14px;inset-inline-start:14px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(10,10,10,.65);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:99px;padding:9px 14px;font-size:11px;font-weight:800;letter-spacing:.06em;backdrop-filter:blur(8px)}
-.sound-toggle svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+.sound-toggle svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .work-card[data-sound="on"] .sound-toggle{background:var(--acid);color:var(--ink);border-color:var(--acid)}
 .rail-note{padding:14px var(--pad) 0;font-size:12.5px;color:var(--muted)}
 
@@ -121,7 +121,7 @@ button{font-family:inherit;cursor:pointer}
 .offer-note{margin-top:22px;color:var(--muted);font-size:16px;line-height:1.75;max-width:400px}
 .offer-list{display:grid;gap:0;border-top:1px solid var(--line)}
 .offer-item{display:flex;gap:16px;align-items:flex-start;padding:19px 2px;border-bottom:1px solid var(--line)}
-.offer-item svg{width:19px;height:19px;flex:none;margin-top:3px;stroke:var(--ink);stroke-width:2.2;fill:none}
+.offer-item svg{width:19px;height:19px;flex:none;margin-top:3px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .offer-item b{display:block;font-size:17px;font-weight:900;margin-bottom:3px}
 .offer-item span{font-size:14.5px;color:var(--muted);line-height:1.65}
 .caps{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
@@ -137,16 +137,17 @@ button{font-family:inherit;cursor:pointer}
 @media(max-width:700px){.flow{grid-template-columns:1fr}}
 
 /* faq */
+.nav-overlay-close svg{width:18px;height:18px;display:block}
 .faq-list{border-top:1px solid var(--line)}
 .faq-list details{border-bottom:1px solid var(--line)}
 .faq-list summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:23px 2px;font-size:clamp(17px,1.8vw,21px);font-weight:900;cursor:pointer;transition:color .2s}
 .faq-list summary::-webkit-details-marker{display:none}
 .faq-list summary:hover{color:#4a4a44}
-.faq-list summary .fx{position:relative;width:15px;height:15px;flex:none}
-.faq-list summary .fx::before,.faq-list summary .fx::after{content:"";position:absolute;background:currentColor;transition:transform .25s}
-.faq-list summary .fx::before{top:7px;left:0;width:15px;height:1.6px}
-.faq-list summary .fx::after{top:0;left:7px;width:1.6px;height:15px}
-.faq-list details[open] .fx::after{transform:scaleY(0)}
+.faq-list summary svg.fx{width:15px;height:15px;flex:none;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
+.faq-list details[open] summary svg.fx{transform:rotate(45deg)}
+
+
+
 .faq-list details p{padding:0 0 24px;max-width:640px;color:var(--muted);font-size:15.5px;line-height:1.8}
 
 /* cta band */
@@ -192,7 +193,7 @@ button{font-family:inherit;cursor:pointer}
 .link-card{display:flex;background:var(--ink-2);color:#fff}
 .link-card .work-label{background:none;position:static;padding:22px;justify-content:flex-end;flex:1}
 .link-card .work-label b{font-size:22px}
-.link-arrow{position:absolute;top:16px;inset-inline-end:16px;width:34px;height:34px;stroke:#fff;stroke-width:2;fill:none;border:1px solid rgba(255,255,255,.35);border-radius:50%;padding:8px;transition:background .2s,stroke .2s}
+.link-arrow{position:absolute;top:16px;inset-inline-end:16px;width:34px;height:34px;stroke:#fff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;border:1px solid rgba(255,255,255,.35);border-radius:50%;padding:8px;transition:background .2s,stroke .2s}
 .link-card:hover .link-arrow{background:var(--acid);stroke:var(--ink);border-color:var(--acid)}
 
 /* iframe preview fills card at any width */
