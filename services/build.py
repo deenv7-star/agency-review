@@ -321,16 +321,16 @@ def build(s):
 <html dir="rtl" lang="he"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>{s["title"]} | DNA STUDIO</title>
 <meta content="{s["desc"]}" name="description"/>
-<link href="https://deenv7-star.github.io/agency-review/services/{s["slug"]}.html" rel="canonical"/>
+<link href="https://hellodna.co.il/services/{s["slug"]}.html" rel="canonical"/>
 <meta content="#0b0b0b" name="theme-color"/>
 <meta content="{s["title"]} | DNA STUDIO" property="og:title"/>
 <meta content="{s["desc"]}" property="og:description"/>
 <meta content="website" property="og:type"/>
-<meta content="https://deenv7-star.github.io/agency-review/services/{s["slug"]}.html" property="og:url"/>
-<meta content="https://deenv7-star.github.io/agency-review/media/2-03.webp" property="og:image"/>
+<meta content="https://hellodna.co.il/services/{s["slug"]}.html" property="og:url"/>
+<meta content="https://hellodna.co.il/media/2-03.webp" property="og:image"/>
 <link href="../assets/favicon/favicon.ico" rel="icon" sizes="any"/><link href="../assets/favicon/dna-monogram.svg" rel="icon" type="image/svg+xml"/><link href="../assets/favicon/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="../assets/favicon/favicon-16.png" rel="icon" sizes="16x16" type="image/png"/><link href="../assets/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><link href="../assets/favicon/site.webmanifest" rel="manifest"/>
 <link href="../assets/services.css" rel="stylesheet"/>
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Service","name":"{s["title"]}","description":"{s["desc"]}","provider":{{"@type":"Organization","name":"DNA STUDIO","url":"https://deenv7-star.github.io/agency-review/"}},"areaServed":"IL"}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Service","name":"{s["title"]}","description":"{s["desc"]}","provider":{{"@type":"Organization","name":"DNA STUDIO","url":"https://hellodna.co.il/"}},"areaServed":"IL"}}</script>
 </head><body>
 {nav_markup("", s["slug"])}
 <main>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deenv7-star.github.io/agency-review/sitemap.xml
+Sitemap: https://hellodna.co.il/sitemap.xml
