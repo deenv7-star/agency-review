@@ -211,3 +211,13 @@ button{font-family:inherit;cursor:pointer}
 @media(max-width:700px){
   .nav{overflow:hidden;isolation:isolate;background-clip:padding-box;clip-path:inset(0 round 19px);-webkit-clip-path:inset(0 round 19px);-webkit-mask-image:-webkit-radial-gradient(white,black)}
 }
+
+/* Nav optical alignment fix */
+.nav>.logo,.nav>.navlinks,.nav>.talk{align-self:center}
+.nav>.logo{height:44px;display:inline-flex;align-items:center}
+.nav>.logo img{height:40px;width:84px;object-fit:contain;object-position:center}
+.nav>.navlinks{height:44px;align-items:center;line-height:1}
+.nav>.navlinks>*{display:inline-flex;align-items:center;height:44px}
+.nav .nav-dd-btn{height:44px;align-items:center;line-height:1}
+.nav>.talk{height:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding-block:0}
+@media(max-width:700px){.nav>.logo{height:40px}.nav>.logo img{height:32px;width:70px}.nav>.talk{height:40px;min-height:40px}}
