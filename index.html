@@ -551,7 +551,9 @@ html[dir="rtl"] body{direction:rtl}
  .footer{margin-top:52px!important;padding-top:28px!important}
 }
 </style><style id="desktop-hero-copy-centering-fix">
-@media(min-width:701px){.hero-living-copy{transform:translateY(clamp(38px,7vh,64px))}}
+@media(min-width:701px){
+ .hero-living-copy{position:absolute!important;z-index:8!important;top:76px!important;left:50%!important;width:min(980px,calc(100% - 108px))!important;height:381px!important;margin:0!important;transform:translateX(-50%)!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+}
 </style><style id="rtl-rail-continuity-fix">
 .rail-track{animation-name:dnaHeroRailContinuous!important;animation-duration:24s!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important}
 @keyframes dnaHeroRailContinuous{from{transform:translate3d(0,0,0)}to{transform:translate3d(-25%,0,0)}}
