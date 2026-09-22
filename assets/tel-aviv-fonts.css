@@ -1,0 +1,9 @@
+@font-face{font-family:"Tel Aviv Brutalist";src:url("../fonts/TelAviv-Brutalist-Light.woff2") format("woff2");font-style:normal;font-weight:300;font-display:swap}
+@font-face{font-family:"Tel Aviv Brutalist";src:url("../fonts/TelAviv-Brutalist-Regular.woff2") format("woff2");font-style:normal;font-weight:400 600;font-display:swap}
+@font-face{font-family:"Tel Aviv Brutalist";src:url("../fonts/TelAviv-Brutalist-Bold.woff2") format("woff2");font-style:normal;font-weight:700 900;font-display:swap}
+@font-face{font-family:"Tel Aviv Modernist";src:url("../fonts/TelAviv-Modernist-Regular.woff2") format("woff2");font-style:normal;font-weight:300 600;font-display:swap}
+@font-face{font-family:"Tel Aviv Modernist";src:url("../fonts/TelAviv-Modernist-Bold.woff2") format("woff2");font-style:normal;font-weight:700 900;font-display:swap}
+:root{--display:"Tel Aviv Brutalist",Arial,sans-serif!important;--body:"Tel Aviv Modernist",Arial,sans-serif!important;--brand-display:"Tel Aviv Brutalist",Arial,sans-serif!important;--brand-text:"Tel Aviv Modernist",Arial,sans-serif!important}
+html,body,button,input,textarea,select{font-family:"Tel Aviv Modernist",Arial,sans-serif!important}
+h1,h2,h3,.display,.hero-living h1,.hero-living h1 em,.close h2,.depth-sites h2,.visual-work-showcase h2,.service h3,.dna-os-four h2,.dna-process h2,.about-section h2,.faq h2{font-family:"Tel Aviv Brutalist",Arial,sans-serif!important}
+.kicker,.hero-living-kicker,.hero-world-badge,.hero-system-label,.dna-meta,.rail,.work-tabs,.nav,.nav-overlay-label,.service-num,.process-num{font-family:"Tel Aviv Modernist",Arial,sans-serif!important}
