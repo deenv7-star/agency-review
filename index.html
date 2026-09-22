@@ -266,6 +266,14 @@ html[dir="rtl"] body{direction:rtl}
   .nav{overflow:hidden!important;isolation:isolate;background-clip:padding-box!important;clip-path:inset(0 round 19px)!important;-webkit-clip-path:inset(0 round 19px)!important;-webkit-mask-image:-webkit-radial-gradient(white,black)}
   .nav:before{border-radius:inherit!important}
 }
+</style><style id="selected-work-edge-fix">
+.visual-work-showcase .wrap{width:min(1240px,calc(100% - 48px))!important;margin-inline:auto!important}
+.visual-work-showcase header{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr)!important;grid-template-areas:"kicker kicker" "title copy";direction:rtl!important;align-items:end!important;gap:20px 48px!important;margin-bottom:36px!important}
+.visual-work-showcase header .kicker{grid-area:kicker!important;text-align:right!important}
+.visual-work-showcase header h2{grid-area:title!important;text-align:right!important}
+.visual-work-showcase header p{grid-area:copy!important;align-self:end!important;justify-self:start!important;margin:0!important;text-align:right!important;max-width:390px!important}
+.visual-work-grid{width:100%!important;margin:0!important;direction:rtl!important}
+@media(max-width:700px){.visual-work-showcase .wrap{width:calc(100% - 28px)!important}.visual-work-showcase header{display:block!important;margin-bottom:24px!important}.visual-work-showcase header p{margin-top:16px!important;max-width:none!important}}
 </style><style id="compact-depth-sites-fix">
 .depth-sites{padding:clamp(62px,7vw,96px) 0!important}
 .depth-sites-head{gap:28px!important;margin-bottom:clamp(28px,3vw,42px)!important}
