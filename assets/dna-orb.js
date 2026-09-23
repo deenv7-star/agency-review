@@ -44,5 +44,6 @@ orb.onclick=function(){open(!p.classList.contains('open'))};p.querySelector('.dn
 p.querySelector('.fm').addEventListener('click',function(){open(false)});
 p.querySelector('form').onsubmit=function(e){e.preventDefault();var i=this.querySelector('input');var q=i.value.trim();if(!q)return;i.value='';ask(q)};
 document.addEventListener('keydown',function(e){if(e.key==='Escape')open(false)});
-var c=document.getElementById('contact');if(c&&'IntersectionObserver' in window){new IntersectionObserver(function(es){var vis=es[0].isIntersecting;orb.classList.toggle('hide',vis);if(vis)open(false)},{threshold:0.05}).observe(c)}
+if('IntersectionObserver' in window){var seen=new Set();var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)seen.add(e.target);else seen.delete(e.target)});var vis=seen.size>0;orb.classList.toggle('hide',vis);if(vis)open(false)},{threshold:0,rootMargin:'0px 0px -40px 0px'});
+var tg=[document.getElementById('contact'),document.getElementById('lead-form')];document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){if(!p.contains(a))tg.push(a)});tg.forEach(function(t){if(t)io.observe(t)})}
 })();
