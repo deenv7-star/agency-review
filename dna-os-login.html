@@ -10,7 +10,7 @@ form.addEventListener('submit',function(event){
   var invites=window.DNA_OS_INVITES||{};
   var invite=invites[code];
   if(!invite){showNotice('הקוד לא מזוהה. בודקים את האותיות שוב, או כותבים לצוות DNA.');return;}
-  try{sessionStorage.setItem('dna_os_session',JSON.stringify({client:invite.client,email:form.email.value,ts:Date.now()}));}catch(e){}
+  try{sessionStorage.removeItem('dna_os_session_demo');sessionStorage.setItem('dna_os_session',JSON.stringify({client:invite.client,email:form.email.value,ts:Date.now()}));}catch(e){}
   location.href='dna-os/';
 });
 </script></body></html>
