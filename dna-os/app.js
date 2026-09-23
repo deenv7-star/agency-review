@@ -14,6 +14,7 @@
   var session = null;
   try { session = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null"); } catch (e) {}
 
+  if (params.get("still") === "1") { document.body.classList.add("still"); }
   if (isDemo) {
     try { sessionStorage.setItem(SESSION_KEY + "_demo", "1"); } catch (e) {}
     document.body.classList.add("demo");
@@ -27,10 +28,10 @@
   /* ---------------- demo data (fictional!) ---------------- */
   var DEMO = {
     kpis: [
-      { label: "קמפיינים פעילים", num: "4", delta: "+1 השבוע", up: true },
-      { label: "לידים החודש", num: "63", delta: "+18% מול חודש קודם", up: true },
-      { label: "הוצאה החודש", num: "11,240", small: "₪", delta: "62% מהתקציב", up: false, flat: true },
-      { label: "משימות פתוחות", num: "7", delta: "2 מחכות לאישור שלך", up: false, flat: true }
+      { label: "קמפיינים פעילים", num: "4", delta: "+1 השבוע", up: true, icon: "campaigns", tint: "var(--p-blue)", tink: "var(--p-blue-ink)" },
+      { label: "לידים החודש", num: "63", delta: "+18% מול חודש קודם", up: true, icon: "leads", tint: "var(--p-teal)", tink: "var(--p-teal-ink)" },
+      { label: "הוצאה החודש", num: "11,240", small: "₪", delta: "62% מהתקציב", up: false, flat: true, icon: "costs", tint: "var(--p-violet)", tink: "var(--p-violet-ink)" },
+      { label: "משימות פתוחות", num: "7", delta: "2 מחכות לאישור שלך", up: false, flat: true, icon: "inbox", tint: "var(--p-amber)", tink: "var(--p-amber-ink)" }
     ],
     campaigns: [
       { name: "קיץ בבית הקפה", plat: "META", status: "on", statusText: "פעיל", leads: 31, cpl: 142, spend: 4400, budget: 6000 },
@@ -39,18 +40,18 @@
       { name: "רימרקטינג - עגלות", plat: "META", status: "off", statusText: "מושהה", leads: 0, cpl: 0, spend: 700, budget: 2500 }
     ],
     leads: [
-      { name: "נועה ל.", source: "אינסטגרם", detail: "הזמנת קייטרינג", date: "היום, 09:41", status: "new", statusText: "חדש" },
-      { name: "אורי מ.", source: "גוגל", detail: "פגישת טעימות", date: "אתמול, 16:02", status: "new", statusText: "חדש" },
-      { name: "דנה ש.", source: "טיקטוק", detail: "סיור בבית הקליה", date: "אתמול, 11:20", status: "prog", statusText: "בטיפול" },
-      { name: "יוסף כ.", source: "אינסטגרם", detail: "סיטונאי - פולים", date: "לפני יומיים", status: "prog", statusText: "בטיפול" },
-      { name: "מיכל ר.", source: "גוגל", detail: "יום הולדת - 30 איש", date: "לפני 3 ימים", status: "done", statusText: "נסגר" }
+      { name: "נועה ל.", source: "אינסטגרם", srcClass: "meta", detail: "הזמנת קייטרינג", date: "היום, 09:41", status: "new", statusText: "חדש", tint: "var(--p-violet)", tink: "var(--p-violet-ink)" },
+      { name: "אורי מ.", source: "גוגל", srcClass: "google", detail: "פגישת טעימות", date: "אתמול, 16:02", status: "new", statusText: "חדש", tint: "var(--p-blue)", tink: "var(--p-blue-ink)" },
+      { name: "דנה ש.", source: "טיקטוק", srcClass: "tiktok", detail: "סיור בבית הקליה", date: "אתמול, 11:20", status: "prog", statusText: "בטיפול", tint: "var(--p-teal)", tink: "var(--p-teal-ink)" },
+      { name: "יוסף כ.", source: "אינסטגרם", srcClass: "meta", detail: "סיטונאי - פולים", date: "לפני יומיים", status: "prog", statusText: "בטיפול", tint: "var(--p-orange)", tink: "var(--p-orange-ink)" },
+      { name: "מיכל ר.", source: "גוגל", srcClass: "google", detail: "יום הולדת - 30 איש", date: "לפני 3 ימים", status: "done", statusText: "נסגר", tint: "var(--p-lime)", tink: "var(--p-lime-ink)" }
     ],
     spend: {
       budget: 18000, spent: 11240,
       channels: [
-        { name: "Meta", v: 5100 },
-        { name: "Google", v: 3190 },
-        { name: "TikTok", v: 2950 }
+        { name: "Meta", v: 5100, color: "var(--p-blue-ink)" },
+        { name: "Google", v: 3190, color: "var(--p-orange-ink)" },
+        { name: "TikTok", v: 2950, color: "var(--ink)" }
       ],
       daily: [220, 310, 280, 390, 350, 470, 410, 520, 460, 610, 540, 690, 630, 580]
     },
@@ -119,16 +120,24 @@
   /* --- renderers (demo mode) --- */
   var R = {};
 
+  function greetLine() {
+    var h = new Date().getHours();
+    var g = h < 12 ? "בוקר טוב" : (h < 17 ? "צהריים טובים" : "ערב טוב");
+    return g + ", <b>" + esc(clientName) + "</b> - הנה התמונה של היום.";
+  }
+
   R.overview = function () {
     var kpis = DEMO.kpis.map(function (k) {
-      return '<div class="card kpi"><div class="k-label">' + k.label + '</div>' +
+      return '<div class="card kpi"><div class="kpi-head"><div class="k-label">' + k.label + '</div>' +
+        '<span class="k-chip" style="--tint:' + k.tint + ';--tink:' + k.tink + '">' + ICONS[k.icon] + "</span></div>" +
         '<div class="k-num">' + k.num + (k.small ? " <small>" + k.small + "</small>" : "") + "</div>" +
         '<span class="k-delta' + (k.flat ? " flat" : "") + '">' + k.delta + "</span></div>";
     }).join("");
     var feed = DEMO.feed.map(function (f) {
       return '<div class="fi"><span class="dot' + (f.hot ? "" : " dim") + '"></span><div><p>' + f.t + "</p><time>" + f.time + "</time></div></div>";
     }).join("");
-    return '<div class="grid g4" style="margin-bottom:14px">' + kpis + "</div>" +
+    return '<p class="greet">' + greetLine() + "</p>" +
+      '<div class="grid g4" style="margin-bottom:14px">' + kpis + "</div>" +
       '<div class="grid g23">' +
         '<div class="card pad-lg next-hero"><span class="kicker">NEXT MOVE</span>' +
           "<h3>" + DEMO.nextMove.title + "</h3><p>" + DEMO.nextMove.p + "</p>" +
@@ -143,7 +152,7 @@
     return '<div class="grid g2">' + DEMO.campaigns.map(function (c) {
       var pct = Math.round((c.spend / c.budget) * 100);
       return '<div class="card camp"><div class="camp-top"><div><h3>' + c.name + "</h3>" +
-        '<div class="camp-meta" style="margin-top:9px"><span class="plat">' + c.plat + '</span><span class="pill ' + c.status + '">' + c.statusText + "</span></div></div>" +
+        '<div class="camp-meta" style="margin-top:9px"><span class="plat ' + c.plat.toLowerCase() + '">' + c.plat + '</span><span class="pill ' + c.status + '">' + c.statusText + "</span></div></div>" +
         '<div style="text-align:left"><div style="font:900 24px var(--f-display);direction:ltr">' + (c.leads || "—") + '</div><div style="font-size:11px;color:var(--cream-dim)">לידים</div></div></div>' +
         '<div class="camp-stats">' +
           '<div class="st"><b>' + (c.cpl ? nis(c.cpl) : "—") + "</b><span>עלות לליד</span></div>" +
@@ -158,8 +167,8 @@
   R.leads = function () {
     var rows = DEMO.leads.map(function (l) {
       var pill = l.status === "new" ? "on" : (l.status === "done" ? "off" : "wait");
-      return "<tr><td><div class='name'>" + l.name + "</div><div class='dim'>" + l.detail + "</div></td>" +
-        "<td><span class='plat'>" + l.source + "</span></td>" +
+      return "<tr><td><div style='display:flex;align-items:center;gap:11px'><span class='av' style='--tint:" + l.tint + ";--tink:" + l.tink + "'>" + l.name.trim().charAt(0) + "</span><div><div class='name'>" + l.name + "</div><div class='dim'>" + l.detail + "</div></div></div></td>" +
+        "<td><span class='plat " + l.srcClass + "'>" + l.source + "</span></td>" +
         "<td class='dim'>" + l.date + "</td>" +
         "<td><span class='pill " + pill + "'>" + l.statusText + "</span></td></tr>";
     }).join("");
@@ -179,7 +188,7 @@
     var area = line + " L" + pts[pts.length - 1][0] + " 140 L20 140 Z";
     var channels = s.channels.map(function (c) {
       var w = Math.round((c.v / s.spent) * 100);
-      return '<div class="bar-row"><span>' + c.name + '</span><div class="bar"><i style="width:' + w + '%"></i></div><span class="v">' + nis(c.v) + "</span></div>";
+      return '<div class="bar-row"><span>' + c.name + '</span><div class="bar"><i style="width:' + w + '%;background:' + c.color + '"></i></div><span class="v">' + nis(c.v) + "</span></div>";
     }).join("");
     return '<div class="grid g2">' +
       '<div class="card pad-lg"><div class="card-head"><h3>תקציב מול ביצוע</h3><span class="tag">ספטמבר</span></div>' +
@@ -188,7 +197,7 @@
         '<div style="font-size:12px;color:var(--cream-dim);margin-top:10px">' + pct + '% מהתקציב · נותרו ' + nis(s.budget - s.spent) + "</div>" +
         '<div style="margin-top:26px">' + channels + "</div></div>" +
       '<div class="card pad-lg"><div class="card-head"><h3>הוצאה יומית</h3><span class="tag">14 DAYS</span></div>' +
-        '<svg class="spark" viewBox="0 0 600 150" preserveAspectRatio="none"><path class="area" d="' + area + '"/><path class="line" d="' + line + '"/><circle class="dot" cx="' + pts[pts.length - 1][0] + '" cy="' + pts[pts.length - 1][1] + '" r="4"/></svg>' +
+        '<svg class="spark" viewBox="0 0 600 150" preserveAspectRatio="none"><defs><linearGradient id="spg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#111" stop-opacity=".14"/><stop offset="1" stop-color="#111" stop-opacity="0"/></linearGradient></defs><path class="area" d="' + area + '"/><path class="line" pathLength="1000" d="' + line + '"/><circle class="dot" cx="' + pts[pts.length - 1][0] + '" cy="' + pts[pts.length - 1][1] + '" r="4.5"/></svg>' +
         '<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--cream-faint)"><span>לפני שבועיים</span><span>אתמול: ' + nis(s.daily[s.daily.length - 1]) + "</span></div></div>" +
       "</div>";
   };
