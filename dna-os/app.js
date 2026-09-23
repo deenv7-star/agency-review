@@ -5,25 +5,18 @@
 (function () {
   var BRAND = window.DNA_OS_BRAND || { productName: "DNA OS", studio: "DNA STUDIO" };
 
-  /* ---------------- session ---------------- */
+  /* ---------------- session ----------------
+     demo (?demo=1): illustrative data, no login needed.
+     otherwise: a Supabase Auth session (email + password) is required. */
   var params = new URLSearchParams(location.search);
   var SESSION_KEY = "dna_os_session";
   var isDemo = params.get("demo") === "1" || (function () {
     try { return sessionStorage.getItem(SESSION_KEY + "_demo") === "1"; } catch (e) { return false; }
   })();
-  var session = null;
-  try { session = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null"); } catch (e) {}
-
   if (params.get("still") === "1") { document.body.classList.add("still"); }
-  if (isDemo) {
-    try { sessionStorage.setItem(SESSION_KEY + "_demo", "1"); } catch (e) {}
-    document.body.classList.add("demo");
-  } else if (!session || !session.client) {
-    location.replace("../dna-os-login.html");
-    return;
-  }
 
-  var clientName = isDemo ? "קפה הדקל (דמו)" : session.client;
+  var clientName = "";
+  var sbClient = null;
 
   /* ---------------- demo data (fictional!) ---------------- */
   var DEMO = {
@@ -250,6 +243,7 @@
     next: function () { return emptyState(ICONS.next, "הצעד הבא יופיע כאן", "ברגע שיהיו מספיק נתונים, תקבל כאן המלצה אחת ברורה לשבוע - עם הסבר למה, ואישור בלחיצה."); }
   };
 
+  function init() {
   /* ---------------- chrome ---------------- */
   document.getElementById("brandMark").innerHTML = "DNA <span>OS</span><i></i>";
   document.getElementById("clientLabel").innerHTML = (isDemo ? "מציגים בתור" : "מחובר בתור") + "<b>" + esc(clientName) + "</b>";
@@ -258,7 +252,7 @@
     pill.className = "mode-pill demo";
     pill.textContent = "מצב דמו - נתוני הדגמה של עסק דמיוני. הנתונים אינם של לקוח אמיתי.";
   } else {
-    pill.textContent = "גרסת השקה מוקדמת - הנתונים נשמרים בדפדפן שלך בלבד.";
+    pill.textContent = "גישה פרטית ומאובטחת · הנתונים נגישים לבעלי החשבון בלבד.";
   }
 
   var nav = document.getElementById("nav");
@@ -278,7 +272,11 @@
 
   document.getElementById("exitBtn").addEventListener("click", function () {
     try { sessionStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY + "_demo"); } catch (e) {}
-    location.href = "../dna-os-login.html";
+    if (sbClient) {
+      sbClient.auth.signOut().then(function () { location.href = "../dna-os-login.html"; }).catch(function () { location.href = "../dna-os-login.html"; });
+    } else {
+      location.href = "../dna-os-login.html";
+    }
   });
 
   var DAYS = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
@@ -318,4 +316,39 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { t.classList.remove("show"); }, 3200);
   });
+
+  var veil = document.getElementById("bootVeil");
+  if (veil) veil.remove();
+  }
+
+  /* ---------------- boot ---------------- */
+  function boot(name, sb) {
+    clientName = name;
+    sbClient = sb || null;
+    if (isDemo) document.body.classList.add("demo");
+    init();
+  }
+
+  if (isDemo) {
+    try { sessionStorage.setItem(SESSION_KEY + "_demo", "1"); } catch (e) {}
+    boot("קפה הדקל (דמו)", null);
+  } else {
+    (async function () {
+      var fail = function () { location.replace("../dna-os-login.html"); };
+      try {
+        var cfg = window.DNA_OS_SB || {};
+        var mod = await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm");
+        var sb = mod.createClient(cfg.url, cfg.anonKey);
+        var r = await sb.auth.getSession();
+        var sess = r && r.data && r.data.session;
+        if (!sess) { fail(); return; }
+        var name = (sess.user && sess.user.email) || "לקוח DNA";
+        try {
+          var pr = await sb.from("profiles").select("display_name").eq("user_id", sess.user.id).maybeSingle();
+          if (pr && pr.data && pr.data.display_name) name = pr.data.display_name;
+        } catch (e) {}
+        boot(name, sb);
+      } catch (e) { fail(); }
+    })();
+  }
 })();

@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <title>DNA OS · המערכת הפרטית של DNA STUDIO</title>
 <meta name="description" content="DNA OS - המערכת הפרטית שמחברת בין מה שקורה, מה DNA עושה ומה הצעד הבא.">
 <link href="../assets/tel-aviv-fonts.css" rel="stylesheet">
@@ -303,9 +304,11 @@ body.still .bar-fill span{width:var(--w)!important}
   .tabbar button svg{width:18px;height:18px}
   .camp-stats{grid-template-columns:repeat(3,1fr)}
 }
+.boot-veil{position:fixed;inset:0;background:var(--bg);display:grid;place-items:center;z-index:99;font:700 14px var(--f-body);color:var(--ink-dim)}
 </style>
 </head>
 <body>
+<div class="boot-veil" id="bootVeil">...טוען את DNA OS</div>
 <div class="glow"></div>
 
 <aside class="side">
@@ -333,6 +336,7 @@ body.still .bar-fill span{width:var(--w)!important}
 <nav class="tabbar" id="tabbar"></nav>
 <div class="toast" id="toast"></div>
 
+<script src="sb-config.js"></script>
 <script src="brand.js"></script>
 <script src="app.js"></script>
 </body>

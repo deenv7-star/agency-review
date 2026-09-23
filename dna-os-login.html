@@ -1,16 +1,74 @@
-<!doctype html><html dir="rtl" lang="he"><head><link href="assets/tel-aviv-fonts.css" rel="stylesheet"/><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DNA OS · כניסה</title><meta name="description" content="כניסה ל-DNA OS - המערכת הפרטית של לקוחות DNA STUDIO. גישה בהזמנה בלבד."><style>@font-face{font-family:"DNA Hebrew";src:url('fonts/aduma-regular-he.otf') format('opentype');font-weight:400}@font-face{font-family:"DNA Hebrew";src:url('fonts/aduma-bold-he.otf') format('opentype');font-weight:900}@font-face{font-family:"DNA Latin";src:url('fonts/graphik-regular-latin.otf') format('opentype');font-weight:400}@font-face{font-family:"DNA Latin";src:url('fonts/graphik-bold-latin.otf') format('opentype');font-weight:900}:root{--ink:#111;--paper:#f3efe5;--acid:#d9ff43;--muted:#77736b;--line:rgba(17,17,17,.18);--display:"Tel Aviv Modernist",Arial,sans-serif;--body:"Tel Aviv Modernist",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100svh;background:var(--paper);color:var(--ink);font-family:var(--body);display:grid;place-items:center}.page{width:min(1240px,calc(100% - 48px));min-height:760px;display:grid;grid-template-columns:1fr 500px;align-items:center;gap:clamp(70px,9vw,130px);padding:55px 0}.intro{position:relative}.brand{font:900 25px var(--body);direction:ltr;display:inline-flex;align-items:center;gap:8px}.brand i{width:9px;height:9px;border-radius:50%;background:var(--acid)}.brand b{font:900 11px var(--body);letter-spacing:.22em;color:#111;border:1px solid rgba(17,17,17,.35);border-radius:99px;padding:4px 9px 3px}.intro h1{font:900 clamp(64px,7vw,104px)/.82 var(--display);letter-spacing:-.045em;margin:52px 0 24px}.intro h1 em{font-style:normal;color:#789c11}.intro p{font:400 21px/1.5 var(--body);max-width:540px;color:#4f514b}.proof{display:flex;align-items:center;gap:13px;margin-top:46px;font:700 13px var(--body);color:var(--muted)}.proof:before{content:"";width:42px;height:1px;background:var(--ink)}.card{border:1px solid var(--line);background:#ebe7dd;border-radius:28px;padding:34px;box-shadow:0 24px 70px rgba(17,17,17,.11)}.card-head{display:flex;align-items:center;gap:15px;margin-bottom:26px}.mark{width:58px;height:58px;border-radius:50%;background:var(--acid);display:grid;place-items:center;font:900 14px var(--body);direction:ltr}.card h2{font:900 31px/1 var(--display);margin:0}.card-head p{margin:6px 0 0;color:var(--muted);font-size:14px}.field{display:block;margin:0 0 14px}.field span{display:block;font:700 13px var(--body);margin:0 2px 7px}.field input{width:100%;height:54px;border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:0 15px;font:400 16px var(--body);color:var(--ink);outline:0}.field input:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(217,255,67,.65)}.field input.code{letter-spacing:.14em;font-weight:700}.submit{width:100%;height:54px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:99px;font:900 16px var(--body);margin-top:6px;cursor:pointer}.submit:hover{background:#2a2a2a}.switch{text-align:center;color:var(--muted);font-size:13px;margin:18px 0 0;line-height:1.6}.demo-link{display:block;text-align:center;margin:14px 0 0;font:900 13px var(--body);color:var(--ink);border-bottom:1px solid;width:max-content;margin-inline:auto;cursor:pointer}.privacy{text-align:center;color:var(--muted);font-size:10px;margin:17px 0 0}.error{display:none;background:var(--acid);color:var(--ink);border-radius:11px;padding:10px 12px;font-size:12px;margin-bottom:13px;font-weight:700}
-@media(max-width:760px){body{display:block}.page{width:calc(100% - 32px);min-height:auto;margin:auto;display:flex;flex-direction:column;gap:32px;padding:28px 0 45px}.intro{text-align:center}.brand{font-size:20px}.intro h1{font-size:53px;line-height:.86;margin:28px 0 17px}.intro p{font-size:16px;margin:auto;max-width:340px}.proof{justify-content:center;margin-top:22px;font-size:12px}.proof:before{display:none}.card{width:100%;padding:23px 20px;border-radius:22px}.card-head{margin-bottom:22px}.mark{width:51px;height:51px}.card h2{font-size:27px}.field input,.submit{height:51px}}</style></head><body><main class="page"><section class="intro"><div class="brand">DNA<b>OS</b><i></i></div><h1>כל העסק.<br>כל השיווק.<br><em>במקום אחד.</em></h1><p>המערכת הפרטית שמחברת בין מה שקורה, מה DNA עושה ומה הצעד הבא.</p><div class="proof">גישה פרטית ללקוחות DNA · בהזמנה בלבד</div></section><section class="card"><header class="card-head"><div class="mark">DNA</div><div><h2>כניסה עם הזמנה</h2><p>מזינים את קוד ההזמנה שקיבלתם מצוות DNA</p></div></header><div class="error" id="error" role="status" aria-live="polite" tabindex="-1" hidden></div><form id="form"><label class="field"><span>אימייל</span><input name="email" type="email" autocomplete="email" placeholder="name@company.co.il" required></label><label class="field"><span>קוד הזמנה</span><input name="code" class="code" type="text" autocomplete="one-time-code" placeholder="DNA-XXXX" required></label><button class="submit" type="submit">כניסה ל-DNA OS</button></form><p class="switch">אין לכם הזמנה? היא נשלחת אישית לכל לקוח כשמתחילים לעבוד עם DNA STUDIO.</p><a class="demo-link" href="dna-os/?demo=1">רוצים להציץ קודם? לצפייה בדמו</a><p class="privacy">גרסת השקה מוקדמת - ההתחברות מתבצעת בדפדפן בלבד ולא נשלח שום מידע.</p></section></main><script src="dna-os/invites.js"></script><script>
-var form=document.getElementById('form');
-var errorBox=document.getElementById('error');
-function showNotice(message){errorBox.textContent=message;errorBox.hidden=false;errorBox.style.display='block';errorBox.focus();}
-form.addEventListener('submit',function(event){
+<!doctype html><html dir="rtl" lang="he"><head><link href="assets/tel-aviv-fonts.css" rel="stylesheet"/><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>DNA OS · כניסה</title><meta name="description" content="כניסה ל-DNA OS - המערכת הפרטית של לקוחות DNA STUDIO. גישה לבעלי חשבון בלבד."><style>@font-face{font-family:"DNA Hebrew";src:url('fonts/aduma-regular-he.otf') format('opentype');font-weight:400}@font-face{font-family:"DNA Hebrew";src:url('fonts/aduma-bold-he.otf') format('opentype');font-weight:900}@font-face{font-family:"DNA Latin";src:url('fonts/graphik-regular-latin.otf') format('opentype');font-weight:400}@font-face{font-family:"DNA Latin";src:url('fonts/graphik-bold-latin.otf') format('opentype');font-weight:900}:root{--ink:#111;--paper:#f3efe5;--acid:#d9ff43;--muted:#77736b;--line:rgba(17,17,17,.18);--display:"Tel Aviv Modernist",Arial,sans-serif;--body:"Tel Aviv Modernist",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100svh;background:var(--paper);color:var(--ink);font-family:var(--body);display:grid;place-items:center}.page{width:min(1240px,calc(100% - 48px));min-height:760px;display:grid;grid-template-columns:1fr 500px;align-items:center;gap:clamp(70px,9vw,130px);padding:55px 0}.intro{position:relative}.brand{font:900 25px var(--body);direction:ltr;display:inline-flex;align-items:center;gap:8px}.brand i{width:9px;height:9px;border-radius:50%;background:var(--acid)}.brand b{font:900 11px var(--body);letter-spacing:.22em;color:#111;border:1px solid rgba(17,17,17,.35);border-radius:99px;padding:4px 9px 3px}.intro h1{font:900 clamp(64px,7vw,104px)/.82 var(--display);letter-spacing:-.045em;margin:52px 0 24px}.intro h1 em{font-style:normal;color:#789c11}.intro p{font:400 21px/1.5 var(--body);max-width:540px;color:#4f514b}.proof{display:flex;align-items:center;gap:13px;margin-top:46px;font:700 13px var(--body);color:var(--muted)}.proof:before{content:"";width:42px;height:1px;background:var(--ink)}.card{border:1px solid var(--line);background:#ebe7dd;border-radius:28px;padding:34px;box-shadow:0 24px 70px rgba(17,17,17,.11)}.card-head{display:flex;align-items:center;gap:15px;margin-bottom:26px}.mark{width:58px;height:58px;border-radius:50%;background:var(--acid);display:grid;place-items:center;font:900 14px var(--body);direction:ltr}.card h2{font:900 31px/1 var(--display);margin:0}.card-head p{margin:6px 0 0;color:var(--muted);font-size:14px}.field{display:block;margin:0 0 14px}.field span{display:block;font:700 13px var(--body);margin:0 2px 7px}.field input{width:100%;height:54px;border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:0 15px;font:400 16px var(--body);color:var(--ink);outline:0}.field input:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(217,255,67,.65)}.submit{width:100%;height:54px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:99px;font:900 16px var(--body);margin-top:6px;cursor:pointer}.submit:hover{background:#2a2a2a}.submit:disabled{opacity:.6;cursor:default}.switch{text-align:center;color:var(--muted);font-size:13px;margin:18px 0 0;line-height:1.6}.switch a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--ink)}.demo-link{display:block;text-align:center;margin:14px 0 0;font:900 13px var(--body);color:var(--ink);border-bottom:1px solid;width:max-content;margin-inline:auto;cursor:pointer}.privacy{text-align:center;color:var(--muted);font-size:10px;margin:17px 0 0}.error{display:none;background:var(--acid);color:var(--ink);border-radius:11px;padding:10px 12px;font-size:12px;margin-bottom:13px;font-weight:700}
+@media(max-width:760px){body{display:block}.page{width:calc(100% - 32px);min-height:auto;margin:auto;display:flex;flex-direction:column;gap:32px;padding:28px 0 45px}.intro{text-align:center}.brand{font-size:20px}.intro h1{font-size:53px;line-height:.86;margin:28px 0 17px}.intro p{font-size:16px;margin:auto;max-width:340px}.proof{justify-content:center;margin-top:22px;font-size:12px}.proof:before{display:none}.card{width:100%;padding:23px 20px;border-radius:22px}.card-head{margin-bottom:22px}.mark{width:51px;height:51px}.card h2{font-size:27px}.field input,.submit{height:51px}}</style></head><body><main class="page"><section class="intro"><div class="brand">DNA<b>OS</b><i></i></div><h1>כל העסק.<br>כל השיווק.<br><em>במקום אחד.</em></h1><p>המערכת הפרטית שמחברת בין מה שקורה, מה DNA עושה ומה הצעד הבא.</p><div class="proof">גישה פרטית ללקוחות DNA · לבעלי חשבון בלבד</div></section><section class="card"><header class="card-head"><div class="mark">DNA</div><div><h2 id="cardTitle">כניסה ל-DNA OS</h2><p id="cardSub">מזינים את האימייל והסיסמה שקיבלתם מצוות DNA</p></div></header><div class="error" id="error" role="status" aria-live="polite" tabindex="-1" hidden></div><div id="loginBlock"><form id="form"><label class="field"><span>אימייל</span><input name="email" type="email" autocomplete="email" placeholder="name@company.co.il" required></label><label class="field"><span>סיסמה</span><input name="password" type="password" autocomplete="current-password" placeholder="••••••••" required></label><button class="submit" type="submit">כניסה ל-DNA OS</button></form><p class="switch"><a href="#" id="forgot">שכחתי סיסמה?</a> · אין לכם גישה? היא נפתחת אישית לכל לקוח שמתחיל לעבוד עם DNA STUDIO.</p><a class="demo-link" href="dna-os/?demo=1">רוצים להציץ קודם? לצפייה בדמו</a><p class="privacy">התחברות מאובטחת · המערכת אינה מוצגת באתר הגלוי והנתונים נגישים לבעלי החשבון בלבד.</p></div><div id="resetBlock" hidden><form id="resetForm"><label class="field"><span>סיסמה חדשה</span><input name="pw1" type="password" autocomplete="new-password" placeholder="לפחות 8 תווים" minlength="8" required></label><label class="field"><span>אימות סיסמה</span><input name="pw2" type="password" autocomplete="new-password" placeholder="שוב אותה סיסמה" minlength="8" required></label><button class="submit" type="submit">שמירת סיסמה וכניסה</button></form><p class="privacy">הסיסמה נשמרת מוצפנת · אף אחד ב-DNA לא רואה אותה.</p></div></section></main><script src="dna-os/sb-config.js"></script><script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm";
+var cfg = window.DNA_OS_SB || {};
+var sb = createClient(cfg.url, cfg.anonKey);
+var form = document.getElementById("form");
+var errorBox = document.getElementById("error");
+var btn = form.querySelector(".submit");
+function show(kind, message){
+  errorBox.textContent = message;
+  errorBox.hidden = false;
+  errorBox.style.display = "block";
+  if (kind === "ok") { errorBox.style.background = "#dff2d8"; errorBox.style.color = "#23521a"; }
+  else { errorBox.style.background = "var(--acid)"; errorBox.style.color = "var(--ink)"; }
+  errorBox.focus();
+}
+form.addEventListener("submit", async function (event) {
   event.preventDefault();
-  if(!form.reportValidity())return;
-  var code=(form.code.value||'').trim().toUpperCase();
-  var invites=window.DNA_OS_INVITES||{};
-  var invite=invites[code];
-  if(!invite){showNotice('הקוד לא מזוהה. בודקים את האותיות שוב, או כותבים לצוות DNA.');return;}
-  try{sessionStorage.removeItem('dna_os_session_demo');sessionStorage.setItem('dna_os_session',JSON.stringify({client:invite.client,email:form.email.value,ts:Date.now()}));}catch(e){}
-  location.href='dna-os/';
+  if (!form.reportValidity()) return;
+  btn.disabled = true; btn.textContent = "...מתחבר";
+  try {
+    var r = await sb.auth.signInWithPassword({ email: form.email.value.trim(), password: form.password.value });
+    if (r.error) { show("err", "אימייל או סיסמה שגויים. בודקים שוב, או כותבים לצוות DNA."); }
+    else { location.href = "dna-os/"; return; }
+  } catch (e) { show("err", "תקלה בתקשורת. בודקים את החיבור ומנסים שוב."); }
+  btn.disabled = false; btn.textContent = "כניסה ל-DNA OS";
+});
+document.getElementById("forgot").addEventListener("click", async function (event) {
+  event.preventDefault();
+  var email = (form.email.value || "").trim();
+  if (!email) { show("err", "מזינים קודם את האימייל, ואז לוחצים 'שכחתי סיסמה'."); return; }
+  try {
+    var r = await sb.auth.resetPasswordForEmail(email, { redirectTo: "https://hellodna.co.il/dna-os-login.html" });
+    if (r.error) { show("err", "לא הצלחנו לשלוח מייל איפוס. בודקים את האימייל או כותבים לצוות DNA."); }
+    else { show("ok", "נשלח מייל לאיפוס סיסמה. בודקים את תיבת הדואר."); }
+  } catch (e) { show("err", "תקלה בתקשורת. מנסים שוב."); }
+});
+
+/* password recovery landing: email link lands here with a recovery session */
+function enterRecovery() {
+  document.getElementById("cardTitle").textContent = "בחירת סיסמה חדשה";
+  document.getElementById("cardSub").textContent = "בוחרים סיסמה חדשה לחשבון DNA OS שלך";
+  document.getElementById("loginBlock").hidden = true;
+  document.getElementById("resetBlock").hidden = false;
+  errorBox.hidden = true; errorBox.style.display = "none";
+}
+sb.auth.onAuthStateChange(function (event) {
+  if (event === "PASSWORD_RECOVERY") enterRecovery();
+});
+if (/type=recovery/i.test(location.hash)) enterRecovery();
+var resetForm = document.getElementById("resetForm");
+var rbtn = resetForm.querySelector(".submit");
+resetForm.addEventListener("submit", async function (event) {
+  event.preventDefault();
+  if (!resetForm.reportValidity()) return;
+  var p1 = resetForm.pw1.value, p2 = resetForm.pw2.value;
+  if (p1.length < 8) { show("err", "הסיסמה צריכה להיות לפחות 8 תווים."); return; }
+  if (p1 !== p2) { show("err", "הסיסמאות לא זהות. מנסים שוב."); return; }
+  rbtn.disabled = true; rbtn.textContent = "...שומר";
+  try {
+    var r = await sb.auth.updateUser({ password: p1 });
+    if (r.error) {
+      show("err", "לא הצלחנו לשמור. פותחים שוב את הקישור מהמייל, או כותבים לצוות DNA.");
+      rbtn.disabled = false; rbtn.textContent = "שמירת סיסמה וכניסה";
+    } else {
+      show("ok", "הסיסמה נשמרה. נכנסים למערכת...");
+      setTimeout(function () { location.href = "dna-os/"; }, 900);
+    }
+  } catch (e) {
+    show("err", "תקלה בתקשורת. מנסים שוב.");
+    rbtn.disabled = false; rbtn.textContent = "שמירת סיסמה וכניסה";
+  }
 });
 </script></body></html>
