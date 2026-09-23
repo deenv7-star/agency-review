@@ -1,0 +1,152 @@
+<!doctype html>
+<html dir="rtl" lang="he"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow,noarchive"/><title>DNA STUDIO | אונבורדינג ואפיון</title>
+<link rel="icon" href="assets/favicon/dna-monogram.svg"/><link rel="stylesheet" href="assets/tel-aviv-fonts.css"/>
+<style>
+:root{--ink:#111;--paper:#f3efe5;--acid:#d9ff43;--muted:#6f6b63;--line:rgba(17,17,17,.16);--card:#fbf9f3}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 "Tel Aviv Modernist",Arial,sans-serif}
+a{color:inherit}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px max(20px,calc((100vw - 860px)/2))}
+header img{height:34px;display:block}
+header span{font-size:13px;color:var(--muted)}
+main{width:min(860px,calc(100% - 32px));margin:0 auto 80px}
+.intro h1{font:700 clamp(40px,7vw,72px)/1 "Tel Aviv Brutalist",Arial,sans-serif;margin:18px 0 14px;letter-spacing:-.01em}
+.intro h1 em{font-style:normal;color:#6f8f00}
+.intro p{margin:0 0 8px;max-width:620px;color:#3b3833}
+.intro small{display:block;color:var(--muted);font-size:14px;margin-top:10px}
+.progress{position:sticky;top:0;z-index:5;background:var(--paper);padding:14px 0 12px;margin-top:26px;border-bottom:1px solid var(--line)}
+.steps{display:flex;gap:6px}.steps b{flex:1;height:6px;border-radius:9px;background:rgba(17,17,17,.1);transition:background .3s}
+.steps b.on{background:var(--ink)}.steps b.cur{background:var(--acid);box-shadow:inset 0 0 0 1px #111}
+.progress p{margin:9px 0 0;font-size:14px;color:var(--muted)}.progress p strong{color:var(--ink)}
+fieldset{border:0;margin:0;padding:30px 0 0;display:none}fieldset.show{display:block}
+legend{padding:0}
+.part{display:inline-block;font:700 12px/1 "Tel Aviv Modernist",Arial;background:var(--ink);color:var(--acid);padding:7px 11px;border-radius:99px;margin-bottom:12px}
+h2{font:700 clamp(28px,4.4vw,40px)/1.05 "Tel Aviv Brutalist",Arial,sans-serif;margin:0 0 6px}
+.lead{margin:0 0 22px;color:#4a463f;font-size:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}.full{grid-column:1/-1}
+label.f{display:block}
+.q{display:block;font-weight:700;font-size:16px;margin-bottom:6px}.q i{color:#b33;font-style:normal;margin-inline-start:3px}
+.h{display:block;font-size:14px;color:var(--muted);margin:-3px 0 7px}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=date],select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;outline:none;transition:border .2s,box-shadow .2s}
+textarea{min-height:104px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:#111;box-shadow:0 0 0 3px rgba(217,255,67,.9)}
+.bad{border-color:#c33!important;box-shadow:0 0 0 3px rgba(204,51,51,.15)!important}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:9px 14px;font-size:15px;transition:all .15s}
+.chips input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chips input:focus-visible+span{box-shadow:0 0 0 3px var(--acid)}
+.chips.bad span{border-color:#c33}
+.note{background:#111;color:#e9e6dc;border-radius:16px;padding:14px 16px;font-size:14px;margin-top:4px}.note b{color:var(--acid)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:30px;align-items:center}
+button{font:700 16px "Tel Aviv Modernist",Arial;border:0;border-radius:99px;padding:15px 26px;cursor:pointer}
+.next{background:var(--acid);color:#111;box-shadow:inset 0 0 0 1px #111}.back{background:transparent;color:#111;box-shadow:inset 0 0 0 1px var(--line)}
+.next:disabled{opacity:.6;cursor:wait}
+.saved{font-size:13px;color:var(--muted)}
+.err{color:#b33;font-size:14px;margin-top:12px;min-height:1em}
+.done{display:none;text-align:right;padding:50px 0}.done h2{font-size:clamp(34px,6vw,56px)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:15px}.consent input{width:20px;height:20px;margin-top:3px;accent-color:#111}
+@media(max-width:640px){.grid{grid-template-columns:1fr}body{font-size:16px}header{padding:16px}.nav button{flex:1}}
+</style></head><body>
+<header><img src="assets/dna-logo-black.png" alt="DNA STUDIO"/><span>טופס לקוחות DNA</span></header>
+<main>
+<section class="intro"><h1>ברוכים הבאים ל-<em>DNA.</em></h1>
+<p>כמה שאלות שיעזרו לנו להכיר את העסק לעומק לפני שמתחילים. ככל שהתשובות מדויקות יותר, נגיע מהר יותר לעבודה שבאמת מזיזה.</p>
+<small>כ-12 דקות. התשובות נשמרות אוטומטית בדפדפן, אפשר לעצור ולחזור. שדות עם * הם חובה, כל השאר עוזר לנו מאוד.</small></section>
+<div class="progress" aria-live="polite"><div class="steps" id="bars"></div><p id="stepinfo"></p></div>
+<form id="ob" action="https://formsubmit.co/ajax/5fcc9ab3a5446c2cfb28324f42ca1207" method="POST" novalidate>
+<input type="hidden" name="_subject" id="subj" value="אונבורדינג לקוח חדש - DNA STUDIO"/><input type="hidden" name="_captcha" value="false"/><input type="hidden" name="_template" value="table"/><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"/>
+
+<fieldset data-title="פרטים ורישום"><legend><span class="part">חלק א׳ · אונבורדינג</span><h2>פרטים ורישום</h2></legend><p class="lead">הבסיס לחוזה, לחשבוניות ולקשר השוטף.</p>
+<div class="grid">
+<label class="f"><span class="q">שם מלא<i>*</i></span><input type="text" name="שם מלא" autocomplete="name" required/></label>
+<label class="f"><span class="q">תפקיד בעסק</span><input type="text" name="תפקיד" placeholder="בעלים, מנכ״ל, מנהלת שיווק..."/></label>
+<label class="f"><span class="q">טלפון<i>*</i></span><input type="tel" name="טלפון" dir="ltr" autocomplete="tel" inputmode="tel" required/></label>
+<label class="f"><span class="q">מייל<i>*</i></span><input type="email" name="email" dir="ltr" autocomplete="email" required/></label>
+<label class="f"><span class="q">שם העסק / המותג<i>*</i></span><input type="text" name="שם העסק" id="bizname" autocomplete="organization" required/></label>
+<label class="f"><span class="q">שם רשום (אם שונה)</span><input type="text" name="שם רשום" placeholder="כפי שמופיע ברשם החברות"/></label>
+<label class="f"><span class="q">ח.פ / ע.מ<i>*</i></span><input type="text" name="ח.פ / ע.מ" dir="ltr" inputmode="numeric" pattern="[0-9 \-]{8,11}" required/><span class="h">9 ספרות</span></label>
+<label class="f"><span class="q">סוג התאגדות<i>*</i></span><select name="סוג התאגדות" required><option value="">בחירה</option><option>חברה בע״מ</option><option>עוסק מורשה</option><option>עוסק פטור</option><option>שותפות</option><option>עמותה / מלכ״ר</option><option>אחר</option></select></label>
+<label class="f full"><span class="q">כתובת העסק (לחשבוניות)</span><input type="text" name="כתובת" autocomplete="street-address"/></label>
+<label class="f"><span class="q">איש קשר לתשלומים</span><input type="text" name="איש קשר לתשלומים" placeholder="שם, אם שונה ממך"/></label>
+<label class="f"><span class="q">מייל לחשבוניות</span><input type="email" name="מייל לחשבוניות" dir="ltr"/></label>
+</div></fieldset>
+
+<fieldset data-title="העסק"><legend><span class="part">חלק א׳ · אונבורדינג</span><h2>העסק</h2></legend><p class="lead">מה אתם עושים, במילים שלכם.</p>
+<div class="grid">
+<label class="f full"><span class="q">מה העסק עושה, במשפט אחד<i>*</i></span><span class="h">כמו שהייתם מסבירים לחבר בשיחת מסדרון</span><input type="text" name="מה העסק עושה" required/></label>
+<label class="f full"><span class="q">המוצרים / השירותים המרכזיים</span><span class="h">ואיזה מהם הכי חשוב לכם למכור, או הכי רווחי</span><textarea name="מוצרים ושירותים"></textarea></label>
+<label class="f"><span class="q">שווי עסקה / לקוח ממוצע</span><input type="text" name="שווי עסקה ממוצע" placeholder="למשל 450 ₪ או 12,000 ₪ לפרויקט"/></label>
+<label class="f"><span class="q">שנת הקמה</span><input type="text" name="שנת הקמה" inputmode="numeric"/></label>
+<label class="f"><span class="q">גודל הצוות</span><select name="גודל צוות"><option value="">בחירה</option><option>רק אני</option><option>2-5</option><option>6-20</option><option>21-100</option><option>100+</option></select></label>
+<label class="f"><span class="q">אזור פעילות</span><select name="אזור פעילות"><option value="">בחירה</option><option>עיר / אזור מסוים</option><option>כל הארץ</option><option>ישראל וחו״ל</option><option>בעיקר חו״ל</option></select></label>
+<label class="f full"><span class="q">אתר ורשתות חברתיות</span><span class="h">קישורים: אתר, אינסטגרם, פייסבוק, טיקטוק, לינקדאין, גוגל עסקים</span><textarea name="אתר ורשתות" dir="auto" style="min-height:80px"></textarea></label>
+<label class="f full"><span class="q">עונתיות או תקופות חזקות / חלשות בשנה</span><input type="text" name="עונתיות"/></label>
+</div></fieldset>
+
+<fieldset data-title="מטרות ופוקוס"><legend><span class="part">חלק א׳ · אונבורדינג</span><h2>על מה שמים פוקוס</h2></legend><p class="lead">כדי שנתחיל מהדבר שהכי יזיז לכם.</p>
+<div class="grid">
+<div class="f full"><span class="q">על מה לשים פוקוס?<i>*</i></span><span class="h">אפשר לבחור כמה</span><div class="chips" data-req="focus">
+<label><input type="checkbox" name="פוקוס" value="יותר לידים"/><span>יותר לידים</span></label><label><input type="checkbox" name="פוקוס" value="מכירות אונליין"/><span>מכירות אונליין</span></label><label><input type="checkbox" name="פוקוס" value="מודעות ומיתוג"/><span>מודעות ומיתוג</span></label><label><input type="checkbox" name="פוקוס" value="תוכן לסושיאל"/><span>תוכן לסושיאל</span></label><label><input type="checkbox" name="פוקוס" value="קמפיין ממומן"/><span>קמפיין ממומן</span></label><label><input type="checkbox" name="פוקוס" value="אתר / דף נחיתה"/><span>אתר / דף נחיתה</span></label><label><input type="checkbox" name="פוקוס" value="זהות מותג / מיתוג מחדש"/><span>זהות מותג / מיתוג מחדש</span></label><label><input type="checkbox" name="פוקוס" value="השקה של מוצר / שירות"/><span>השקה</span></label><label><input type="checkbox" name="פוקוס" value="סרט / הפקה"/><span>סרט / הפקה</span></label><label><input type="checkbox" name="פוקוס" value="אוטומציות / AI"/><span>אוטומציות / AI</span></label><label><input type="checkbox" name="פוקוס" value="גיוס עובדים"/><span>גיוס עובדים</span></label></div></div>
+<label class="f full"><span class="q">המטרה הכי חשובה ל-90 הימים הקרובים<i>*</i></span><span class="h">אם הייתם יכולים לשנות דבר אחד בלבד</span><textarea name="מטרה ל-90 יום" required></textarea></label>
+<label class="f full"><span class="q">איך תדעו שהעבודה איתנו הצליחה?</span><span class="h">מספר, תחושה או מצב. למשל "30 פניות איכותיות בחודש" או "מותג שלא מתביישים לשלוח"</span><textarea name="מדד הצלחה"></textarea></label>
+<label class="f"><span class="q">תקציב פרסום חודשי (מדיה, בלי שכר הסוכנות)</span><select name="תקציב מדיה חודשי"><option value="">בחירה</option><option>עדיין אין</option><option>עד 3,000 ₪</option><option>3,000-10,000 ₪</option><option>10,000-30,000 ₪</option><option>30,000-100,000 ₪</option><option>מעל 100,000 ₪</option><option>עוד לא החלטנו</option></select></label>
+<label class="f"><span class="q">תאריכים חשובים קרובים</span><input type="text" name="דדליינים" placeholder="השקה, אירוע, חג, מבצע..."/></label>
+<label class="f full"><span class="q">מה כבר ניסיתם בשיווק, ומה עבד או לא?</span><textarea name="ניסיון קודם"></textarea></label>
+</div></fieldset>
+
+<fieldset data-title="הלקוחות והשוק"><legend><span class="part">חלק ב׳ · אפיון</span><h2>הלקוחות והשוק</h2></legend><p class="lead">מי קונה מכם, למה, ומול מי אתם מתחרים.</p>
+<div class="grid">
+<label class="f full"><span class="q">מי הלקוח האידיאלי שלכם?<i>*</i></span><span class="h">גיל, מקום, מצב, מה הוא צריך. אם יש כמה סוגים - תארו את המרכזי</span><textarea name="לקוח אידיאלי" required></textarea></label>
+<label class="f full"><span class="q">איזו בעיה אתם פותרים לו?</span><span class="h">מה קורה לו לפני שהוא מגיע אליכם</span><textarea name="הבעיה שנפתרת"></textarea></label>
+<label class="f full"><span class="q">למה קונים דווקא מכם?</span><span class="h">מה לקוחות אומרים עליכם כשהם ממליצים</span><textarea name="למה קונים מאיתנו"></textarea></label>
+<label class="f full"><span class="q">מה עוצר אנשים מלקנות?</span><span class="h">ההתנגדויות והשאלות שחוזרות: מחיר, אמון, זמן...</span><textarea name="התנגדויות"></textarea></label>
+<div class="f full"><span class="q">מאיפה מגיעים לקוחות היום?</span><div class="chips">
+<label><input type="checkbox" name="מקורות לקוחות" value="המלצות מפה לאוזן"/><span>המלצות</span></label><label><input type="checkbox" name="מקורות לקוחות" value="גוגל"/><span>גוגל</span></label><label><input type="checkbox" name="מקורות לקוחות" value="אינסטגרם"/><span>אינסטגרם</span></label><label><input type="checkbox" name="מקורות לקוחות" value="פייסבוק"/><span>פייסבוק</span></label><label><input type="checkbox" name="מקורות לקוחות" value="טיקטוק"/><span>טיקטוק</span></label><label><input type="checkbox" name="מקורות לקוחות" value="לינקדאין"/><span>לינקדאין</span></label><label><input type="checkbox" name="מקורות לקוחות" value="וואטסאפ"/><span>וואטסאפ</span></label><label><input type="checkbox" name="מקורות לקוחות" value="אתר"/><span>אתר</span></label><label><input type="checkbox" name="מקורות לקוחות" value="חנות / סניף"/><span>חנות / סניף</span></label><label><input type="checkbox" name="מקורות לקוחות" value="שיתופי פעולה"/><span>שיתופי פעולה</span></label><label><input type="checkbox" name="מקורות לקוחות" value="אחר"/><span>אחר</span></label></div></div>
+<label class="f full"><span class="q">מתחרים עיקריים</span><span class="h">2-3 שמות או קישורים, ומה אתם עושים טוב יותר מהם</span><textarea name="מתחרים"></textarea></label>
+</div></fieldset>
+
+<fieldset data-title="מותג וטון"><legend><span class="part">חלק ב׳ · אפיון</span><h2>המותג והטון</h2></legend><p class="lead">איך אתם רוצים שירגישו אתכם.</p>
+<div class="grid">
+<label class="f full"><span class="q">3 מילים שמתארות את המותג<i>*</i></span><input type="text" name="3 מילים" required/></label>
+<div class="f full"><span class="q">הטון שמתאים לכם</span><div class="chips">
+<label><input type="checkbox" name="טון" value="מקצועי ומדויק"/><span>מקצועי ומדויק</span></label><label><input type="checkbox" name="טון" value="חם ואישי"/><span>חם ואישי</span></label><label><input type="checkbox" name="טון" value="נועז ובולט"/><span>נועז ובולט</span></label><label><input type="checkbox" name="טון" value="יוקרתי ושקט"/><span>יוקרתי ושקט</span></label><label><input type="checkbox" name="טון" value="צעיר ומשוחרר"/><span>צעיר ומשוחרר</span></label><label><input type="checkbox" name="טון" value="עם הומור"/><span>עם הומור</span></label></div></div>
+<label class="f full"><span class="q">מותגים שאתם אוהבים (מכל תחום)</span><span class="h">ומה בדיוק מושך אתכם בהם</span><textarea name="מותגי השראה"></textarea></label>
+<label class="f full"><span class="q">מה אסור שיקרה?</span><span class="h">סגנונות, מילים, צבעים או מסרים שלא מתאימים לכם</span><textarea name="קווים אדומים"></textarea></label>
+<label class="f"><span class="q">יש לכם לוגו ושפה גרפית?</span><select name="שפה גרפית"><option value="">בחירה</option><option>כן, מלאה (לוגו, צבעים, פונטים)</option><option>יש לוגו בלבד</option><option>יש, אבל רוצים לרענן</option><option>אין עדיין</option></select></label>
+<label class="f"><span class="q">מי מוכן להופיע בתוכן?</span><select name="הופעה בתוכן"><option value="">בחירה</option><option>הבעלים / המנהלים</option><option>הצוות</option><option>לקוחות</option><option>אף אחד, רק מוצר ומותג</option><option>עוד לא יודעים</option></select></label>
+<label class="f full"><span class="q">קישור לחומרים קיימים</span><span class="h">תיקיית Drive / Dropbox עם לוגו, תמונות, סרטונים ומצגות</span><input type="url" name="קישור לחומרים" dir="ltr" placeholder="https://"/></label>
+</div></fieldset>
+
+<fieldset data-title="עבודה משותפת"><legend><span class="part">חלק ב׳ · אפיון</span><h2>איך עובדים יחד</h2></legend><p class="lead">כדי שהעבודה תרוץ בלי עיכובים.</p>
+<div class="grid">
+<label class="f"><span class="q">מי מאשר תכנים וקמפיינים?<i>*</i></span><input type="text" name="מאשר תכנים" placeholder="שם ותפקיד" required/></label>
+<label class="f"><span class="q">ערוץ תקשורת מועדף</span><select name="ערוץ תקשורת"><option value="">בחירה</option><option>וואטסאפ</option><option>מייל</option><option>שיחת טלפון</option><option>פגישות קבועות</option></select></label>
+<div class="f full"><span class="q">לאילו מערכות יש לכם גישה?</span><span class="h">כדי שנדע מה לבקש. לא לשלוח כאן סיסמאות - נבקש גישה בנפרד, בצורה מאובטחת</span><div class="chips">
+<label><input type="checkbox" name="גישות קיימות" value="Meta Business / מודעות פייסבוק ואינסטגרם"/><span>Meta Business</span></label><label><input type="checkbox" name="גישות קיימות" value="Google Ads"/><span>Google Ads</span></label><label><input type="checkbox" name="גישות קיימות" value="Google Analytics"/><span>Google Analytics</span></label><label><input type="checkbox" name="גישות קיימות" value="Google Business Profile"/><span>גוגל עסקים</span></label><label><input type="checkbox" name="גישות קיימות" value="TikTok Ads"/><span>TikTok Ads</span></label><label><input type="checkbox" name="גישות קיימות" value="ניהול האתר"/><span>ניהול האתר</span></label><label><input type="checkbox" name="גישות קיימות" value="דומיין"/><span>דומיין</span></label><label><input type="checkbox" name="גישות קיימות" value="CRM / מערכת לידים"/><span>CRM</span></label><label><input type="checkbox" name="גישות קיימות" value="לא בטוח/ה"/><span>לא בטוח/ה</span></label></div></div>
+<label class="f full"><span class="q">עם מי עבדתם בעבר בשיווק, ומה חשוב לכם שיהיה אחרת?</span><textarea name="ניסיון עם סוכנויות"></textarea></label>
+<label class="f full"><span class="q">משהו נוסף שחשוב שנדע?</span><textarea name="הערות נוספות"></textarea></label>
+<label class="consent full"><input type="checkbox" name="אישור" value="מאשר/ת" required id="cons"/><span>הפרטים נכונים, ואני מאשר/ת ל-DNA STUDIO להשתמש בהם לצורך העבודה המשותפת בלבד.<i style="color:#b33;font-style:normal"> *</i></span></label>
+</div></fieldset>
+
+<div class="err" id="err" role="alert"></div>
+<div class="nav"><button type="button" class="back" id="back">חזרה</button><span class="saved" id="saved"></span><button type="button" class="next" id="next">המשך</button></div>
+</form>
+<section class="done" id="done"><span class="part">התקבל</span><h2>תודה, קיבלנו הכל.</h2><p class="lead">נעבור על התשובות ונחזור אליכם עם הצעדים הראשונים. אם משהו השתנה, פשוט כתבו לנו בוואטסאפ.</p></section>
+</main>
+<script>
+(()=>{const f=document.getElementById('ob'),fs=[...f.querySelectorAll('fieldset')],bars=document.getElementById('bars'),info=document.getElementById('stepinfo'),next=document.getElementById('next'),back=document.getElementById('back'),err=document.getElementById('err'),saved=document.getElementById('saved'),KEY='dna-onboarding-v1';let i=0;
+fs.forEach(()=>bars.appendChild(document.createElement('b')));
+const save=()=>{const d={};f.querySelectorAll('input,select,textarea').forEach(e=>{if(!e.name||e.name[0]==='_')return;if(e.type==='checkbox'){d[e.name+'|'+e.value]=e.checked}else d[e.name]=e.value});d.__step=i;try{localStorage.setItem(KEY,JSON.stringify(d));saved.textContent='נשמר אוטומטית'}catch(x){}};
+const load=()=>{let d;try{d=JSON.parse(localStorage.getItem(KEY)||'null')}catch(x){}if(!d)return;f.querySelectorAll('input,select,textarea').forEach(e=>{if(!e.name||e.name[0]==='_')return;if(e.type==='checkbox'){const k=e.name+'|'+e.value;if(k in d)e.checked=d[k]}else if(e.name in d)e.value=d[e.name]});if(d.__step)i=Math.min(d.__step,fs.length-1)};
+const show=()=>{fs.forEach((x,k)=>x.classList.toggle('show',k===i));[...bars.children].forEach((b,k)=>{b.className=k<i?'on':k===i?'cur':''});info.innerHTML='שלב <strong>'+(i+1)+' מתוך '+fs.length+'</strong> · '+fs[i].dataset.title;back.style.visibility=i?'visible':'hidden';next.textContent=i===fs.length-1?'שליחה':'המשך';err.textContent=''};
+const valid=()=>{let ok=true,first=null;fs[i].querySelectorAll('[required]').forEach(e=>{const bad=e.type==='checkbox'?!e.checked:(!e.value.trim()||(e.type==='email'&&!/^\S+@\S+\.\S+$/.test(e.value))||(e.pattern&&!new RegExp('^'+e.pattern+'$').test(e.value.trim())));e.classList.toggle('bad',bad);if(bad){ok=false;first=first||e}});fs[i].querySelectorAll('[data-req]').forEach(c=>{const bad=!c.querySelector('input:checked');c.classList.toggle('bad',bad);if(bad){ok=false;first=first||c}});if(!ok){err.textContent='חסרים כמה שדות חובה (מסומנים באדום).';first.scrollIntoView({block:'center',behavior:'smooth'});first.focus&&first.focus({preventScroll:true})}return ok};
+f.addEventListener('input',e=>{e.target.classList.remove('bad');e.target.closest('.chips')?.classList.remove('bad');save()});
+back.onclick=()=>{if(i>0){i--;show();save();scrollTo({top:document.querySelector('.progress').offsetTop,behavior:'smooth'})}};
+next.onclick=async()=>{if(!valid())return;if(i<fs.length-1){i++;show();save();scrollTo({top:document.querySelector('.progress').offsetTop,behavior:'smooth'});return}
+document.getElementById('subj').value='אונבורדינג לקוח חדש - '+(document.getElementById('bizname').value||'')+' - DNA STUDIO';
+const fd=new FormData(f),out=new FormData();const multi={};for(const [k,v] of fd.entries()){if(k==='_honey')continue;if(out.has(k)){multi[k]=(multi[k]||[out.get(k)]);multi[k].push(v)}else out.append(k,v)}for(const k in multi)out.set(k,multi[k].join(', '));out.append('נשלח מ',location.href.split('?')[0]);
+next.disabled=true;next.textContent='שולח...';try{const r=await fetch(f.action,{method:'POST',body:out,headers:{Accept:'application/json'}});const j=await r.json().catch(()=>({}));if(!r.ok||j.success===false||j.success==='false')throw 0;localStorage.removeItem(KEY);f.style.display='none';document.querySelector('.progress').style.display='none';document.getElementById('done').style.display='block';scrollTo({top:0,behavior:'smooth'})}catch(x){err.textContent='משהו לא עבד בשליחה. התשובות שמורות - נסו שוב, או כתבו לנו בוואטסאפ.';next.disabled=false;next.textContent='שליחה'}};
+load();show();})();
+</script></body></html>
