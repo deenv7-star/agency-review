@@ -17,6 +17,7 @@
 
   var clientName = "";
   var sbClient = null;
+  var isAdminUser = false;
 
   /* ---------------- demo data (fictional!) ---------------- */
   var DEMO = {
@@ -244,6 +245,10 @@
   };
 
   function init() {
+  if (isAdminUser && !isDemo) {
+    VIEWS.push({ id: "admin", title: "ניהול", tag: "ADMIN", icon: ICONS.work });
+  }
+
   /* ---------------- chrome ---------------- */
   document.getElementById("brandMark").innerHTML = "DNA <span>OS</span><i></i>";
   document.getElementById("clientLabel").innerHTML = (isDemo ? "מציגים בתור" : "מחובר בתור") + "<b>" + esc(clientName) + "</b>";
@@ -292,13 +297,23 @@
     document.getElementById("viewTitle").textContent = view.title;
     document.title = "DNA OS · " + view.title;
     var root = document.getElementById("viewRoot");
-    root.innerHTML = '<div class="view">' + (isDemo ? R[view.id]() : E[view.id]()) + "</div>";
+    if (view.id === "admin" && window.DNAOS_ADMIN) {
+      if (root.dataset.view !== "admin") {
+        root.dataset.view = "admin";
+        root.innerHTML = '<div class="view">' + window.DNAOS_ADMIN.render() + "</div>";
+        window.DNAOS_ADMIN.mount(root, sbClient);
+      }
+    } else {
+      root.dataset.view = view.id;
+      root.innerHTML = '<div class="view">' + (isDemo ? R[view.id]() : E[view.id]()) + "</div>";
+    }
     document.querySelectorAll("[data-view]").forEach(function (b) {
       b.classList.toggle("active", b.dataset.view === view.id);
     });
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", route);
+  if (isAdminUser && !isDemo && !location.hash) location.hash = "#/admin";
   route();
 
   /* ---------------- approve buttons ---------------- */
@@ -322,9 +337,10 @@
   }
 
   /* ---------------- boot ---------------- */
-  function boot(name, sb) {
+  function boot(name, sb, admin) {
     clientName = name;
     sbClient = sb || null;
+    isAdminUser = !!admin;
     if (isDemo) document.body.classList.add("demo");
     init();
   }
@@ -343,11 +359,13 @@
         var sess = r && r.data && r.data.session;
         if (!sess) { fail(); return; }
         var name = (sess.user && sess.user.email) || "לקוח DNA";
+        var admin = false;
         try {
-          var pr = await sb.from("profiles").select("display_name").eq("user_id", sess.user.id).maybeSingle();
+          var pr = await sb.from("profiles").select("display_name,is_admin").eq("user_id", sess.user.id).maybeSingle();
           if (pr && pr.data && pr.data.display_name) name = pr.data.display_name;
+          if (pr && pr.data && pr.data.is_admin) admin = true;
         } catch (e) {}
-        boot(name, sb);
+        boot(name, sb, admin);
       } catch (e) { fail(); }
     })();
   }
