@@ -199,7 +199,8 @@ footer .legal{border-top:1px solid #3A3431;padding-top:26px;display:flex;justify
   .hero-copy{position:static;transform:none;padding:36px 22px 44px;max-width:none}
   h1{font-size:37px}
   .hero-sub{font-size:15px;margin:16px 0 26px}
-  .usp>div{padding:14px 12px;font-size:11px;gap:7px}
+  .usp{flex-wrap:wrap}
+  .usp>div{padding:11px 6px;font-size:10px;gap:5px}
   section.block{padding:56px 18px 64px}
   .grid,.grid.two,.review-grid,.how .steps{grid-template-columns:1fr;gap:18px}
   .card{padding:28px 24px 26px}
