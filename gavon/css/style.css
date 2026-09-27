@@ -14,6 +14,7 @@
   --grad:linear-gradient(to left,#F2DAC8,#DFAE8B 35%,#B57C57 70%,#7A472B);
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
 body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
@@ -167,10 +168,10 @@ footer .legal{border-top:1px solid #3A3431;padding-top:26px;display:flex;justify
 .how .step p{font-size:13.5px;line-height:1.8;color:var(--grey)}
 
 /* cart drawer */
-.overlay{position:fixed;inset:0;background:rgba(33,29,27,.42);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
-.overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;left:0;height:100%;width:420px;max-width:92vw;background:var(--paper);z-index:70;transform:translateX(-105%);transition:transform .3s ease;display:flex;flex-direction:column}
-.drawer.open{transform:translateX(0)}
+.overlay{position:fixed;inset:0;background:rgba(33,29,27,.42);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,visibility 0s linear .25s;z-index:60}
+.overlay.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .25s,visibility 0s}
+.drawer{position:fixed;top:0;left:0;height:100%;width:420px;max-width:92vw;background:var(--paper);z-index:70;transform:translateX(-105%);visibility:hidden;transition:transform .3s ease,visibility 0s linear .3s;display:flex;flex-direction:column}
+.drawer.open{transform:translateX(0);visibility:visible;transition:transform .3s ease,visibility 0s}
 .drawer header{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--line)}
 .drawer header b{font-family:var(--display);font-size:20px}
 .drawer header button{background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink)}
