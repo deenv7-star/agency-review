@@ -58,8 +58,8 @@
       root.innerHTML = '<style>' +
         ':host{display:block;position:relative;direction:rtl}' +
         '.wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:clamp(24px,5vw,80px);max-width:1280px;margin:0 auto;padding:0 24px}' +
-        '.steps{padding:30vh 0 40vh}' +
-        '.step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;opacity:.22;transform:translateY(10px);transition:opacity .45s ' + EASE + ',transform .45s ' + EASE + '}' +
+        '.steps{padding:5vh 0 8vh}' +
+        '.step{min-height:44vh;display:flex;flex-direction:column;justify-content:center;opacity:.22;transform:translateY(10px);transition:opacity .45s ' + EASE + ',transform .45s ' + EASE + '}' +
         '.step.on{opacity:1;transform:none}' +
         '.n{font:700 13px ' + FT + ';letter-spacing:.16em;color:#77736B;direction:ltr;text-align:right}' +
         '.q{font:700 clamp(38px,4.6vw,68px)/.95 ' + FD + ';letter-spacing:-.04em;color:' + INK + ';margin:12px 0 14px}' +
@@ -78,7 +78,7 @@
         '.base{height:14px;margin:0 -5%;border-radius:0 0 18px 18px;background:linear-gradient(#d9d7d0,#b9b6ae 60%,#9d9a92);position:relative}' +
         '.base:before{content:"";position:absolute;left:50%;top:0;width:16%;height:6px;transform:translateX(-50%);border-radius:0 0 10px 10px;background:#a9a69e}' +
         '.shadow{height:24px;margin:0 2%;background:radial-gradient(50% 100% at 50% 0,rgba(0,0,0,.18),transparent 70%)}' +
-        '@media (max-width:820px){.wrap{display:flex;flex-direction:column}.stage{order:0;position:sticky;top:76px;height:39vh;flex:0 0 auto;z-index:2;background:linear-gradient(#fff 88%,rgba(255,255,255,0))}.steps{order:1;padding:4vh 0 18vh}.step{min-height:48vh}}' +
+        '@media (max-width:820px){.wrap{display:flex;flex-direction:column}.stage{order:0;position:sticky;top:76px;height:39vh;flex:0 0 auto;z-index:2;background:linear-gradient(#fff 88%,rgba(255,255,255,0))}.steps{order:1;padding:0 0 6vh}.step{min-height:36vh}}' +
         '</style>' +
         '<div class="wrap"><div class="steps">' + OS_STEPS.map(function (s, i) {
           return '<div class="step" data-i="' + i + '"><div class="n">' + s.n + ' / 04</div><div class="q">' + esc(s.q) + '</div><div class="a">' + esc(s.a) + '</div><div class="tag"><i></i>' + esc(s.tag) + '</div></div>';
