@@ -303,7 +303,7 @@
           return '<div class="cv" data-i="' + i + '"><div class="win"><div class="chrome"><i></i><i></i><i></i><em>' + esc(host) + '</em></div><img alt="' + esc(it.t) + '" src="' + esc(it.i) + '"></div><div class="shade"></div></div>';
         }).join('') + '</div><div class="cap"></div>';
       var covers = Array.prototype.slice.call(root.querySelectorAll('.cv')), cap = root.querySelector('.cap'), stage = root.querySelector('.stage');
-      var N = items.length; this.pos = new Spring(Math.floor(N / 2), 0.5, 1); var shown = -1;
+      var N = items.length; this.pos = new Spring(Math.floor(N / 2), 0.5, 1); var shown = -1, visible = false;
       var W = function () { return covers[0].offsetWidth; };
       var paint = function () {
         var p = self.pos.x, w = W();
