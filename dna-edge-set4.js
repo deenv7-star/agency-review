@@ -325,7 +325,7 @@
           var olds = Array.prototype.slice.call(cap.children, 0, -1); olds.forEach(function (o) { o.style.opacity = '0'; setTimeout(function () { o.remove(); }, 320); });
         }
       };
-      new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; if (!visible) cards.forEach(function (c) { c.querySelector('video').pause(); }); else { active = -1; paint(); } }, {rootMargin:'220px'}).observe(this);
+      new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; if (visible) paint(); }, {rootMargin:"220px"}).observe(this);
       var run = ticker(function (dt) { var g = self.pos.step(dt); paint(); return g; });
       var go = function (i, v) { self.pos.t = clamp(i, 0, N - 1); if (v !== undefined) self.pos.v = v; run(); };
       this.tabIndex = 0;
