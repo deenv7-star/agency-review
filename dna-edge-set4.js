@@ -72,7 +72,7 @@
         menu.innerHTML = secs.map(function (s, i) { return '<div class="it" role="menuitem" tabindex="0" data-i="' + i + '"><span>' + esc(s.label) + '</span><small>' + ('0' + (i + 1)).slice(-2) + '</small></div>'; }).join('');
       };
       collect();
-      this.w = new Spring(120, 0.42, 0.82); this.h = new Spring(44, 0.42, 0.82); this.y = new Spring(-80, 0.45, 1);
+      this.w = new Spring(120, 0.42, 0.82); this.h = new Spring(44, 0.42, 0.82); this.y = new Spring(160, 0.45, 1);
       var open = false, cur = -2, labelEl = null;
       var paint = function () {
         pill.style.width = self.w.x.toFixed(1) + 'px'; pill.style.height = self.h.x.toFixed(1) + 'px'; pill.style.borderRadius = Math.min(self.h.x / 2, 30).toFixed(1) + 'px';
@@ -99,11 +99,25 @@
       var onScroll = function () {
         var y = scrollY, H = document.documentElement.scrollHeight - innerHeight;
         rp.setAttribute('stroke-dashoffset', (59.7 * (1 - clamp(y / Math.max(1, H), 0, 1))).toFixed(2));
-        var show = y > innerHeight * 0.55;
-        var ty = show ? 0 : -80; if (self.y.t !== ty) { self.y.t = ty; run(); if (!show && open) toggle(false); }
+        var hero = document.querySelector('.hero-living'), consent = document.querySelector('#cookie-banner');
+        var show = (hero ? hero.getBoundingClientRect().bottom < 0 : y > innerHeight) && !(consent && !consent.hidden);
+        self.style.visibility = show ? 'visible' : 'hidden';
+        var ty = show ? 0 : 160; if (self.y.t !== ty) { self.y.t = ty; run(); if (!show && open) toggle(false); }
         var mid = innerHeight * 0.4, best = -1;
         secs.forEach(function (s, i) { var r = s.el.getBoundingClientRect(); if (r.top <= mid) best = i; });
         setLabel(best);
+        // Keep the compact Island out of visible section headings. Test the
+        // default right-hand slot, rather than its last moved position.
+        var vw = innerWidth, mobile = vw <= 700, edge = mobile ? 8 : 18;
+        var bottom = mobile ? 76 : 82, px = vw - edge - pill.offsetWidth;
+        var py = innerHeight - bottom - pill.offsetHeight;
+        var overlap = Array.prototype.some.call(document.querySelectorAll('section h2'), function (h) {
+          var r = h.getBoundingClientRect();
+          return r.left < px + pill.offsetWidth + 8 && r.right > px - 8 &&
+            r.top < py + pill.offsetHeight + 8 && r.bottom > py - 8;
+        });
+        self.style.setProperty('left', overlap ? edge + 'px' : 'auto', 'important');
+        self.style.setProperty('right', overlap ? 'auto' : edge + 'px', 'important');
       };
       pill.addEventListener('click', function (e) {
         var it = e.target.closest('.it');
@@ -114,6 +128,7 @@
       document.addEventListener('click', function (e) { if (open && !self.contains(e.target) && e.composedPath().indexOf(pill) < 0) toggle(false); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && open) toggle(false); });
       addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll);
+      document.querySelectorAll('[data-cookie]').forEach(function(b){b.addEventListener('click', function(){setTimeout(onScroll, 0);});});
       if (RM) { this.w.r = this.h.r = this.y.r = 0.12; }
       paint(); onScroll();
     }
