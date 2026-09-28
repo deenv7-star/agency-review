@@ -78,7 +78,7 @@
         '.base{height:14px;margin:0 -5%;border-radius:0 0 18px 18px;background:linear-gradient(#d9d7d0,#b9b6ae 60%,#9d9a92);position:relative}' +
         '.base:before{content:"";position:absolute;left:50%;top:0;width:16%;height:6px;transform:translateX(-50%);border-radius:0 0 10px 10px;background:#a9a69e}' +
         '.shadow{height:24px;margin:0 2%;background:radial-gradient(50% 100% at 50% 0,rgba(0,0,0,.18),transparent 70%)}' +
-        '@media (max-width:820px){.wrap{display:flex;flex-direction:column}.stage{order:0;position:sticky;top:76px;height:39vh;flex:0 0 auto;z-index:2;background:linear-gradient(#fff 88%,rgba(255,255,255,0))}.steps{order:1;padding:0 0 6vh}.step{min-height:36vh}}' +
+        '@media (max-width:820px){.wrap{display:flex;flex-direction:column}.stage{order:0;position:sticky;top:76px;height:34vh;flex:0 0 auto;z-index:2;background:linear-gradient(#fff 88%,rgba(255,255,255,0))}.steps{order:1;padding:0 0 2vh}.step{min-height:28vh}.step:not(.on){opacity:.48}}' +
         '</style>' +
         '<div class="wrap"><div class="steps">' + OS_STEPS.map(function (s, i) {
           return '<div class="step" data-i="' + i + '"><div class="n">' + s.n + ' / 04</div><div class="q">' + esc(s.q) + '</div><div class="a">' + esc(s.a) + '</div><div class="tag"><i></i>' + esc(s.tag) + '</div></div>';
