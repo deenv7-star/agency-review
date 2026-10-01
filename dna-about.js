@@ -39,7 +39,7 @@
   var relayCSS = [
     ':host{display:block;position:relative;color:#fff;font-family:' + FT + ';direction:rtl;--lime:' + LIME + '}',
     '.track{position:relative;height:340vh}',
-    '.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(145px,19vh,185px) clamp(20px,5vw,72px) clamp(26px,5vh,54px);box-sizing:border-box}',
+    '.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(145px,19vh,185px) max(clamp(20px,5vw,72px),calc((100vw - 1280px) / 2)) clamp(26px,5vh,54px);box-sizing:border-box}',
     'header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}',
     '.meta{font:700 11px/1 ' + FT + ';letter-spacing:.16em;color:rgba(255,255,255,.5);margin-bottom:14px}',
     'h2{margin:0;font:700 clamp(40px,5.6vw,84px)/.98 ' + FD + ';letter-spacing:-.03em}',
