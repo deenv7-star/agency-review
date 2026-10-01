@@ -412,4 +412,67 @@
     },
     disconnectedCallback: function () { if (this._f) removeEventListener('scroll', this._f); }
   });
+
+  /* ==========================================================================
+     <dna-strand> — the thread that ties the page into one story.
+     Reads every section with data-chapter="01" data-chapter-name="…", draws
+     one strand with a dot per chapter, fills it as you read, names the
+     chapter you are in, and jumps to any chapter on click.
+     ======================================================================== */
+  var SDCSS = [
+    ':host{position:fixed;z-index:70;top:50%;right:20px;direction:rtl;font-family:' + FT + ';transform:translate(0,-50%);opacity:0;pointer-events:none;transition:opacity .5s ' + EASE + ',transform .6s ' + EASE + '}',
+    ':host([data-on]){opacity:1;pointer-events:auto}',
+    '.cap{position:relative;width:30px;padding:16px 0;border-radius:999px;background:rgba(18,18,18,.62);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 12px 30px -12px rgba(0,0,0,.4)}',
+    '.trk{position:relative;margin:0 auto;width:2px;height:var(--h,300px);border-radius:2px;background:rgba(255,255,255,.18)}',
+    '.fill{position:absolute;top:0;right:0;left:0;height:100%;border-radius:inherit;background:#D9FF43;transform-origin:50% 0;transform:scaleY(0)}',
+    '.d{position:absolute;right:50%;width:22px;height:22px;margin:-11px -11px 0 0;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}',
+    '.d:before{content:"";position:absolute;inset:7px;border-radius:50%;background:#5a5a5a;box-shadow:0 0 0 2px rgba(18,18,18,.9);transition:transform .4s ' + EASE + ',background-color .3s ' + EASE + '}',
+    '.d.past:before{background:#D9FF43}',
+    '.d.on:before{background:#D9FF43;transform:scale(1.55)}',
+    '.d:focus-visible{outline:2px solid #D9FF43;outline-offset:2px;border-radius:50%}',
+    '.lb{position:absolute;top:50%;right:calc(100% + 10px);transform:translate(6px,-50%);white-space:nowrap;padding:7px 11px;border-radius:999px;background:#121212;color:#fff;font:700 12px/1 ' + FT + ';box-shadow:0 8px 20px -8px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .3s ' + EASE + ',transform .4s ' + EASE + '}',
+    '.lb b{color:#D9FF43;margin-left:6px;font-weight:700;direction:ltr;display:inline-block}',
+    ':host([data-flash]) .d.on .lb{opacity:1;transform:translate(0,-50%)}',
+    '@media (hover:hover) and (pointer:fine){.cap:hover .lb{opacity:1;transform:translate(0,-50%)}.cap:hover .d:not(.on) .lb{background:rgba(18,18,18,.82)}.d:hover:before{transform:scale(1.35)}}',
+    '@media (max-width:1199px){:host{display:none}}'
+  ].join('');
+  define('dna-strand', {
+    connectedCallback: function () {
+      if (this._r) return; this._r = 1;
+      var self = this, root = this.attachShadow({ mode: 'open' });
+      var secs = [].slice.call(document.querySelectorAll('[data-chapter]')).map(function (el) {
+        return { el: el, n: el.getAttribute('data-chapter'), name: el.getAttribute('data-chapter-name') || '' };
+      });
+      if (!secs.length) return;
+      this.setAttribute('role', 'navigation'); this.setAttribute('aria-label', 'פרקים');
+      root.innerHTML = '<style>' + SDCSS + '</style><div class="cap"><div class="trk"><i class="fill"></i>' + secs.map(function (s, i) {
+        var top = secs.length > 1 ? (i / (secs.length - 1)) * 100 : 0;
+        return '<button class="d" type="button" style="top:' + top + '%" aria-label="' + esc(s.n + ' ' + s.name) + '"><span class="lb"><b>' + esc(s.n) + '</b>' + esc(s.name) + '</span></button>';
+      }).join('') + '</div></div>';
+      this._s = secs; this._d = [].slice.call(root.querySelectorAll('.d')); this._fill = root.querySelector('.fill');
+      this._d.forEach(function (d, i) { d.addEventListener('click', function () { secs[i].el.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' }); }); });
+      this._f = function () { if (!self._q) { self._q = 1; requestAnimationFrame(function () { self._q = 0; self._upd(); }); } };
+      addEventListener('scroll', this._f, { passive: true }); addEventListener('resize', this._f); this._upd();
+    },
+    disconnectedCallback: function () { if (this._f) { removeEventListener('scroll', this._f); removeEventListener('resize', this._f); } },
+    _upd: function () {
+      var s = this._s, mid = innerHeight * 0.45, cur = -1, frac = 0;
+      var tops = s.map(function (x) { return x.el.getBoundingClientRect().top; });
+      for (var i = 0; i < s.length; i++) if (tops[i] <= mid) cur = i;
+      // position on the strand: chapter index plus how far through that chapter we are
+      if (cur >= 0) {
+        var a = tops[cur], b = cur < s.length - 1 ? tops[cur + 1] : s[cur].el.getBoundingClientRect().bottom;
+        frac = clamp((mid - a) / Math.max(1, b - a), 0, 1);
+      }
+      var p = cur < 0 ? 0 : (s.length > 1 ? (cur + (cur < s.length - 1 ? frac : 0)) / (s.length - 1) : 1);
+      this._fill.style.transform = 'scaleY(' + p.toFixed(4) + ')';
+      this._d.forEach(function (d, i) { d.classList.toggle('on', i === cur); d.classList.toggle('past', i < cur); });
+      // name the chapter for a moment when it changes, then get out of the way
+      if (cur !== this._cur) {
+        var self = this; this._cur = cur; clearTimeout(this._ft);
+        if (cur >= 0) { this.setAttribute('data-flash', ''); this._ft = setTimeout(function () { self.removeAttribute('data-flash'); }, 1800); }
+      }
+      if (cur >= 0) this.setAttribute('data-on', ''); else this.removeAttribute('data-on');
+    }
+  });
 })();
