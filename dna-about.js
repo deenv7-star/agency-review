@@ -38,7 +38,7 @@
 
   var relayCSS = [
     ':host{display:block;position:relative;color:#fff;font-family:' + FT + ';direction:rtl;--lime:' + LIME + '}',
-    '.track{position:relative;height:260vh}',
+    '.track{position:relative;height:200vh}@media (max-width:760px){.track{height:360svh}}',
     '.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(145px,19vh,185px) max(clamp(20px,5vw,72px),calc((100vw - 1280px) / 2)) clamp(26px,5vh,54px);box-sizing:border-box}',
     'header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}',
     '.meta{font:700 11px/1 ' + FT + ';letter-spacing:.16em;color:rgba(255,255,255,.5);margin-bottom:14px}',
@@ -55,7 +55,7 @@
     '.scene{position:relative;min-height:0}',
     'svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}',
     '.node{position:absolute;left:0;top:0;will-change:transform;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:112px;padding:12px 18px;box-sizing:border-box;border-radius:16px;background:#171717;box-shadow:inset 0 0 0 1px rgba(255,255,255,.13);font:700 15px/1 ' + FT + ';color:#d9d9d9;white-space:nowrap}',
-    '.node small{font:700 9px/1 ' + FT + ';letter-spacing:.14em;color:rgba(255,255,255,.4);direction:ltr}',
+    '.node small{font:700 10px/1 ' + FT + ';letter-spacing:.12em;color:rgba(255,255,255,.62);direction:ltr}',
     '.node .ring{position:absolute;inset:-1px;border-radius:inherit;box-shadow:inset 0 0 0 1.5px var(--lime);opacity:0}',
     '.node .dots{position:absolute;top:-9px;left:-9px;display:flex;gap:3px;padding:6px 7px;border-radius:999px;background:#2a2a2a;opacity:0;transform:scale(.6)}',
     '.node .dots i{width:4px;height:4px;border-radius:50%;background:#bbb;animation:dt 1s infinite}',
@@ -79,7 +79,7 @@
     '.cap small{display:block;font:700 11px/1 ' + FT + ';letter-spacing:.16em;color:rgba(255,255,255,.5);margin-bottom:10px}',
     '.cap p{margin:0;max-width:760px;font:700 clamp(22px,2.6vw,36px)/1.2 ' + FD + ';letter-spacing:-.02em;text-wrap:balance}',
     '.cap em{font-style:normal;color:var(--lime)}',
-    '@media (min-width:1100px){.node{font-size:16px;padding:14px 22px}.client{font-size:15px;padding:12px 18px}.msg{font-size:15px}}@media (max-width:640px){.center .who span{display:none}.stage{padding-top:135px}.node{min-width:0;padding:9px 12px;font-size:13px;border-radius:13px}.node small{font-size:8px}.client{padding:9px 13px;font-size:13px}.msg{font-size:12.5px;padding:8px 12px}.seg button{padding:10px 16px;font-size:13px}header{gap:14px}}',
+    '@media (min-width:1100px){.node{font-size:16px;padding:14px 22px}.client{font-size:15px;padding:12px 18px}.msg{font-size:15px}}@media (max-width:640px){.center .who span{display:none}.stage{padding-top:135px}.node{min-width:0;padding:9px 12px;font-size:13px;border-radius:13px}.node small{font-size:9.5px}.client{padding:9px 13px;font-size:13px}.msg{font-size:12.5px;padding:8px 12px}.seg button{padding:10px 16px;font-size:13px}header{gap:14px}}',
     ':host([data-rm]) .track{height:auto}:host([data-rm]) .stage{position:relative;height:auto;min-height:760px}'
   ].join('');
 
@@ -136,12 +136,12 @@
     // segmented control: jump to "usually" (end of act 1) or "ours" (end of act 3)
     var want = i ? 0.95 : 0.40;
     if (RM) { this._pt = this._p = want; this._render(want); return; }
-    var r = this._el.track.getBoundingClientRect(), span = r.height - innerHeight;
+    var r = this._el.track.getBoundingClientRect(), span = r.height - (this._el.track.firstChild.offsetHeight || innerHeight);
     scrollTo({ top: scrollY + r.top + span * want, behavior: 'smooth' });
   };
   DnaRelay.prototype._target = function () {
     if (RM) return;
-    var r = this._el.track.getBoundingClientRect(), span = r.height - innerHeight;
+    var r = this._el.track.getBoundingClientRect(), span = r.height - (this._el.track.firstChild.offsetHeight || innerHeight);
     this._pt = span > 0 ? clamp(-r.top / span, 0, 1) : 1;
   };
   DnaRelay.prototype._kick = function () {
@@ -150,7 +150,7 @@
     var tick = function (now) {
       var dt = Math.min(0.05, Math.max(0, (now - last) / 1000)); last = now;
       // Time-based smoothing remains stable even if a background tab drops frames.
-      var k = 1 - Math.exp(-dt * 12);
+      var k = 1 - Math.exp(-dt * (innerWidth < 760 ? 7 : 12));
       self._p = clamp(self._p + (self._pt - self._p) * k, 0, 1);
       if (Math.abs(self._p - self._pt) < 0.0004) { self._p = self._pt; self._raf = 0; self._render(self._p); return; }
       self._render(self._p); self._raf = requestAnimationFrame(tick);
@@ -385,7 +385,7 @@
     '.hs:focus-visible{outline:none}.hs:focus-visible .dot{box-shadow:0 0 0 3px var(--lime)}',
     '.card{position:absolute;z-index:3;width:min(320px,calc(100% - 32px));box-sizing:border-box;padding:22px 22px 20px;border-radius:22px;background:rgba(14,14,14,.72);-webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 30px 60px rgba(0,0,0,.35);color:#fff;opacity:0;pointer-events:none;will-change:transform,opacity}',
     '.card.open{pointer-events:auto}',
-    '.card small{display:block;font:700 10px/1.2 ' + FT + ';letter-spacing:.14em;color:var(--lime);margin-bottom:10px}',
+    '.card small{display:block;font:700 11px/1.2 ' + FT + ';letter-spacing:.14em;color:var(--lime);margin-bottom:10px}',
     '.card strong{display:block;font:700 26px/1 ' + FD + ';letter-spacing:-.02em;margin-bottom:10px}',
     '.card p{margin:0;font:400 15px/1.55 ' + FT + ';color:rgba(255,255,255,.78)}',
     '.card .in{opacity:0}',
@@ -402,7 +402,7 @@
       return { x: +c.getAttribute('data-x'), y: +c.getAttribute('data-y'), name: c.getAttribute('data-name') || '', short: c.getAttribute('data-short') || (c.getAttribute('data-name') || '').split(' ')[0], role: c.getAttribute('data-role') || '', bio: c.innerHTML };
     });
     root.innerHTML = '<style>' + fCSS + '</style><figure><img alt="' + esc(attr(this, 'alt', '')) + '" src="' + esc(attr(this, 'src', 'media/team-deen-noa.webp')) + '" loading="lazy" decoding="async">' +
-      people.map(function (p, i) { return '<button class="hs" type="button" aria-expanded="false" aria-controls="c' + i + '" style="right:calc(' + (100 - p.x) + '% - 15px);top:' + p.y + '%"><span class="dot"><i></i></span><span class="nm">' + esc(p.short) + '</span></button>'; }).join('') +
+      people.map(function (p, i) { return '<button class="hs" type="button" aria-label="' + esc(p.name) + '" aria-expanded="false" aria-controls="c' + i + '" style="right:calc(' + (100 - p.x) + '% - 15px);top:' + p.y + '%"><span class="dot"><i></i></span><span class="nm">' + esc(p.short) + '</span></button>'; }).join('') +
       people.map(function (p, i) { return '<div class="card" id="c' + i + '" role="dialog" aria-label="' + esc(p.name) + '"><div class="in"><small>' + esc(p.role) + '</small><strong>' + esc(p.name) + '</strong><p>' + p.bio + '</p></div></div>'; }).join('') +
       '</figure>';
     this._p = people;

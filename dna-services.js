@@ -21,12 +21,12 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   var TILES = [
-    { k: 'ads', n: '01', t: 'קמפיינים ופרסום', p: 'מסר חד, קריאייטיב נכון ומדיה שעובדת.', c: 'אסטרטגיה · קריאייטיב · מדיה', h: 'services/campaigns.html', tone: 'ink' },
-    { k: 'film', n: '02', t: 'קריאייטיב וסרטים', p: 'קונספטים וסרטים שאנשים רוצים לראות.', c: 'סושיאל · סרטים · מושן · 3D · הפקת AI', h: 'services/creative-production.html', tone: 'film' },
+    { k: 'ads', n: '01', t: 'קמפיינים ושיווק', p: 'מסר חד, קריאייטיב נכון ומדיה שעובדת.', c: 'PPC · גוגל · מטא · אסטרטגיה', h: 'services/campaigns.html', tone: 'ink' },
+    { k: 'film', n: '02', t: 'קריאייטיב ופרסומות AI', p: 'קונספטים וסרטים שאנשים רוצים לראות.', c: 'פרסומות AI · סרטים · סושיאל · מושן', h: 'services/creative-production.html', tone: 'film' },
     { k: 'brand', n: '03', t: 'מיתוג', p: 'זהות ברורה שאפשר לזהות ולזכור.', c: 'שם · זהות · מסרים', h: 'services/branding.html', tone: 'paper' },
-    { k: 'sound', n: '06', t: 'סאונד, מוזיקה וקריינות', p: 'סאונד שנותן למותג קול משלו.', c: 'מוזיקה · קריינות · עיצוב סאונד', h: 'services/sonic-branding.html', tone: 'lime' },
-    { k: 'web', n: '04', t: 'אתרים ודפי נחיתה', p: 'אתרים יפים, ברורים ומכווני פעולה.', c: 'עיצוב אתרים · UX/UI · המרות', h: 'services/websites.html', tone: 'paper' },
-    { k: 'flow', n: '05', t: 'מערכות ואוטומציות', p: 'פחות עבודה ידנית. יותר דברים שקורים בזמן.', c: 'סוכני AI · וואטסאפ · אוטומציות', h: 'services/automation.html', tone: 'ink' }
+    { k: 'sound', n: '06', t: 'מיתוג קולי וג׳ינגלים', p: 'סאונד שנותן למותג קול משלו.', c: 'ג׳ינגלים · קריינות · מוזיקה', h: 'services/sonic-branding.html', tone: 'lime' },
+    { k: 'web', n: '04', t: 'אתרים ומערכות', p: 'דפי נחיתה, אתרים מלאים ומערכות מורכבות.', c: 'דפי נחיתה · אתרים · מערכות', h: 'services/websites.html', tone: 'paper' },
+    { k: 'flow', n: '05', t: 'אוטומציות, בוטים ו-CRM', p: 'פחות עבודה ידנית. יותר דברים שקורים בזמן.', c: 'בוטים · CRM · וואטסאפ · סוכני AI', h: 'services/automation.html', tone: 'ink' }
   ];
 
   var CSS = [
@@ -128,7 +128,13 @@
     ' .t{grid-column:auto!important;grid-row:auto!important;min-height:330px}',
     ' .t[data-k=ads]{grid-column:1/3!important;min-height:480px}.t[data-k=film]{min-height:420px}.t[data-k=brand]{min-height:420px}',
     ' .t[data-k=web],.t[data-k=flow]{grid-column:1/3!important;min-height:360px}}',
-    '@media (max-width:640px){.grid{gap:10px}:host{--r:24px}',
+    '@media (max-width:640px){.grid{display:flex!important;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -20px;padding:0 20px 6px;scroll-padding:0 20px}.grid::-webkit-scrollbar{display:none}:host{--r:24px}',
+    ' .t{flex:0 0 84%;scroll-snap-align:center;min-height:440px!important;grid-column:auto!important}',
+    ' .t[data-k=brand],.t[data-k=sound]{min-height:440px!important}',
+    ' .t[data-k=brand] .mk{width:38%;top:56%}.brand .tx p,.brand .tx small,.sound .tx p,.sound .tx small{display:block}',
+    ' .brand h3,.sound h3{font-size:26px!important;max-width:13ch!important}',
+    ' .t[data-k=ads] h3{font-size:30px}',
+    ' .dots{display:flex}',
     ' .t[data-k=ads]{min-height:470px}.t[data-k=film]{grid-column:1/3!important;min-height:440px}',
     ' .t[data-k=brand],.t[data-k=sound]{min-height:250px}',
     ' .t[data-k=web]{min-height:400px}.t[data-k=flow]{min-height:440px}',
@@ -140,6 +146,7 @@
     ' .fl5{grid-template-columns:1fr 1fr;left:16px;right:16px;bottom:16px}.msg{left:16px;bottom:150px;max-width:78%}',
     ' .mk{top:62%;width:44%}.sw{left:14px;bottom:14px}.sw i{width:20px;height:20px}',
     ' .play{width:48px;height:48px;left:16px;bottom:16px}.lbl{display:none}}',
+    '.dots{display:none;justify-content:center;gap:6px;margin-top:14px}.dots i{width:6px;height:6px;border-radius:3px;background:rgba(11,11,11,.18);transition:width .4s ' + EASE + ',background-color .3s ' + EASE + '}.dots i.on{width:18px;background:#0B0B0B}',
     '@media (prefers-reduced-motion:reduce){.t{transition:none;opacity:1;transform:none}}'
   ].join('');
 
@@ -171,8 +178,15 @@
         '<a class="hit" href="' + esc(T.h) + '" aria-label="' + esc(T.t + ': ' + T.p) + '"></a>' +
         (T.k === 'sound' ? '<button class="play" type="button" aria-pressed="false" aria-label="השמעת סקיצת סאונד"><i></i></button>' : '') +
         '</article>';
-    }).join('') + '</div>';
+    }).join('') + '</div><div class="dots" aria-hidden="true">' + TILES.map(function () { return '<i></i>'; }).join('') + '</div>';
     this._root = root;
+    (function () {
+      var g = root.querySelector('.grid'), d = [].slice.call(root.querySelectorAll('.dots i'));
+      var upd = function () { var w = g.clientWidth, mid = g.getBoundingClientRect().left + w / 2, best = 0, bd = 1e9;
+        [].forEach.call(g.children, function (t, i) { var r = t.getBoundingClientRect(), c = Math.abs(r.left + r.width / 2 - mid); if (c < bd) { bd = c; best = i; } });
+        d.forEach(function (x, i) { x.classList.toggle('on', i === best); }); };
+      g.addEventListener('scroll', function () { requestAnimationFrame(upd); }, { passive: true }); upd();
+    })();
     var tiles = [].slice.call(root.querySelectorAll('.t'));
     // press feedback (transform only), works for touch and mouse
     tiles.forEach(function (t) {
