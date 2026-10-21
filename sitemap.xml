@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://hellodna.co.il/</loc>
     <lastmod>2026-10-21</lastmod>
@@ -83,6 +83,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/one-studio-vs-five-suppliers/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/one-studio-vs-five-suppliers-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/how-to-choose-marketing-agency-israel/</loc>
@@ -90,6 +91,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/how-to-choose-marketing-agency-israel/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/how-to-choose-marketing-agency-israel-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/ai-video-ads-for-business-2026/</loc>
@@ -97,6 +99,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/ai-video-ads-for-business-2026/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/ai-video-ads-for-business-2026-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/meta-google-ads-small-business-israel/</loc>
@@ -104,6 +107,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/meta-google-ads-small-business-israel/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/meta-google-ads-small-business-israel-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/landing-pages-that-convert/</loc>
@@ -111,6 +115,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/landing-pages-that-convert/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/landing-pages-that-convert-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/ai-product-photography-vs-studio/</loc>
@@ -118,6 +123,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/ai-product-photography-vs-studio/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/ai-product-photography-vs-studio-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/sonic-branding-and-voice-over/</loc>
@@ -125,6 +131,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/sonic-branding-and-voice-over/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/sonic-branding-and-voice-over-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/whatsapp-automation-ai-agents-leads/</loc>
@@ -132,6 +139,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/whatsapp-automation-ai-agents-leads/" />
+    <image:image><image:loc>https://hellodna.co.il/img/blog/whatsapp-automation-ai-agents-leads-1600.webp</image:loc></image:image>
   </url>
 <url><loc>https://hellodna.co.il/gpt.html</loc></url>
 <url><loc>https://hellodna.co.il/course/</loc></url>
