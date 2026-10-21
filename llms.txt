@@ -1,16 +1,42 @@
 # DNA STUDIO
-סוכנות קריאייטיב, שיווק וטכנולוגיה בישראל.
+
+> DNA STUDIO (hellodna.co.il) היא סוכנות קריאייטיב ופרסום בישראל שבונה, מפיקה ומנהלת את השיווק של העסק מקצה לקצה. "רעיון אחד. בלי חמישה ספקים.": קמפיינים, פרסומות AI, הפקות מוצר, אתרים, מיתוג קולי ואוטומציות עובדים יחד, באותו מקום. Israeli creative, advertising and technology studio (Hebrew).
+
+- מייסדים: דין וינוקור (Deen Vinokur) — יוצר ויזם, עובד ישירות עם הלקוחות; נועה מירזאי (Noa Mirzai) — אשת סושיאל וקריאייטיב עם מאות אלפי עוקבים, עבדה עם החברות והעסקים הגדולים בישראל.
+- לקוחות שעבדנו איתם: Nespresso, Bershka, Changan, ESH, Queen by DermaPam, DermaPam, SACARA, B-FRESH, Infinity Home.
+- תהליך: 01 שיחה קצרה (מטרה ומסר) → 02 קריאייטיב וכיוון → 03 הקמה, הפקה ובנייה → 04 מדידה ושיפור.
+- אפשר להתחיל בפרויקט אחד, בלי התחייבות לחבילה. לא מתחייבים למספרים מראש; מתחייבים להקמה מסודרת, מדידה נקייה ושיפור.
+- יצירת קשר: וואטסאפ https://wa.me/972525979520 · טלפון 052-597-9520 · deenv7@gmail.com · https://www.instagram.com/dnastudio.il/
+
 ## שירותים
-קמפיינים וקידום ממומן; פרסומות AI; הפקות מוצר; אתרים ודפי נחיתה; מיתוג קולי וקריינות; אוטומציות וסוכנים לעסק; GPT Ads (פרסום בתוך ChatGPT).
-## יצירת קשר
-WhatsApp: +972525979520
+
+- [קמפיינים וקידום ממומן (MEDIA)](https://hellodna.co.il/services/campaigns/): מודעה טובה היא רק ההתחלה. קמפיינים וקידום ממומן מ-DNA STUDIO: אסטרטגיה, קריאייטיב וניהול מדיה שעובדים יחד. Meta ו-OpenAI Ads בתוך ChatGPT, בדיקות A/B ודוחות בעברית פשוטה.
+- [פרסומות AI (AI FILM)](https://hellodna.co.il/services/ai-films/): פרסומת קולנועית. בלי יום צילום. פרסומות AI מ-DNA STUDIO: קונספט, דוגמנות, סטים ומוצר ב-AI, ורסיות לכל ערוץ. ימים, לא חודשים. ESH: קמפיין אופנה שנבנה בלי יום צילום.
+- [הפקות מוצר (PRODUCT)](https://hellodna.co.il/services/product/): המוצר שלכם באור הנכון. הפקות מוצר מ-DNA STUDIO: צילום, קומפוזיציה ותנועה, סטים עקביים לקטלוג וורסיות לכל פלטפורמה.
+- [אתרים ודפי נחיתה (WEB)](https://hellodna.co.il/services/websites/): אתר שעובד בשביל העסק. אתרים ודפי נחיתה מ-DNA STUDIO: עיצוב, כתיבה, בנייה, SEO ומדידה, טופס ווואטסאפ מחוברים, והאתר נשאר שלכם.
+- [מיתוג קולי וקריינות (SONIC)](https://hellodna.co.il/services/sonic/): מותג ששומעים. זוכרים. מיתוג קולי וקריינות מ-DNA STUDIO: זהות קולית, ג׳ינגלים, קריינות וסאונד דיזיין, בעברית ובאנגלית, עם סקיצות לפי מצב רוח.
+- [אוטומציות וסוכנים (AGENTS)](https://hellodna.co.il/services/agents/): פחות עבודה שחורה. יותר דברים שקורים לבד. אוטומציות וסוכנים מ-DNA STUDIO: פנייה נכנסת בוואטסאפ, בטופס או במייל, הסוכן עונה, מסווג ואוסף פרטים, ומגיע אליכם ליד מסודר. DNA GPT: מערכת AI בעברית.
+
 ## עמודים
-- https://hellodna.co.il/
-- https://hellodna.co.il/gpt.html
-- https://hellodna.co.il/work.html
-- https://hellodna.co.il/services/campaigns.html
-- https://hellodna.co.il/services/ai-ads.html
-- https://hellodna.co.il/services/product-production.html
-- https://hellodna.co.il/services/websites.html
-- https://hellodna.co.il/services/sonic-branding.html
-- https://hellodna.co.il/services/automation.html
+
+- [דף הבית](https://hellodna.co.il/): הסיפור המלא בעמוד אחד — הבעיה, הרעיון, השירותים, עבודות, תהליך, מייסדים, שאלות ויצירת קשר.
+- [עבודות](https://hellodna.co.il/work/): אתרים באוויר (ATLAS, SOLAIRE, VINOA, FRAMEBUDS, INFINITY HOME, SANCTUARY, RESONATE), ESH — קמפיין אופנה שנבנה בלי יום צילום, ומחקרים ויזואליים.
+- [אודות](https://hellodna.co.il/about/): המייסדים, החזון ושיטת העבודה (DNA OS).
+- [צור קשר](https://hellodna.co.il/contact/): וואטסאפ, טלפון, מייל וטופס שנפתח בוואטסאפ.
+- [בלוג](https://hellodna.co.il/blog/): מאמרים על שיווק, קריאייטיב וטכנולוגיה, עם מקורות.
+
+## בלוג
+
+- [סטודיו אחד במקום חמישה ספקים: מתי זה עובד טוב יותר לעסק](https://hellodna.co.il/blog/one-studio-vs-five-suppliers/): קמפיין, אתר, וידאו, צילום ואוטומציה אצל ספקים שונים? מה המחקר אומר על עקביות מותג, תיאום וזמן תגובה, ואיך לבחור נכון.
+- [איך לבחור סוכנות שיווק ופרסום בישראל: 12 שאלות לשאול לפני שחותמים](https://hellodna.co.il/blog/how-to-choose-marketing-agency-israel/): המדריך לבחירת סוכנות שיווק בישראל: מה לשאול, אילו נורות אדומות לזהות, מי צריך להחזיק בחשבונות הפרסום ומה החוק דורש מכם ומהסוכנות.
+- [פרסומות וידאו ב-AI לעסקים ב-2026: מה עובד, מה קובע את העלות ומה הסיכונים](https://hellodna.co.il/blog/ai-video-ads-for-business-2026/): מדריך לפרסומות וידאו שנוצרות ב-AI: מה הנתונים מראים, איך קהלים מגיבים, מה משפיע על העלות ואיך להימנע מהסיכונים המשפטיים והמותגיים.
+- [פרסום בפייסבוק, אינסטגרם וגוגל לעסק קטן בישראל: המדריך המעשי ל-2026](https://hellodna.co.il/blog/meta-google-ads-small-business-israel/): איפה לפרסם, איך להקים נכון את Meta וגוגל, מה חשוב במדידה ומה החוק בישראל דורש. מדריך מעשי לעסקים קטנים, מבוסס על מסמכי הפלטפורמות.
+- [דף נחיתה שממיר: 9 עקרונות מבוססי מחקר לעסקים בישראל](https://hellodna.co.il/blog/landing-pages-that-convert/): מה הופך דף נחיתה לדף שמביא פניות? מהירות, כתיבה פשוטה, טופס קצר וחיבור לוואטסאפ, לפי מחקרי Google, Nielsen Norman, Baymard ו-Unbounce.
+- [צילום מוצר ב-AI או בסטודיו? איך לבחור נכון ב-2026](https://hellodna.co.il/blog/ai-product-photography-vs-studio/): מתי תמונות מוצר ב-AI עובדות ומתי צריך סטודיו? מה הקונים מחפשים בתמונות, מה גוגל דורש מתמונות AI, ואיך לשלב נכון בין שתי השיטות.
+- [מיתוג קולי וקריינות לעסקים: למה מותג צריך גם צליל](https://hellodna.co.il/blog/sonic-branding-and-voice-over/): מה זה מיתוג קולי, למה מחקרים מראים שצליל מזוהה מחזק פרסומות, ואיך לבחור קריינות, ג'ינגל וזהות קולית שמתאימים לעסק שלכם בעברית ובאנגלית.
+- [אוטומציות וסוכני AI בוואטסאפ לטיפול בלידים: המדריך לעסקים בישראל](https://hellodna.co.il/blog/whatsapp-automation-ai-agents-leads/): איך סוכן AI בוואטסאפ עונה ללידים בזמן, מסווג ואוסף פרטים, מה משתנה בתמחור ובמדיניות של WhatsApp ב-2026, ומה החוק בישראל דורש.
+
+## Optional
+
+- [Sitemap](https://hellodna.co.il/sitemap.xml)
+- [נגישות](https://hellodna.co.il/accessibility.html) · [פרטיות](https://hellodna.co.il/privacy.html)
