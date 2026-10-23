@@ -2,77 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://hellodna.co.il/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/services/campaigns/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/services/campaigns/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/services/ai-films/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/services/ai-films/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/services/product/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/services/product/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/services/websites/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/services/websites/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/services/sonic/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/services/sonic/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/services/agents/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/services/agents/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/work/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/work/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/about/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/about/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/contact/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/contact/" />
   </url>
   <url>
     <loc>https://hellodna.co.il/blog/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/" />
@@ -141,6 +141,28 @@
     <xhtml:link rel="alternate" hreflang="he-IL" href="https://hellodna.co.il/blog/whatsapp-automation-ai-agents-leads/" />
     <image:image><image:loc>https://hellodna.co.il/img/blog/whatsapp-automation-ai-agents-leads-1600.webp</image:loc></image:image>
   </url>
-<url><loc>https://hellodna.co.il/gpt.html</loc></url>
-<url><loc>https://hellodna.co.il/course/</loc></url>
+  <url>
+    <loc>https://hellodna.co.il/gpt.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hellodna.co.il/course/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hellodna.co.il/accessibility.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://hellodna.co.il/privacy.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

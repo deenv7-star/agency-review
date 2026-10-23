@@ -1,6 +1,6 @@
 # DNA STUDIO
 
-> DNA STUDIO (hellodna.co.il) היא סוכנות קריאייטיב ופרסום בישראל שבונה, מפיקה ומנהלת את השיווק של העסק מקצה לקצה. "רעיון אחד. בלי חמישה ספקים.": קמפיינים, פרסומות AI, הפקות מוצר, אתרים, מיתוג קולי ואוטומציות עובדים יחד, באותו מקום. Israeli creative, advertising and technology studio (Hebrew).
+> DNA STUDIO (hellodna.co.il) היא סוכנות קריאייטיב ופרסום בישראל שבונה, מפיקה ומנהלת את השיווק של העסק מקצה לקצה. מעטפת מלאה לעסק: קמפיינים, פרסומות AI, הפקות מוצר, אתרים, מיתוג קולי ואוטומציות עובדים יחד, באותו מקום. Israeli creative, advertising and technology studio (Hebrew).
 
 - מייסדים: דין וינוקור (Deen Vinokur) — יוצר ויזם, עובד ישירות עם הלקוחות; נועה מירזאי (Noa Mirzai) — אשת סושיאל וקריאייטיב עם מאות אלפי עוקבים, עבדה עם החברות והעסקים הגדולים בישראל.
 - לקוחות שעבדנו איתם: Nespresso, Bershka, Changan, ESH, Queen by DermaPam, DermaPam, SACARA, B-FRESH, Infinity Home.
@@ -19,8 +19,8 @@
 
 ## עמודים
 
-- [דף הבית](https://hellodna.co.il/): הסיפור המלא בעמוד אחד — הבעיה, הרעיון, השירותים, עבודות, תהליך, מייסדים, שאלות ויצירת קשר.
-- [עבודות](https://hellodna.co.il/work/): אתרים באוויר (ATLAS, SOLAIRE, VINOA, FRAMEBUDS, INFINITY HOME, SANCTUARY, RESONATE), ESH — קמפיין אופנה שנבנה בלי יום צילום, ומחקרים ויזואליים.
+- [דף הבית](https://hellodna.co.il/): הסיפור המלא בעמוד אחד — מה כולל, השירותים, עבודות, תהליך, מייסדים, שאלות ויצירת קשר.
+- [עבודות](https://hellodna.co.il/work/): אתרים באוויר (ATLAS, INFINITY HOME, FRAMEBUDS, ו-VINOA — הפרויקט המוזיקלי של המייסדים), קונספט SOLAIRE, ESH — קמפיין אופנה שנבנה בלי יום צילום, ומחקרים ויזואליים.
 - [אודות](https://hellodna.co.il/about/): המייסדים, החזון ושיטת העבודה (DNA OS).
 - [צור קשר](https://hellodna.co.il/contact/): וואטסאפ, טלפון, מייל וטופס שנפתח בוואטסאפ.
 - [בלוג](https://hellodna.co.il/blog/): מאמרים על שיווק, קריאייטיב וטכנולוגיה, עם מקורות.
@@ -39,4 +39,5 @@
 ## Optional
 
 - [Sitemap](https://hellodna.co.il/sitemap.xml)
+- [DNA GPT](https://hellodna.co.il/gpt.html) · [קורס](https://hellodna.co.il/course/)
 - [נגישות](https://hellodna.co.il/accessibility.html) · [פרטיות](https://hellodna.co.il/privacy.html)
