@@ -1,6 +1,6 @@
 (function(){
 if(window.__dnaOrb)return;window.__dnaOrb=1;
-var WA='https://wa.me/972525979520?text='+encodeURIComponent('היי דין, ראיתי את האתר ואני רוצה לדבר');
+var WA='https://wa.me/972536995564?text='+encodeURIComponent('היי דין, ראיתי את האתר ואני רוצה לדבר');
 function faq(){var out=[];document.querySelectorAll('#faq details').forEach(function(d){var q=d.querySelector('summary');if(!q)return;var qt=(q.querySelector('h3,b,strong,span:last-child')||q).textContent.replace(/^\s*\d+\s*/,'').trim();var clone=d.cloneNode(true);var s=clone.querySelector('summary');if(s)s.remove();var a=clone.textContent.replace(/\s+/g,' ').trim();if(qt&&a)out.push({q:qt,a:a})});return out}
 function services(){var t=[];document.querySelectorAll('#services h3').forEach(function(h){var x=h.textContent.trim();if(x&&t.indexOf(x)<0&&t.length<6)t.push(x)});return t}
 function osText(){var p=document.querySelector('.dna-os-disclaimer');return p?p.textContent.trim():''}

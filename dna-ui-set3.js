@@ -128,7 +128,7 @@
   }
 
   /* ==========================================================================
-     <dna-sheet phone="972525979520">   — the "let's talk" sheet
+     <dna-sheet phone="972536995564">   — the "let's talk" sheet
      Any element with data-dna-sheet opens it. On phones it rises from the
      bottom and follows your finger; drag it down (or flick) to dismiss. On
      desktop it's a centred sheet. Sends a composed message to WhatsApp.
@@ -137,7 +137,7 @@
   class DnaSheet extends HTMLElement {
     connectedCallback() {
       if (this._i) return; this._i = 1;
-      var self = this, phone = this.getAttribute('phone') || '972525979520';
+      var self = this, phone = this.getAttribute('phone') || '972536995564';
       var root = this.attachShadow({ mode: 'open' });
       root.innerHTML = '<style>' +
         ':host{position:fixed;inset:0;z-index:1000;pointer-events:none;direction:rtl}' +

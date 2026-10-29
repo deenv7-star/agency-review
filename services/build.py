@@ -18,7 +18,7 @@ NAV = [
     ("automation.html",         "אוטומציות וסוכנים",     "06", "AGENTS"),
 ]
 
-WA = "https://wa.me/972525979520"
+WA = "https://wa.me/972536995564"
 
 def vid(src, poster, title, desc, tag, sound=False):
     st = ('<button class="sound-toggle" data-sound-toggle type="button" aria-label="הפעלת סאונד">'
