@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>דין וינוקור · בניית אתרים ודפי נחיתה</title>
+<meta name="description" content="בניית אתרים ודפי נחיתה לעסקים. עיצוב מוקפד, מהיר בטלפון, ושיחה ישירה איתי מהיום הראשון.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preload" href="fonts/noto-hebrew-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/plexmono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+(function(){var d=document.documentElement;d.classList.add('js');
+ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');}
+ setTimeout(function(){if(!window.__ready){d.classList.remove('motion');}},3500);})();
+</script>
+<link rel="preload" href="img/sky-1400.webp" as="image" media="(min-width:901px)">
+<link rel="preload" href="img/sky-m.webp" as="image" media="(max-width:900px)">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top" id="topBar">
+  <a class="top__name" href="#top">דין וינוקור</a>
+  <nav class="top__nav" aria-label="ניווט ראשי">
+    <a href="#work">עבודות</a>
+    <a href="#process">תהליך</a>
+    <a href="#faq">שאלות</a>
+  </nav>
+  <a class="top__cta" href="https://wa.me/972525979520" target="_blank" rel="noopener">
+    <span>וואטסאפ</span>
+    <span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+  </a>
+</header>
+
+<main id="top">
+  <!-- journey line: drawn by js over the whole main -->
+  <div class="journey" aria-hidden="true">
+    <svg id="jsvg">
+      <defs>
+        <linearGradient id="jg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+          <stop offset="0" stop-color="#0A0F12"/><stop offset="1" stop-color="#0A0F12"/>
+        </linearGradient>
+      </defs>
+      <clipPath id="dkclip"></clipPath>
+      <path class="track"/>
+      <g class="dk" clip-path="url(#dkclip)"><path class="track-d"/></g>
+      <circle class="tip-halo" r="7" cx="-50" cy="-50"/>
+      <circle class="tip" r="3" cx="-50" cy="-50"/>
+    </svg>
+  </div>
+
+  <!-- 1 HERO: inset rounded frame -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="frame">
+      <div class="frame__bg" aria-hidden="true"></div>
+      <div class="frame__meta mono" aria-hidden="true">
+        <span>בניית אתרים ודפי נחיתה</span>
+        <span>נהריה והצפון</span>
+      </div>
+      <div class="hero__copy">
+        <h1 class="hero__title" id="hero-title">
+          <span class="ln"><span class="ln__in">אתרים שגורמים</span></span>
+          <span class="ln"><span class="ln__in">לאנשים <span class="pill-w pill-w--on-sky" data-pill>להישאר.</span></span></span>
+          <span class="ln"><span class="ln__in"><span class="pill-w pill-w--solid" data-pill>ולפנות.</span></span></span>
+        </h1>
+        <p class="hero__sub" data-intro>בניית אתרים ודפי נחיתה לעסקים. עיצוב מוקפד, מהיר בטלפון, ושיחה ישירה איתי מהיום הראשון.</p>
+        <div class="hero__cta" data-intro>
+          <a class="btn btn--chrome" href="https://wa.me/972525979520" target="_blank" rel="noopener">
+            <span>דברו איתי בוואטסאפ</span>
+            <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+          </a>
+          <a class="btn btn--ghost" href="#work"><span>לעבודות</span></a>
+        </div>
+      </div>
+      <div class="fan" id="fan" aria-hidden="true">
+        <figure class="fan__card" data-i="-1"><div class="fan__in"><img src="img/vinoa-800.webp" alt="" width="800" height="600" decoding="async"></div></figure>
+        <figure class="fan__card" data-i="1"><div class="fan__in"><img src="img/dna-800.webp" alt="" width="800" height="556" decoding="async"></div></figure>
+        <figure class="fan__card fan__card--c" data-i="0"><div class="fan__in"><img src="img/atlas-800.webp" alt="" width="800" height="600" decoding="async"></div></figure>
+      </div>
+    </div>
+    <span class="station station--hero" data-station></span>
+  </section>
+
+  <!-- 2 LETTER: on a darker sky band, pinned while the lines light -->
+  <section class="letter" aria-labelledby="letter-title">
+    <div class="band band--sky" id="letterBand" data-dark>
+      <div class="band__bg" aria-hidden="true"><div class="band__img" data-bgpar></div></div>
+      <div class="band__in">
+        <span class="label label--dark mono">מה מקבלים</span>
+        <h2 class="visually-hidden" id="letter-title">מה מקבלים</h2>
+        <p class="letter__body" id="letter">
+          <span class="lr">עיצוב שנבנה <span class="pill-w" data-pill>בשבילכם.</span></span>
+          <span class="lr">מושלם <span class="pill-w" data-pill>בטלפון.</span></span>
+          <span class="lr"><span class="pill-w" data-pill>מהיר</span> ונקי.</span>
+        </p>
+      </div>
+    </div>
+    <span class="station station--after-band" data-station></span>
+  </section>
+
+  <!-- 3 NUMBERED CARDS -->
+  <section class="trio" aria-label="שלושה דברים">
+    <ol class="trio__grid">
+      <li class="tcard tcard--sky" data-card>
+        <div class="tcard__bg" aria-hidden="true"></div>
+        <span class="tcard__n" dir="ltr">01</span>
+        <h3 class="tcard__h">עיצוב שנבנה בשבילכם</h3>
+        <p>בלי תבניות. כל אתר מתוכנן לעסק שלכם.</p>
+      </li>
+      <li class="tcard tcard--glass" data-card>
+        <span class="tcard__n" dir="ltr">02</span>
+        <h3 class="tcard__h">מושלם בטלפון</h3>
+        <p>רוב הלקוחות מגיעים מהטלפון, אז מתחילים משם.</p>
+      </li>
+      <li class="tcard tcard--white" data-card>
+        <span class="tcard__n" dir="ltr">03</span>
+        <h3 class="tcard__h">מהיר ונקי</h3>
+        <p>אתר שנפתח מיד ולא מבריח אנשים.</p>
+      </li>
+    </ol>
+    <span class="station" data-station></span>
+  </section>
+
+  <!-- 4 WORKS: bento -->
+  <section class="work" id="work" aria-labelledby="work-title">
+    <div class="band band--deep" data-dark>
+    <span class="station station--edge" data-station></span>
+    <div class="band__in">
+    <div class="sec-head">
+      <span class="label label--dark mono" data-up>עבודות</span>
+      <h2 class="h2" id="work-title" data-up>שלוש <span class="pill-w" data-pill>עבודות.</span></h2>
+    </div>
+    <div class="bento">
+      <article class="wcard wcard--shot" data-card>
+        <a class="wcard__link" href="https://atlas-il.com" target="_blank" rel="noopener" aria-label="atlas, פתיחת האתר בלשונית חדשה"></a>
+        <div class="wcard__info">
+          <div class="wcard__top">
+            <span class="tag mono">מערכת ניהול</span>
+            <span class="arrow arrow--lg" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+          </div>
+          <div class="wcard__head">
+            <h3 class="wcard__name" dir="ltr">atlas</h3>
+            <p>מערכת ניהול לבעלי צימרים ומתחמי נופש.</p>
+          </div>
+          <span class="wcard__url mono" dir="ltr">atlas-il.com</span>
+        </div>
+        <figure class="wcard__img"><img data-zoom src="img/atlas-1440.webp" srcset="img/atlas-800.webp 800w, img/atlas-1440.webp 1440w" sizes="(max-width: 900px) 92vw, 64vw" alt="צילום מסך של אתר atlas" width="1440" height="1080" loading="lazy" decoding="async"></figure>
+      </article>
+
+      <article class="wcard wcard--white" data-card>
+        <a class="wcard__link" href="https://vinoamusic.com" target="_blank" rel="noopener" aria-label="VINOA, פתיחת האתר בלשונית חדשה"></a>
+        <div class="wcard__top">
+          <span class="tag mono">פרויקט שלי</span>
+          <span class="arrow arrow--lg" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+        </div>
+        <div class="wcard__head">
+          <h3 class="wcard__name" dir="ltr">VINOA</h3>
+          <p>אתר לצמד מוזיקה אלקטרונית.</p>
+        </div>
+        <figure class="wcard__inset"><img data-zoom src="img/vinoa-800.webp" alt="צילום מסך של אתר VINOA" width="800" height="600" loading="lazy" decoding="async"></figure>
+        <span class="wcard__url mono" dir="ltr">vinoamusic.com</span>
+      </article>
+
+      <article class="wcard" data-card>
+        <a class="wcard__link" href="https://hellodna.co.il" target="_blank" rel="noopener" aria-label="DNA Studio, פתיחת האתר בלשונית חדשה"></a>
+        <div class="wcard__top">
+          <span class="tag mono">סטודיו</span>
+          <span class="arrow arrow--lg" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+        </div>
+        <div class="wcard__head">
+          <h3 class="wcard__name" dir="ltr">DNA Studio</h3>
+          <p>אתר לסטודיו שיווק ודיגיטל.</p>
+        </div>
+        <figure class="wcard__inset"><img data-zoom src="img/dna-800.webp" srcset="img/dna-800.webp 800w, img/dna-1440.webp 1440w" sizes="(max-width: 900px) 86vw, 34vw" alt="צילום מסך של אתר DNA Studio" width="800" height="556" loading="lazy" decoding="async"></figure>
+        <span class="wcard__url mono" dir="ltr">hellodna.co.il</span>
+      </article>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 5 PROCESS: editorial rows, the active step lights ice -->
+  <section class="process" id="process" aria-labelledby="process-title">
+    <span class="station" data-station></span>
+    <div class="process__in">
+      <div class="panel__head">
+        <span class="label mono" data-up>תהליך</span>
+        <h2 class="h2" id="process-title" data-up>ארבעה <span class="pill-w" data-pill>שלבים.</span></h2>
+      </div>
+      <ol class="steps" id="steps">
+        <li class="step" data-step>
+          <span class="step__n" dir="ltr">01</span>
+          <div class="step__t"><h3>שיחה קצרה</h3><p>מבינים מה העסק צריך.</p></div>
+        </li>
+        <li class="step" data-step>
+          <span class="step__n" dir="ltr">02</span>
+          <div class="step__t"><h3>עיצוב</h3><p>רואים איך האתר ייראה לפני שבונים.</p></div>
+        </li>
+        <li class="step" data-step>
+          <span class="step__n" dir="ltr">03</span>
+          <div class="step__t"><h3>בנייה</h3><p>בונים, בודקים בטלפון ובמחשב.</p></div>
+        </li>
+        <li class="step" data-step>
+          <span class="step__n" dir="ltr">04</span>
+          <div class="step__t"><h3>באוויר</h3><p>האתר עולה, ואני נשאר זמין.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6 PERSONAL -->
+  <section class="me" aria-labelledby="me-title">
+    <span class="station" data-station></span>
+    <div class="me__in">
+      <span class="label mono" data-up>מי בונה</span>
+      <h2 class="me__name" id="me-title" data-up>דין וינוקור</h2>
+      <p class="me__line" data-up>שיחה ישירה איתי <span class="pill-w" data-pill>מהיום הראשון.</span></p>
+      <p class="me__sub" data-up>בלי התחייבות. מדברים ישירות איתי.</p>
+      <span class="me__place mono" data-up>נהריה והצפון</span>
+    </div>
+  </section>
+
+  <!-- 7 GALLERY: real screenshots -->
+  <section class="gallery" aria-labelledby="gal-title">
+    <div class="sec-head sec-head--c">
+      <span class="label mono" data-up>מהעבודות</span>
+      <h2 class="visually-hidden" id="gal-title">צילומי מסך מהעבודות</h2>
+    </div>
+    <div class="gal">
+      <figure class="g g--wide" data-g><img src="img/dna-1440.webp" alt="צילום מסך של DNA Studio במחשב" width="1440" height="1000" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">HELLODNA.CO.IL</figcaption></figure>
+      <figure class="g g--phone" data-g><img src="img/atlas-m.webp" alt="צילום מסך של atlas בטלפון" width="520" height="1125" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">ATLAS-IL.COM</figcaption></figure>
+      <figure class="g g--phone" data-g><img src="img/vinoa-m.webp" alt="צילום מסך של VINOA בטלפון" width="520" height="1125" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">VINOAMUSIC.COM</figcaption></figure>
+      <figure class="g g--phone" data-g><img src="img/dna-m.webp" alt="צילום מסך של DNA Studio בטלפון" width="520" height="1125" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">HELLODNA.CO.IL</figcaption></figure>
+      <figure class="g g--wide" data-g><img src="img/atlas-1440.webp" alt="צילום מסך של atlas במחשב" width="1440" height="1080" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">ATLAS-IL.COM</figcaption></figure>
+    </div>
+    <span class="station" data-station></span>
+  </section>
+
+  <!-- 8 FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="dpanel band" data-dark>
+    <div class="band__in">
+    <span class="station station--edge" data-station></span>
+    <div class="sec-head sec-head--c">
+      <span class="label mono" data-up>שאלות</span>
+      <h2 class="h2" id="faq-title" data-up>שאלות <span class="pill-w" data-pill>ששואלים.</span></h2>
+    </div>
+    <div class="acc" id="acc">
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" aria-expanded="false" aria-controls="a1" id="q1"><span class="acc__n mono" dir="ltr">01</span><span class="acc__t">כמה זמן לוקח?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a1" role="region" aria-labelledby="q1"><div class="acc__inner"><p>תלוי בגודל האתר. בשיחה הראשונה נקבע לוח זמנים ברור.</p></div></div>
+      </div>
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" aria-expanded="false" aria-controls="a2" id="q2"><span class="acc__n mono" dir="ltr">02</span><span class="acc__t">האתר יהיה שלי?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a2" role="region" aria-labelledby="q2"><div class="acc__inner"><p>כן. האתר והדומיין רשומים על שמכם.</p></div></div>
+      </div>
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" aria-expanded="false" aria-controls="a3" id="q3"><span class="acc__n mono" dir="ltr">03</span><span class="acc__t">אפשר לעדכן אחר כך?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a3" role="region" aria-labelledby="q3"><div class="acc__inner"><p>כן. אפשר לבקש שינויים גם אחרי שהאתר באוויר.</p></div></div>
+      </div>
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" aria-expanded="false" aria-controls="a4" id="q4"><span class="acc__n mono" dir="ltr">04</span><span class="acc__t">צריך להכין משהו?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a4" role="region" aria-labelledby="q4"><div class="acc__inner"><p>לא. מספיק שתספרו לי על העסק. את השאר נעשה ביחד.</p></div></div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <span class="station station--after" data-station></span>
+    </section>
+
+  <!-- 9 CLOSING + TICKET -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <h2 class="contact__title" id="contact-title">
+      <span class="ln"><span class="ln__in">יש לכם עסק</span></span>
+      <span class="ln"><span class="ln__in">שמגיע לו <span class="pill-w" data-pill>אתר כזה?</span></span></span>
+    </h2>
+    <div class="ticket" id="ticket">
+      <div class="ticket__stub">
+        <span class="mono">דין וינוקור</span>
+        <span class="ticket__mark" dir="ltr">DV</span>
+        <span class="mono">בניית אתרים</span>
+      </div>
+      <div class="ticket__main">
+        <span class="tag mono">צור קשר</span>
+        <p class="ticket__sub">בלי התחייבות. מדברים ישירות איתי.</p>
+        <a class="btn btn--chrome btn--xl" href="https://wa.me/972525979520" target="_blank" rel="noopener">
+          <span>דברו איתי בוואטסאפ</span>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+        </a>
+        <div class="ticket__alt mono">
+          <a href="tel:+972525979520" dir="ltr">052-597-9520</a>
+          <span class="dot" aria-hidden="true"></span>
+          <a href="mailto:deenv7@gmail.com" dir="ltr">deenv7@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <span class="station station--end" data-station></span>
+  </section>
+</main>
+
+<footer class="foot mono">
+  <span>דין וינוקור · בניית אתרים · נהריה והצפון</span>
+  <span dir="ltr">© 2026</span>
+</footer>
+
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
