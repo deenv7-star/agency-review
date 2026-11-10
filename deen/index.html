@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>דין וינוקור · בניית אתרים ודפי נחיתה</title>
-<meta name="description" content="בניית אתרים ודפי נחיתה לעסקים. עיצוב מוקפד, מהיר בטלפון, ושיחה ישירה איתי מהיום הראשון.">
+<title>דין וינוקור · בניית אתרים ודפי נחיתה לבעלי עסקים בצפון</title>
+<meta name="description" content="אתר לעסק שמסביר מה אתם עושים, נראה ברמה של העסק ומביא את הלקוח ישר לוואטסאפ. החל מ-1,790 ₪ עד סוף דצמבר 2026. רואים הדמיה לפני שמשלמים.">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="preload" href="fonts/noto-hebrew-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/plexmono-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,17 +23,17 @@
   <a class="top__name" href="#top">דין וינוקור</a>
   <nav class="top__nav" aria-label="ניווט ראשי">
     <a href="#work">עבודות</a>
-    <a href="#process">תהליך</a>
+    <a href="#fits">מה מתאים לכם</a>
+    <a href="#check">בדיקה לאתר</a>
     <a href="#faq">שאלות</a>
   </nav>
-  <a class="top__cta" href="https://wa.me/972525979520" target="_blank" rel="noopener">
+  <a class="top__cta" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">
     <span>וואטסאפ</span>
     <span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
   </a>
 </header>
 
 <main id="top">
-  <!-- journey line: drawn by js over the whole main -->
   <div class="journey" aria-hidden="true">
     <svg id="jsvg">
       <defs>
@@ -49,28 +49,28 @@
     </svg>
   </div>
 
-  <!-- 1 HERO: inset rounded frame -->
-  <section class="hero" aria-labelledby="hero-title">
+  <!-- 1 HERO -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
     <div class="frame">
       <div class="frame__bg" aria-hidden="true"></div>
       <div class="frame__meta mono" aria-hidden="true">
-        <span>בניית אתרים ודפי נחיתה</span>
+        <span>בניית אתרים ודפי נחיתה לבעלי עסקים</span>
         <span>נהריה והצפון</span>
       </div>
       <div class="hero__copy">
         <h1 class="hero__title" id="hero-title">
-          <span class="ln"><span class="ln__in">אתרים שגורמים</span></span>
-          <span class="ln"><span class="ln__in">לאנשים <span class="pill-w pill-w--on-sky" data-pill>להישאר.</span></span></span>
-          <span class="ln"><span class="ln__in"><span class="pill-w pill-w--solid" data-pill>ולפנות.</span></span></span>
+          <span class="ln"><span class="ln__in">אתרים שבאמת מביאים</span></span>
+          <span class="ln ln--b"><span class="ln__in"><span class="pill-w pill-w--solid" data-pill>לקוחות.</span></span></span>
         </h1>
-        <p class="hero__sub" data-intro>בניית אתרים ודפי נחיתה לעסקים. עיצוב מוקפד, מהיר בטלפון, ושיחה ישירה איתי מהיום הראשון.</p>
+        <p class="hero__sub" data-intro>רואים הדמיה לפני שמשלמים. <span style="white-space:nowrap">באוויר תוך 5 ימי עסקים.</span><br>החל מ-1,790&nbsp;₪ עד סוף דצמבר.</p>
         <div class="hero__cta" data-intro>
-          <a class="btn btn--chrome" href="https://wa.me/972525979520" target="_blank" rel="noopener">
-            <span>דברו איתי בוואטסאפ</span>
+          <a class="btn btn--chrome" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%20___%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%90%D7%AA%D7%A8." target="_blank" rel="noopener">
+            <span>ספרו לי על העסק בוואטסאפ</span>
             <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
           </a>
-          <a class="btn btn--ghost" href="#work"><span>לעבודות</span></a>
+          <a class="btn btn--ghost" href="#check"><span>בדקו את האתר שלכם</span></a>
         </div>
+        <p class="hero__calm" data-intro>בלי התחייבות · מענה&nbsp;24/7</p>
       </div>
       <div class="fan" id="fan" aria-hidden="true">
         <figure class="fan__card" data-i="-1"><div class="fan__in"><img src="img/vinoa-800.webp" alt="" width="800" height="600" decoding="async"></div></figure>
@@ -78,234 +78,436 @@
         <figure class="fan__card fan__card--c" data-i="0"><div class="fan__in"><img src="img/atlas-800.webp" alt="" width="800" height="600" decoding="async"></div></figure>
       </div>
     </div>
+
+    <!-- 2 TRUST BAR -->
+    <ul class="trust" aria-label="מה מובטח">
+      <li class="chip"><i class="chip__ico chip__ico--key" aria-hidden="true"></i>האתר והדומיין בבעלותכם המלאה</li>
+      <li class="chip"><i class="chip__ico chip__ico--me" aria-hidden="true"></i>ליווי אישי שלי</li>
+      <li class="chip"><i class="chip__ico chip__ico--clock" aria-hidden="true"></i>באוויר תוך 5 ימי עסקים</li>
+      <li class="chip"><i class="chip__ico chip__ico--eye" aria-hidden="true"></i>הדמיה לפני תשלום</li>
+      <li class="chip"><i class="chip__ico chip__ico--chat" aria-hidden="true"></i>מענה 24/7</li>
+    </ul>
     <span class="station station--hero" data-station></span>
   </section>
 
-  <!-- 2 LETTER: on a darker sky band, pinned while the lines light -->
-  <section class="letter" aria-labelledby="letter-title">
-    <div class="band band--sky" id="letterBand" data-dark>
-      <div class="band__bg" aria-hidden="true"><div class="band__img" data-bgpar></div></div>
+  <!-- 3 THE MOMENT -->
+  <section class="moment" aria-labelledby="moment-title">
+    <div class="wrap">
+      <div class="sec-head sec-head--c">
+        <span class="label mono" data-up>הרגע הזה</span>
+        <h2 class="h2" id="moment-title" data-up>הלקוח שמע עליכם. עכשיו הוא <span class="pill-w" data-pill>בודק אתכם.</span></h2>
+        <p class="lead" data-up>חבר המליץ, או שהוא ראה מודעה. לפני שהוא מתקשר, הוא פותח את הטלפון ומחפש אתכם. בכמה שניות הוא מחליט אם לפנות.</p>
+      </div>
+      <ol class="path">
+        <li class="path__step" data-card><span class="path__n" dir="ltr">01</span><h3>שמע עליכם</h3><p>המלצה, מודעה, שלט ברחוב</p></li>
+        <li class="path__step" data-card><span class="path__n" dir="ltr">02</span><h3>מחפש אתכם</h3><p>בגוגל, באינסטגרם, בקישור שמישהו שלח</p></li>
+        <li class="path__step path__step--end" data-card><span class="path__n" dir="ltr">03</span><h3>מחליט</h3><p>פונה אליכם, או ממשיך לעסק הבא</p></li>
+      </ol>
+      <p class="moment__end" data-up>האתר שלכם הוא מה שהוא <strong>רואה ברגע הזה.</strong></p>
+    </div>
+  </section>
+
+  <!-- 4 WHAT IT COSTS YOU -->
+  <section class="cost" aria-labelledby="cost-title">
+    <span class="station station--edge" data-station></span>
+    <div class="ice-panel">
+      <div class="sec-head sec-head--c">
+        <span class="label mono" data-up>מה שלא רואים</span>
+        <h2 class="h2" id="cost-title" data-up>לקוח שהלך <span class="pill-w" data-pill>לא משאיר הודעה.</span></h2>
+        <p class="lead" data-up>אין שיחה שלא נענתה ואין הודעה בוואטסאפ. יש רק לקוח שפתח שני אתרים, וסגר את שלכם.</p>
+      </div>
+      <ul class="lose">
+        <li class="lose__card" data-card><h3>אין אתר, או אתר ישן</h3><p>הלקוח לא בטוח שאתם רציניים, ופונה למי שנראה מסודר יותר.</p></li>
+        <li class="lose__card" data-card><h3>אתר יפה שאף אחד לא פונה ממנו</h3><p>עיצוב לבד לא מביא הודעות. צריך שיהיה ברור מה אתם עושים ואיך פונים, בלי לחפש.</p></li>
+        <li class="lose__card" data-card><h3>מישהו בנה ונעלם</h3><p>שילמתם, ועכשיו אין למי להתקשר כשצריך לשנות מחיר או תמונה. ומערכת הניהול שהשאירו לכם מבלבלת מדי בשביל לגעת בה.</p></li>
+      </ul>
+    </div>
+  </section>
+  <section class="verdict" aria-labelledby="verdict-title">
+    <span class="station station--edge" data-station></span>
+    <div class="band band--sky band--short" data-dark>
+      <div class="band__bg" aria-hidden="true"><div class="band__img"></div></div>
       <div class="band__in">
-        <span class="label label--dark mono">מה מקבלים</span>
-        <h2 class="visually-hidden" id="letter-title">מה מקבלים</h2>
-        <p class="letter__body" id="letter">
-          <span class="lr">עיצוב שנבנה <span class="pill-w" data-pill>בשבילכם.</span></span>
-          <span class="lr">מושלם <span class="pill-w" data-pill>בטלפון.</span></span>
-          <span class="lr"><span class="pill-w" data-pill>מהיר</span> ונקי.</span>
-        </p>
+        <h2 class="verdict__t" id="verdict-title" data-up>אתר טוב נבדק לפי דבר אחד: <span class="pill-w" data-pill>אם פונים ממנו.</span></h2>
+        <p class="verdict__s" data-up>זה מה שאני בונה.</p>
       </div>
     </div>
-    <span class="station station--after-band" data-station></span>
   </section>
 
-  <!-- 3 NUMBERED CARDS -->
-  <section class="trio" aria-label="שלושה דברים">
-    <ol class="trio__grid">
-      <li class="tcard tcard--sky" data-card>
-        <div class="tcard__bg" aria-hidden="true"></div>
-        <span class="tcard__n" dir="ltr">01</span>
-        <h3 class="tcard__h">עיצוב שנבנה בשבילכם</h3>
-        <p>בלי תבניות. כל אתר מתוכנן לעסק שלכם.</p>
-      </li>
-      <li class="tcard tcard--glass" data-card>
-        <span class="tcard__n" dir="ltr">02</span>
-        <h3 class="tcard__h">מושלם בטלפון</h3>
-        <p>רוב הלקוחות מגיעים מהטלפון, אז מתחילים משם.</p>
-      </li>
-      <li class="tcard tcard--white" data-card>
-        <span class="tcard__n" dir="ltr">03</span>
-        <h3 class="tcard__h">מהיר ונקי</h3>
-        <p>אתר שנפתח מיד ולא מבריח אנשים.</p>
-      </li>
-    </ol>
+  <!-- 5 WHAT THE SITE DOES -->
+  <section class="does" aria-labelledby="does-title">
     <span class="station" data-station></span>
+    <div class="wrap">
+      <div class="sec-head sec-head--c">
+        <span class="label mono" data-up>מה מקבלים</span>
+        <h2 class="h2" id="does-title" data-up>אתר שעובד בשבילכם, <span class="pill-w" data-pill>גם כשאתם עסוקים.</span></h2>
+        <p class="lead" data-up>אתם עם לקוח, בעבודה, או ישנים. האתר ממשיך להסביר, לשכנע ולהביא הודעות.</p>
+      </div>
+      <ol class="feats">
+        <li class="feat" data-card><span class="feat__n" dir="ltr">01</span><h3>מסביר מה אתם עושים, מהמבט הראשון</h3><p>מי שנכנס מבין תוך שניות מה אתם מציעים ולמי.</p></li>
+        <li class="feat" data-card><span class="feat__n" dir="ltr">02</span><h3>נותן ביטחון לבחור בכם</h3><p>עבודות, תמונות אמיתיות ומה שמייחד אתכם, במקום אחד.</p></li>
+        <li class="feat feat--dark" data-card><span class="feat__n" dir="ltr">03</span><h3>מביא ישר לוואטסאפ</h3><p>כפתור אחד, בכל מסך. לא צריך לחפש מספר טלפון.</p></li>
+        <li class="feat" data-card><span class="feat__n" dir="ltr">04</span><h3>עונה על השאלות במקומכם</h3><p>מחיר, אזור, איך זה עובד. פחות הסברים בטלפון, יותר פניות רציניות.</p></li>
+      </ol>
+      <p class="does__proof" data-up>נבנה לעסק שלכם, לא מתבנית. ונראה מעולה בטלפון, כי משם רוב האנשים נכנסים.</p>
+    </div>
   </section>
 
-  <!-- 4 WORKS: bento -->
+  <!-- 6 THE OFFER -->
+  <section class="offer" id="offer" aria-labelledby="offer-title">
+    <span class="station" data-station></span>
+    <div class="wrap">
+      <article class="deal" data-card>
+        <div class="deal__price">
+          <span class="label label--dark mono">ההצעה</span>
+          <p class="deal__from">החל&nbsp;מ-</p>
+          <p class="deal__num"><span dir="ltr">1,790</span> <span class="deal__cur">₪</span></p>
+          <p class="deal__until">המחיר הזה בתוקף עד 31 בדצמבר 2026. אחר כך הוא חוזר למחיר הרגיל.</p>
+        </div>
+        <div class="deal__body">
+          <h2 class="deal__h" id="offer-title">אתר חדש לעסק, החל&nbsp;מ-1,790&nbsp;₪</h2>
+          <p class="deal__sub">ואתם רואים <span class="pill-w" data-pill>הדמיה של האתר</span> לפני שמשלמים.</p>
+          <ul class="checks" aria-label="מה כלול">
+            <li>עיצוב שנבנה לעסק שלכם, לא תבנית</li>
+            <li>אתר שנפתח מהר ונראה מעולה בטלפון</li>
+            <li>כפתור וואטסאפ בכל עמוד, ככה שקל לפנות</li>
+            <li>את הטקסטים כותבים ביחד. לא צריך להביא כלום מוכן</li>
+            <li>האתר והדומיין רשומים על שמכם</li>
+            <li>שינויים גם אחרי שהאתר באוויר</li>
+          </ul>
+          <div class="deal__facts">
+            <p><strong>באוויר תוך 5 ימי עסקים.</strong></p>
+            <p><strong>בלי אותיות קטנות.</strong> לפני שמתחילים מקבלים הצעה כתובה: מה בונים, מה כלול וכמה זה עולה.</p>
+          </div>
+          <a class="btn btn--ink btn--xl" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%A6%D7%A2%D7%94%20%D7%9C%D7%90%D7%AA%D7%A8%20%D7%91%D7%9E%D7%97%D7%99%D7%A8%20%D7%A9%D7%9C%20%D7%A1%D7%95%D7%A3%20%D7%94%D7%A9%D7%A0%D7%94.%20%D7%94%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99%3A%20___" target="_blank" rel="noopener">
+            <span>קבלו הצעה לאתר בוואטסאפ</span>
+            <span class="arrow arrow--light" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+          </a>
+          <p class="calm">בלי התחייבות. מדברים ישירות איתי.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 7 WORKS -->
   <section class="work" id="work" aria-labelledby="work-title">
-    <div class="band band--deep" data-dark>
     <span class="station station--edge" data-station></span>
+    <div class="band band--deep" data-dark>
     <div class="band__in">
-    <div class="sec-head">
+    <div class="sec-head sec-head--c">
       <span class="label label--dark mono" data-up>עבודות</span>
-      <h2 class="h2" id="work-title" data-up>שלוש <span class="pill-w" data-pill>עבודות.</span></h2>
+      <h2 class="h2" id="work-title" data-up>עבודות שכבר <span class="pill-w" data-pill>באוויר.</span></h2>
+      <p class="lead lead--dark" data-up>אפשר להיכנס לכל אחת מהן ולבדוק בעצמכם.</p>
     </div>
     <div class="bento">
       <article class="wcard wcard--shot" data-card>
-        <a class="wcard__link" href="https://atlas-il.com" target="_blank" rel="noopener" aria-label="atlas, פתיחת האתר בלשונית חדשה"></a>
+        <a class="wcard__link" href="https://atlas-il.com" target="_blank" rel="noopener" aria-label="לאתר של atlas, נפתח בלשונית חדשה"></a>
         <div class="wcard__info">
           <div class="wcard__top">
-            <span class="tag mono">מערכת ניהול</span>
-            <span class="arrow arrow--lg" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+            <span class="tag mono">מערכת שבניתי · לבעלי צימרים ומתחמי נופש</span>
           </div>
           <div class="wcard__head">
-            <h3 class="wcard__name" dir="ltr">atlas</h3>
-            <p>מערכת ניהול לבעלי צימרים ומתחמי נופש.</p>
+            <h3 class="wcard__name"><span dir="ltr">atlas</span></h3>
+            <p class="wcard__lede">לקחתי מערכת מסובכת והפכתי אותה לפשוטה.</p>
           </div>
-          <span class="wcard__url mono" dir="ltr">atlas-il.com</span>
+          <dl class="story">
+            <div><dt>הבעיה</dt><dd>בעלי צימרים מנהלים הזמנות, הודעות ויומן בכמה מקומות. מערכת ניהול נשמעת להם מסובכת.</dd></div>
+            <div><dt>מה עשיתי</dt><dd>בניתי את המערכת עצמה, ואתר שמסביר אותה בשפה של בעל צימר.</dd></div>
+            <div><dt>מה השתנה</dt><dd>בעל מקום נכנס, מבין מה הוא מקבל, ויכול להתחיל לבד.</dd></div>
+          </dl>
+          <span class="wcard__go"><span>לאתר של atlas</span><span class="mono" dir="ltr">atlas-il.com</span><span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></span>
         </div>
         <figure class="wcard__img"><img data-zoom src="img/atlas-1440.webp" srcset="img/atlas-800.webp 800w, img/atlas-1440.webp 1440w" sizes="(max-width: 900px) 92vw, 64vw" alt="צילום מסך של אתר atlas" width="1440" height="1080" loading="lazy" decoding="async"></figure>
       </article>
 
       <article class="wcard wcard--white" data-card>
-        <a class="wcard__link" href="https://vinoamusic.com" target="_blank" rel="noopener" aria-label="VINOA, פתיחת האתר בלשונית חדשה"></a>
-        <div class="wcard__top">
-          <span class="tag mono">פרויקט שלי</span>
-          <span class="arrow arrow--lg" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
-        </div>
-        <div class="wcard__head">
-          <h3 class="wcard__name" dir="ltr">VINOA</h3>
-          <p>אתר לצמד מוזיקה אלקטרונית.</p>
-        </div>
+        <a class="wcard__link" href="https://vinoamusic.com" target="_blank" rel="noopener" aria-label="לאתר של VINOA, נפתח בלשונית חדשה"></a>
+        <div class="wcard__top"><span class="tag mono">פרויקט שלי · מותג</span></div>
         <figure class="wcard__inset"><img data-zoom src="img/vinoa-800.webp" alt="צילום מסך של אתר VINOA" width="800" height="600" loading="lazy" decoding="async"></figure>
-        <span class="wcard__url mono" dir="ltr">vinoamusic.com</span>
+        <div class="wcard__head">
+          <h3 class="wcard__name wcard__name--s"><span dir="ltr">VINOA</span></h3>
+          <p class="wcard__lede">אתר שמרגיש כמו המותג.</p>
+        </div>
+        <dl class="story story--s">
+          <div><dt>הבעיה</dt><dd>צמד מוזיקה אלקטרונית צריך שירגישו את הסגנון שלו עוד לפני שלוחצים "נגן".</dd></div>
+          <div><dt>מה עשיתי</dt><dd>אתר לצמד שלי ושל נועה, בת הזוג שלי, עם שפה חזותית אחת מהלוגו ועד הכפתור.</dd></div>
+          <div><dt>מה זה אומר לעסק שלכם</dt><dd>אותה עבודה בדיוק עושה לעסק שלכם תדמית שזוכרים.</dd></div>
+        </dl>
+        <span class="wcard__go"><span>לאתר</span><span class="mono" dir="ltr">vinoamusic.com</span><span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></span>
       </article>
 
       <article class="wcard" data-card>
-        <a class="wcard__link" href="https://hellodna.co.il" target="_blank" rel="noopener" aria-label="DNA Studio, פתיחת האתר בלשונית חדשה"></a>
-        <div class="wcard__top">
-          <span class="tag mono">סטודיו</span>
-          <span class="arrow arrow--lg" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
-        </div>
-        <div class="wcard__head">
-          <h3 class="wcard__name" dir="ltr">DNA Studio</h3>
-          <p>אתר לסטודיו שיווק ודיגיטל.</p>
-        </div>
+        <a class="wcard__link" href="https://hellodna.co.il" target="_blank" rel="noopener" aria-label="לאתר של DNA Studio, נפתח בלשונית חדשה"></a>
+        <div class="wcard__top"><span class="tag mono">הסטודיו שלי</span></div>
         <figure class="wcard__inset"><img data-zoom src="img/dna-800.webp" srcset="img/dna-800.webp 800w, img/dna-1440.webp 1440w" sizes="(max-width: 900px) 86vw, 34vw" alt="צילום מסך של אתר DNA Studio" width="800" height="556" loading="lazy" decoding="async"></figure>
-        <span class="wcard__url mono" dir="ltr">hellodna.co.il</span>
+        <div class="wcard__head">
+          <h3 class="wcard__name wcard__name--s"><span dir="ltr">DNA Studio</span></h3>
+          <p class="wcard__lede">אתר שמוכר שירותים.</p>
+        </div>
+        <dl class="story story--s">
+          <div><dt>הבעיה</dt><dd>סטודיו עם כמה שירותים צריך שכל לקוח ימצא מהר את מה שמתאים לו.</dd></div>
+          <div><dt>מה עשיתי</dt><dd>אתר שמציג אתרים, סרטונים וקמפיינים, וכל אחד מוביל להודעה.</dd></div>
+          <div><dt>מה זה אומר לעסק שלכם</dt><dd>גם אם יש לכם כמה שירותים, הלקוח לא הולך לאיבוד.</dd></div>
+        </dl>
+        <span class="wcard__go"><span>לאתר</span><span class="mono" dir="ltr">hellodna.co.il</span><span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></span>
       </article>
+    </div>
+    <div class="work__cta" data-up>
+      <a class="btn btn--chrome" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%95%D7%AA%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%90%D7%AA%D7%A8%20%D7%9B%D7%96%D7%94%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">
+        <span>רוצים אתר כזה? ספרו לי בוואטסאפ</span>
+        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+      </a>
     </div>
     </div>
     </div>
   </section>
 
-  <!-- 5 PROCESS: editorial rows, the active step lights ice -->
+  <!-- 8 WHAT FITS YOU -->
+  <section class="fits" id="fits" aria-labelledby="fits-title">
+    <span class="station" data-station></span>
+    <div class="wrap">
+      <div class="sec-head sec-head--c">
+        <span class="label mono" data-up>מה מתאים לכם</span>
+        <h2 class="h2" id="fits-title" data-up>לא בטוחים מה אתם צריכים? <span class="pill-w" data-pill>נעשה סדר.</span></h2>
+      </div>
+      <ul class="plans">
+        <li class="plan plan--dark" data-card>
+          <h3 class="plan__h">אתר לעסק</h3>
+          <p class="plan__when"><span class="plan__k">מתאים כש:</span> רוצים מקום אחד שמציג את השירותים, העבודות ואיך פונים.</p>
+          <p class="plan__price">החל&nbsp;מ-1,790&nbsp;₪ עד סוף דצמבר</p>
+          <a class="btn btn--chrome plan__btn" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%20___." target="_blank" rel="noopener"><span>רוצים אתר לעסק</span><span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></a>
+        </li>
+        <li class="plan plan--line" data-card>
+          <h3 class="plan__h">דף נחיתה</h3>
+          <p class="plan__when"><span class="plan__k">מתאים כש:</span> יש שירות אחד, מבצע או פרסום, ורוצים עמוד אחד שמביא עליו פניות.</p>
+          <p class="plan__price plan__price--soft">המחיר נקבע אחרי שיחה קצרה</p>
+          <a class="btn btn--ink plan__btn" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%A3%20%D7%A0%D7%97%D7%99%D7%AA%D7%94%20%D7%9C___." target="_blank" rel="noopener"><span>רוצים דף נחיתה</span><span class="arrow arrow--sm arrow--light" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></a>
+        </li>
+        <li class="plan plan--ice" data-card>
+          <h3 class="plan__h">אתר חדש במקום הישן</h3>
+          <p class="plan__when"><span class="plan__k">מתאים כש:</span> העסק התקדם, והאתר נשאר מאחור. בונים אותו מחדש, ושומרים את מה שעבד.</p>
+          <a class="btn btn--ink plan__btn" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%90%D7%AA%D7%A8%20%D7%A9%D7%A6%D7%A8%D7%99%D7%9A%20%D7%97%D7%99%D7%93%D7%95%D7%A9%3A%20___" target="_blank" rel="noopener"><span>האתר שלי צריך חידוש</span><span class="arrow arrow--sm arrow--light" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></a>
+        </li>
+      </ul>
+      <p class="fits__note" data-up>עדיין לא בטוחים? זאת בדיוק השאלה הראשונה שנפתור יחד.</p>
+    </div>
+  </section>
+
+  <!-- 9 SITE CHECK -->
+  <section class="check" id="check" aria-labelledby="check-title">
+    <span class="station station--edge" data-station></span>
+    <div class="band band--sky band--check" data-dark>
+      <div class="band__bg" aria-hidden="true"><div class="band__img"></div></div>
+      <div class="band__in check__grid">
+        <div class="check__copy">
+          <span class="label label--dark mono" data-up>בדיקה לאתר</span>
+          <h2 class="h2" id="check-title" data-up>יש לכם אתר? <span class="pill-w" data-pill>בדקו אותו עכשיו.</span></h2>
+          <p class="lead lead--dark" data-up>הדביקו את הכתובת של האתר שלכם. נראה לכם איפה לקוחות עלולים ללכת, ומה הייתי עושה אחרת.</p>
+          <p class="check__none" data-up>אין לכם אתר בכלל? אז אתם מתחילים נכון מההתחלה. <a href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%20___%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%90%D7%AA%D7%A8." target="_blank" rel="noopener">ספרו לי על העסק</a></p>
+        </div>
+
+        <div class="tool" id="tool" data-card>
+          <form class="tool__form" id="checkForm" novalidate>
+            <label class="tool__label" for="siteUrl">הכתובת של האתר שלכם</label>
+            <div class="tool__row">
+              <input class="tool__input" id="siteUrl" name="url" type="text" inputmode="url" autocomplete="url" spellcheck="false" dir="ltr" placeholder="www.your-business.co.il" aria-describedby="siteHint siteErr">
+              <button class="btn btn--ink tool__go" type="submit"><span>בדקו את האתר שלי</span></button>
+            </div>
+            <p class="tool__hint" id="siteHint">אפשר להדביק גם קישור מהטלפון.</p>
+            <p class="tool__err" id="siteErr" role="alert" hidden></p>
+          </form>
+
+          <div class="tool__load" id="toolLoad" hidden aria-live="polite">
+            <p class="tool__site mono" dir="ltr" data-site></p>
+            <ol class="ticks">
+              <li>בודקים איך האתר נפתח בטלפון...</li>
+              <li>מחפשים איך פונים אליכם...</li>
+              <li>בודקים מה הלקוח רואה בשניות הראשונות...</li>
+              <li>מסדרים את מה שמצאנו בשפה פשוטה...</li>
+            </ol>
+          </div>
+
+          <div class="tool__res" id="toolRes" hidden aria-live="polite" tabindex="-1">
+            <p class="tool__site mono" dir="ltr" data-site></p>
+            <h3 class="res__h" id="resHead"></h3>
+            <p class="res__sum" id="resSum"></p>
+            <ol class="finds" id="finds"></ol>
+            <a class="btn btn--chrome tool__wa" id="resWa" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%A2%D7%A9%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%91%D7%93%D7%99%D7%A7%D7%94%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A.%20%D7%96%D7%94%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%99%3A%20___" target="_blank" rel="noopener"><span>רוצים שאתקן את זה? שלחו לי בוואטסאפ</span><span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></a>
+            <button class="tool__again" type="button" data-again>בדיקה לאתר אחר</button>
+          </div>
+
+          <div class="tool__self" id="toolSelf" hidden>
+            <p class="tool__site mono" dir="ltr" data-site></p>
+            <p class="self__intro" id="selfIntro">פתחו את האתר שלכם בטלפון, וענו בכנות.</p>
+            <ol class="qs">
+              <li class="q" data-q="0"><p class="q__t" id="q0t">מי שלא מכיר אתכם מבין מיד מה אתם עושים, בלי לגלול?</p>
+                <div class="yn" role="group" aria-labelledby="q0t"><button type="button" class="yn__b" data-a="1" aria-pressed="false">כן</button><button type="button" class="yn__b" data-a="0" aria-pressed="false">לא</button></div></li>
+              <li class="q" data-q="1"><p class="q__t" id="q1t">יש באתר משהו שנותן ביטחון לבחור בכם? (עבודות, תמונות אמיתיות, המלצות)</p>
+                <div class="yn" role="group" aria-labelledby="q1t"><button type="button" class="yn__b" data-a="1" aria-pressed="false">כן</button><button type="button" class="yn__b" data-a="0" aria-pressed="false">לא</button></div></li>
+              <li class="q" data-q="2"><p class="q__t" id="q2t">אפשר לשלוח לכם הודעה בלחיצה אחת?</p>
+                <div class="yn" role="group" aria-labelledby="q2t"><button type="button" class="yn__b" data-a="1" aria-pressed="false">כן</button><button type="button" class="yn__b" data-a="0" aria-pressed="false">לא</button></div></li>
+            </ol>
+            <div class="self__res" id="selfRes" aria-live="polite" hidden></div>
+            <a class="btn btn--chrome tool__wa" id="selfWa" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%A2%D7%A9%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%91%D7%93%D7%99%D7%A7%D7%94%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A.%20%D7%96%D7%94%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%99%3A%20___" target="_blank" rel="noopener"><span>שלחו לי את האתר בוואטסאפ</span><span class="arrow arrow--sm" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></a>
+            <button class="tool__again" type="button" data-again>בדיקה לאתר אחר</button>
+          </div>
+          <noscript><p class="tool__hint"><a href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%A2%D7%A9%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%91%D7%93%D7%99%D7%A7%D7%94%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A.%20%D7%96%D7%94%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%99%3A%20___">שלחו לי את האתר שלכם בוואטסאפ</a></p></noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 PROCESS -->
   <section class="process" id="process" aria-labelledby="process-title">
     <span class="station" data-station></span>
     <div class="process__in">
       <div class="panel__head">
-        <span class="label mono" data-up>תהליך</span>
-        <h2 class="h2" id="process-title" data-up>ארבעה <span class="pill-w" data-pill>שלבים.</span></h2>
+        <span class="label mono" data-up>איך זה עובד</span>
+        <h2 class="h2" id="process-title" data-up>ארבעה שלבים. <span class="pill-w" data-pill>בלי הפתעות.</span></h2>
+        <p class="lead" data-up>בכל שלב אתם יודעים מה קורה ומה צריך מכם. בדרך כלל, כמעט כלום.</p>
       </div>
       <ol class="steps" id="steps">
         <li class="step" data-step>
           <span class="step__n" dir="ltr">01</span>
-          <div class="step__t"><h3>שיחה קצרה</h3><p>מבינים מה העסק צריך.</p></div>
+          <div class="step__t"><h3>מספרים לי על העסק</h3><p>הודעה או שיחה קצרה. מה אתם עושים, למי, ומה חשוב לכם.</p><p class="step__get"><b>אתם מקבלים:</b> הצעה ברורה: מה בונים, מה כלול וכמה זה עולה.</p></div>
         </li>
         <li class="step" data-step>
           <span class="step__n" dir="ltr">02</span>
-          <div class="step__t"><h3>עיצוב</h3><p>רואים איך האתר ייראה לפני שבונים.</p></div>
+          <div class="step__t"><h3>רואים הדמיה</h3><p>אתם רואים הדמיה של האתר לפני שבונים ולפני שמשלמים, ומתקנים ביחד.</p><p class="step__get"><b>אתם מקבלים:</b> עיצוב שמרגיש שלכם, לפני שממשיכים.</p></div>
         </li>
         <li class="step" data-step>
           <span class="step__n" dir="ltr">03</span>
-          <div class="step__t"><h3>בנייה</h3><p>בונים, בודקים בטלפון ובמחשב.</p></div>
+          <div class="step__t"><h3>בונים ובודקים</h3><p>אני בונה, כותב איתכם את הטקסטים ובודק בטלפון ובמחשב.</p><p class="step__get"><b>אתם מקבלים:</b> עדכון בוואטסאפ לאורך הדרך.</p></div>
         </li>
         <li class="step" data-step>
           <span class="step__n" dir="ltr">04</span>
-          <div class="step__t"><h3>באוויר</h3><p>האתר עולה, ואני נשאר זמין.</p></div>
+          <div class="step__t"><h3>האתר באוויר</h3><p>האתר עולה, על השם שלכם. ואני נשאר זמין. כל התהליך: באוויר תוך 5 ימי עסקים.</p><p class="step__get"><b>אתם מקבלים:</b> קישור שכיף לשלוח, ומישהו שעונה כשצריך שינוי.</p></div>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- 6 PERSONAL -->
+  <!-- 11 ABOUT -->
   <section class="me" aria-labelledby="me-title">
-    <span class="station" data-station></span>
-    <div class="me__in">
-      <span class="label mono" data-up>מי בונה</span>
-      <h2 class="me__name" id="me-title" data-up>דין וינוקור</h2>
-      <p class="me__line" data-up>שיחה ישירה איתי <span class="pill-w" data-pill>מהיום הראשון.</span></p>
-      <p class="me__sub" data-up>בלי התחייבות. מדברים ישירות איתי.</p>
-      <span class="me__place mono" data-up>נהריה והצפון</span>
+    <span class="station station--edge" data-station></span>
+    <div class="ice-panel me__panel">
+      <div class="me__grid">
+        <div class="me__copy">
+          <span class="label mono" data-up>מי בונה לכם את האתר</span>
+          <h2 class="h2 me__h" id="me-title" data-up>נעים מאוד, אני דין. <span class="pill-w" data-pill>אני גם מי שעונה לכם.</span></h2>
+          <div class="me__text" data-up>
+            <p>באתי מהשיווק ומהמכירות, לא רק מהעיצוב.</p>
+            <p>לכן כשאני בונה אתר, אני שואל קודם מה הלקוח שלכם צריך לשמוע כדי לפנות. רק אחר כך מה צבע הכפתור.</p>
+            <p>לאורך כל הדרך אתם מדברים ישירות איתי. בשפה פשוטה, בלי מונחים.</p>
+          </div>
+          <ul class="me__chips" data-up>
+            <li class="chip chip--soft">נהריה והצפון</li>
+            <li class="chip chip--soft">מדברים ישירות איתי</li>
+            <li class="chip chip--soft">מענה בוואטסאפ&nbsp;24/7</li>
+          </ul>
+        </div>
+        <aside class="card-wa" data-card aria-label="וואטסאפ לדין">
+          <span class="card-wa__mark" dir="ltr" aria-hidden="true">DV</span>
+          <p class="card-wa__name">דין וינוקור</p>
+          <p class="card-wa__num mono"><a href="tel:+972525979520" dir="ltr">052-597-9520</a></p>
+          <a class="btn btn--ink card-wa__btn" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener"><span>שלחו לי הודעה בוואטסאפ</span><span class="arrow arrow--sm arrow--light" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span></a>
+          <p class="calm">עונה לכם אני, לא מוקד. מענה בוואטסאפ&nbsp;24/7.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <!-- 7 GALLERY: real screenshots -->
-  <section class="gallery" aria-labelledby="gal-title">
-    <div class="sec-head sec-head--c">
-      <span class="label mono" data-up>מהעבודות</span>
-      <h2 class="visually-hidden" id="gal-title">צילומי מסך מהעבודות</h2>
-    </div>
-    <div class="gal">
-      <figure class="g g--wide" data-g><img src="img/dna-1440.webp" alt="צילום מסך של DNA Studio במחשב" width="1440" height="1000" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">HELLODNA.CO.IL</figcaption></figure>
-      <figure class="g g--phone" data-g><img src="img/atlas-m.webp" alt="צילום מסך של atlas בטלפון" width="520" height="1125" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">ATLAS-IL.COM</figcaption></figure>
-      <figure class="g g--phone" data-g><img src="img/vinoa-m.webp" alt="צילום מסך של VINOA בטלפון" width="520" height="1125" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">VINOAMUSIC.COM</figcaption></figure>
-      <figure class="g g--phone" data-g><img src="img/dna-m.webp" alt="צילום מסך של DNA Studio בטלפון" width="520" height="1125" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">HELLODNA.CO.IL</figcaption></figure>
-      <figure class="g g--wide" data-g><img src="img/atlas-1440.webp" alt="צילום מסך של atlas במחשב" width="1440" height="1080" loading="lazy" decoding="async"><figcaption class="mono" dir="ltr">ATLAS-IL.COM</figcaption></figure>
-    </div>
-    <span class="station" data-station></span>
-  </section>
-
-  <!-- 8 FAQ -->
+  <!-- 12 FAQ -->
   <section class="faq" id="faq" aria-labelledby="faq-title">
+    <span class="station station--edge" data-station></span>
     <div class="dpanel band" data-dark>
     <div class="band__in">
-    <span class="station station--edge" data-station></span>
     <div class="sec-head sec-head--c">
       <span class="label mono" data-up>שאלות</span>
-      <h2 class="h2" id="faq-title" data-up>שאלות <span class="pill-w" data-pill>ששואלים.</span></h2>
+      <h2 class="h2" id="faq-title" data-up>מה בעלי עסקים <span class="pill-w" data-pill>שואלים אותי.</span></h2>
     </div>
     <div class="acc" id="acc">
       <div class="acc__item" data-card>
-        <h3><button class="acc__q" aria-expanded="false" aria-controls="a1" id="q1"><span class="acc__n mono" dir="ltr">01</span><span class="acc__t">כמה זמן לוקח?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
-        <div class="acc__a" id="a1" role="region" aria-labelledby="q1"><div class="acc__inner"><p>תלוי בגודל האתר. בשיחה הראשונה נקבע לוח זמנים ברור.</p></div></div>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a1" id="q1"><span class="acc__n mono" dir="ltr">01</span><span class="acc__t">לא מבינים בטכנולוגיה. זה מתאים לנו?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a1" role="region" aria-labelledby="q1"><div class="acc__inner"><p>כן. את כל החלק הטכני אני עושה. מכם צריך רק לספר על העסק ולהגיד מה אהבתם.</p></div></div>
       </div>
       <div class="acc__item" data-card>
-        <h3><button class="acc__q" aria-expanded="false" aria-controls="a2" id="q2"><span class="acc__n mono" dir="ltr">02</span><span class="acc__t">האתר יהיה שלי?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
-        <div class="acc__a" id="a2" role="region" aria-labelledby="q2"><div class="acc__inner"><p>כן. האתר והדומיין רשומים על שמכם.</p></div></div>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a2" id="q2"><span class="acc__n mono" dir="ltr">02</span><span class="acc__t">אין לנו טקסטים ותמונות. אפשר להתחיל?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a2" role="region" aria-labelledby="q2"><div class="acc__inner"><p>כן. מספיק שתספרו לי על העסק. את הטקסטים כותבים ביחד, ומה שחסר נשלים בדרך.</p></div></div>
       </div>
       <div class="acc__item" data-card>
-        <h3><button class="acc__q" aria-expanded="false" aria-controls="a3" id="q3"><span class="acc__n mono" dir="ltr">03</span><span class="acc__t">אפשר לעדכן אחר כך?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
-        <div class="acc__a" id="a3" role="region" aria-labelledby="q3"><div class="acc__inner"><p>כן. אפשר לבקש שינויים גם אחרי שהאתר באוויר.</p></div></div>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a3" id="q3"><span class="acc__n mono" dir="ltr">03</span><span class="acc__t">כמה זה עולה?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a3" role="region" aria-labelledby="q3"><div class="acc__inner"><p>אתר לעסק החל&nbsp;מ-1,790&nbsp;₪, במחיר של סוף השנה עד 31 בדצמבר 2026. המחיר המדויק תלוי בכמה עמודים צריך. לפני שמתחילים תקבלו הצעה ברורה. מחיר לדף נחיתה נקבע אחרי שיחה קצרה.</p></div></div>
       </div>
       <div class="acc__item" data-card>
-        <h3><button class="acc__q" aria-expanded="false" aria-controls="a4" id="q4"><span class="acc__n mono" dir="ltr">04</span><span class="acc__t">צריך להכין משהו?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
-        <div class="acc__a" id="a4" role="region" aria-labelledby="q4"><div class="acc__inner"><p>לא. מספיק שתספרו לי על העסק. את השאר נעשה ביחד.</p></div></div>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a4" id="q4"><span class="acc__n mono" dir="ltr">04</span><span class="acc__t">יש אותיות קטנות?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a4" role="region" aria-labelledby="q4"><div class="acc__inner"><p>לא. לפני שמתחילים מקבלים הצעה כתובה: מה בונים, מה כלול וכמה זה עולה.</p></div></div>
+      </div>
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a5" id="q5"><span class="acc__n mono" dir="ltr">05</span><span class="acc__t">כמה זמן זה לוקח?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a5" role="region" aria-labelledby="q5"><div class="acc__inner"><p>5 ימי עסקים מרגע שיש לנו את מה שצריך.</p></div></div>
+      </div>
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a6" id="q6"><span class="acc__n mono" dir="ltr">06</span><span class="acc__t">האתר יהיה שלנו?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a6" role="region" aria-labelledby="q6"><div class="acc__inner"><p>כן. האתר והדומיין (הכתובת של האתר, למשל <span dir="ltr">hellodna.co.il</span>) רשומים על שמכם.</p></div></div>
+      </div>
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a7" id="q7"><span class="acc__n mono" dir="ltr">07</span><span class="acc__t">מה קורה אחרי שהאתר עולה?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a7" role="region" aria-labelledby="q7"><div class="acc__inner"><p>אני נשאר זמין, ואפשר לבקש שינויים גם אחרי שהאתר באוויר.</p></div></div>
+      </div>
+      <div class="acc__item" data-card>
+        <h3><button class="acc__q" type="button" aria-expanded="false" aria-controls="a8" id="q8"><span class="acc__n mono" dir="ltr">08</span><span class="acc__t">צריך אתר או דף נחיתה?</span><i class="acc__ico" aria-hidden="true"></i></button></h3>
+        <div class="acc__a" id="a8" role="region" aria-labelledby="q8"><div class="acc__inner"><p>לא חייבים לדעת. אתר מציג את כל העסק. דף נחיתה מוכר דבר אחד. בהודעה הראשונה נבין מה מתאים לכם.</p></div></div>
       </div>
     </div>
     </div>
     </div>
-    <span class="station station--after" data-station></span>
-    </section>
+  </section>
 
-  <!-- 9 CLOSING + TICKET -->
+  <!-- 13 CLOSING -->
   <section class="contact" id="contact" aria-labelledby="contact-title">
-    <h2 class="contact__title" id="contact-title">
-      <span class="ln"><span class="ln__in">יש לכם עסק</span></span>
-      <span class="ln"><span class="ln__in">שמגיע לו <span class="pill-w" data-pill>אתר כזה?</span></span></span>
-    </h2>
-    <div class="ticket" id="ticket">
-      <div class="ticket__stub">
-        <span class="mono">דין וינוקור</span>
-        <span class="ticket__mark" dir="ltr">DV</span>
-        <span class="mono">בניית אתרים</span>
-      </div>
-      <div class="ticket__main">
-        <span class="tag mono">צור קשר</span>
-        <p class="ticket__sub">בלי התחייבות. מדברים ישירות איתי.</p>
-        <a class="btn btn--chrome btn--xl" href="https://wa.me/972525979520" target="_blank" rel="noopener">
-          <span>דברו איתי בוואטסאפ</span>
-          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
-        </a>
-        <div class="ticket__alt mono">
-          <a href="tel:+972525979520" dir="ltr">052-597-9520</a>
-          <span class="dot" aria-hidden="true"></span>
-          <a href="mailto:deenv7@gmail.com" dir="ltr">deenv7@gmail.com</a>
+    <span class="station station--edge" data-station></span>
+    <div class="band band--sky band--close" data-dark>
+      <div class="band__bg" aria-hidden="true"><div class="band__img"></div></div>
+      <div class="band__in close__in">
+        <span class="label label--dark mono" data-up>הצעד הבא</span>
+        <h2 class="contact__title" id="contact-title">
+          <span class="ln"><span class="ln__in">ההמלצה הבאה עליכם</span></span>
+          <span class="ln"><span class="ln__in">צריכה <span class="pill-w" data-pill>מקום לנחות.</span></span></span>
+        </h2>
+        <p class="close__text" data-up>בפעם הבאה שמישהו ישאל "יש לכם אתר?", תשלחו קישור בגאווה.</p>
+        <p class="close__urgent" data-up>המחיר של סוף השנה, אתר לעסק החל&nbsp;מ-1,790&nbsp;₪, בתוקף עד 31 בדצמבר 2026.</p>
+        <div data-up>
+          <a class="btn btn--chrome btn--xl" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%20___%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%90%D7%AA%D7%A8." target="_blank" rel="noopener">
+            <span>ספרו לי על העסק בוואטסאפ</span>
+            <span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M11.5 4.5 4.5 11.5M5.5 4.5h6v6"/></svg></span>
+          </a>
         </div>
+        <p class="close__calm" data-up>לא צריך להכין כלום. אפשר להתחיל מהודעה אחת: "יש לי עסק ואשמח לאתר".<br>בלי התחייבות. מדברים ישירות איתי. מענה בוואטסאפ&nbsp;24/7.</p>
+        <span class="station station--end" data-station></span>
       </div>
     </div>
-    <span class="station station--end" data-station></span>
   </section>
 </main>
 
-<footer class="foot mono">
-  <span>דין וינוקור · בניית אתרים · נהריה והצפון</span>
-  <span dir="ltr">© 2026</span>
+<footer class="foot">
+  <p class="foot__name"><strong>דין וינוקור</strong> · בניית אתרים ודפי נחיתה לבעלי עסקים · נהריה והצפון</p>
+  <p class="foot__links mono">
+    <a href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">וואטסאפ: <span dir="ltr">052-597-9520</span></a>
+    <span class="dot" aria-hidden="true"></span>
+    <a href="mailto:deenv7@gmail.com" dir="ltr">deenv7@gmail.com</a>
+    <span class="dot" aria-hidden="true"></span>
+    <span dir="ltr">© 2026</span>
+  </p>
 </footer>
 
-<script src="js/gsap.min.js"></script>
-<script src="js/ScrollTrigger.min.js"></script>
-<script src="js/lenis.min.js"></script>
-<script src="js/main.js"></script>
+<a class="fab" id="fab" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener" aria-label="וואטסאפ לדין">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Zm0 1.6a7.4 7.4 0 1 1-3.8 13.8l-.3-.2-2.7.7.7-2.6-.2-.3A7.4 7.4 0 0 1 12 4.6Zm-3 3.6c-.2 0-.5 0-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.8 2.2.9 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3-1.6-.8c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.8c-.2-.5-.4-.5-.6-.5H9Z"/></svg>
+  <span>וואטסאפ לדין</span>
+</a>
+
+<script src="js/gsap.min.js" defer></script>
+<script src="js/ScrollTrigger.min.js" defer></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

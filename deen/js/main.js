@@ -7,23 +7,15 @@
   window.__ready=true;
   if(hasG){gsap.registerPlugin(ScrollTrigger); if(window.__REC) gsap.globalTimeline.timeScale(window.__REC);}
 
-  /* smooth scroll (desktop only, never while recording) */
-  var lenis=null;
-  if(!still&&!window.__REC&&typeof Lenis!=='undefined'&&matchMedia('(pointer:fine)').matches){
-    lenis=new Lenis({duration:1.05,easing:function(t){return 1-Math.pow(1-t,3)},smoothWheel:true});
-    lenis.on('scroll',ScrollTrigger.update);
-    gsap.ticker.add(function(t){lenis.raf(t*1000)}); gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){
-      var t=document.querySelector(a.getAttribute('href')); if(!t)return; e.preventDefault(); lenis.scrollTo(t,{offset:-80});})});
-  }
-
   /* top bar */
   var top=document.getElementById('topBar');
   var darks=[].slice.call(document.querySelectorAll('[data-dark]'));
-  function onTop(){top.classList.toggle('is-scrolled',scrollY>40);
-    var dk=false; for(var i=0;i<darks.length;i++){var r=darks[i].getBoundingClientRect(); if(r.top<36&&r.bottom>36){dk=true;break}}
-    top.classList.toggle('is-dark',dk);}
-  addEventListener('scroll',onTop,{passive:true}); onTop(); if(hasG) ScrollTrigger.addEventListener('refresh',onTop);
+  var DK=[], tS=null, tD=null;
+  function cacheDark(){DK=darks.map(function(el){var r=el.getBoundingClientRect();return [r.top+scrollY,r.bottom+scrollY]})}
+  function onTop(){var y=scrollY, sc=y>40; if(sc!==tS){tS=sc;top.classList.toggle('is-scrolled',sc)}
+    var dk=false, yy=y+36; for(var i=0;i<DK.length;i++){if(DK[i][0]<yy&&DK[i][1]>yy){dk=true;break}}
+    if(dk!==tD){tD=dk;top.classList.toggle('is-dark',dk)}}
+  cacheDark(); onTop(); if(hasG) ScrollTrigger.addEventListener('refresh',function(){cacheDark();onTop()});
 
   /* accordion */
   document.querySelectorAll('.acc__q').forEach(function(q){
@@ -50,21 +42,17 @@
   fanPose(); addEventListener('resize',function(){fanPose()});
 
   var pills=[].slice.call(document.querySelectorAll('[data-pill]'));
-  if(still){pills.forEach(function(p){p.classList.add('is-on')}); d.classList.add('still'); document.querySelectorAll('.lr').forEach(function(l){l.style.opacity=1});}
+  if(still){pills.forEach(function(p){p.classList.add('is-on')}); d.classList.add('still'); }
 
   /* ---------- motion ---------- */
   if(!still){
     var E='power3.out';
     /* hero intro */
-    var tl=gsap.timeline({delay:.15});
-    tl.to('.hero__title .ln__in',{y:0,duration:1.1,ease:'expo.out',stagger:.1})
+    var tl=gsap.timeline();
+    tl.to('.hero__title .ln__in',{y:0,duration:.75,ease:'expo.out',stagger:.07})
       .add(function(){document.querySelectorAll('.hero [data-pill]').forEach(function(p,i){setTimeout(function(){p.classList.add('is-on')},i*180)})},'-=.6')
-      .to('.hero [data-intro]',{opacity:1,y:0,duration:.8,ease:E,stagger:.08},'-=.7')
-      .fromTo('.fan__in',{opacity:0,yPercent:30},{opacity:1,yPercent:0,duration:1.3,ease:'expo.out',stagger:.09},'-=.7');
-    /* gentle float */
-    gsap.utils.toArray('.fan__in').forEach(function(el,i){
-      gsap.to(el,{y:i===2?-7:-10,duration:3.2+i*.5,ease:'sine.inOut',yoyo:true,repeat:-1,delay:1.6+i*.3});
-    });
+      .to('.hero [data-intro]',{opacity:1,y:0,duration:.6,ease:E,stagger:.06},'-=.55')
+      .fromTo('.fan__in',{opacity:0,yPercent:30},{opacity:1,yPercent:0,duration:.9,ease:'expo.out',stagger:.07},'-=.6');
     /* the arc opens as you leave the hero */
     gsap.to(FP,{p:1,ease:'none',onUpdate:fanPose,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.6}});
 
@@ -78,26 +66,9 @@
       ScrollTrigger.create({trigger:p,start:'top 80%',once:true,onEnter:function(){p.classList.add('is-on')}});
     });
 
-    /* letter: line by line, scrubbed */
-    var lb=document.getElementById('letterBand'), lrs=gsap.utils.toArray('.lr'), lpills=[].slice.call(lb.querySelectorAll('[data-pill]'));
-    var ltl=gsap.timeline({scrollTrigger:{trigger:lb,start:'top 12px',end:'+='+Math.round(innerHeight*(innerWidth<900?.9:1.1)),pin:true,pinSpacing:true,scrub:.5,anticipatePin:1,
-      onUpdate:function(self){lpills.forEach(function(p,i){p.classList.toggle('is-on',self.progress>(i+.55)/lrs.length*.82)})}}});
-    lrs.forEach(function(l,i){ltl.to(l,{opacity:1,ease:'none',duration:1},i*.9)});
-    ltl.fromTo(lb.querySelector('.band__img'),{scale:1.12,yPercent:-3},{scale:1,yPercent:3,ease:'none',duration:lrs.length*.9+1},0);
-    gsap.fromTo(lb,{clipPath:'inset(6% 3% 0% 3% round 28px)'},{clipPath:'inset(0% 0% 0% 0% round 28px)',ease:'none',scrollTrigger:{trigger:lb,start:'top bottom',end:'top 12px',scrub:true}});
-
-    /* trio: sky card drifts, cards lift in */
-    gsap.fromTo('.tcard__bg',{yPercent:-6,scale:1.08},{yPercent:6,scale:1,ease:'none',scrollTrigger:{trigger:'.trio',start:'top bottom',end:'bottom top',scrub:true}});
-    gsap.utils.toArray('.tcard__n').forEach(function(n,i){
-      gsap.fromTo(n,{yPercent:40,opacity:0},{yPercent:0,opacity:1,duration:1.1,ease:'expo.out',delay:i*.09,scrollTrigger:{trigger:'.trio__grid',start:'top 80%',once:true}});
-    });
-
     /* works: band rises, screenshots zoom out + drift inside cards */
     gsap.utils.toArray('[data-zoom]').forEach(function(img){
-      gsap.fromTo(img,{scale:1.14,yPercent:0},{scale:1,yPercent:-9,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
-    });
-    gsap.utils.toArray('.wcard').forEach(function(c){
-      gsap.fromTo(c,{scale:.96},{scale:1,ease:'none',scrollTrigger:{trigger:c,start:'top bottom',end:'top 55%',scrub:true}});
+      gsap.fromTo(img,{yPercent:0},{yPercent:-9,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
     });
 
     /* process: the step crossing the middle lights */
@@ -110,27 +81,13 @@
       gsap.fromTo(s,{opacity:0,x:innerWidth<900?0:-30,y:24},{opacity:1,x:0,y:0,duration:.9,ease:E,scrollTrigger:{trigger:s,start:'top 90%',once:true}});
     });
 
-    /* screenshots drift inside their cards */
-    gsap.utils.toArray('[data-par]').forEach(function(img){
-      gsap.fromTo(img,{yPercent:0},{yPercent:-6,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
-    });
-    /* gallery: alternating drift */
-    gsap.utils.toArray('[data-g]').forEach(function(g,i){
-      gsap.fromTo(g,{y:i%2?60:20,opacity:.0},{opacity:1,duration:1,ease:E,scrollTrigger:{trigger:g,start:'top 92%',once:true}});
-      gsap.to(g.querySelector('img'),{yPercent:i%2?-4:-8,ease:'none',scrollTrigger:{trigger:g,start:'top bottom',end:'bottom top',scrub:true}});
-      gsap.to(g,{y:0,ease:'none',scrollTrigger:{trigger:g,start:'top bottom',end:'top 40%',scrub:true}});
-    });
-
-    /* closing title + ticket */
+    /* closing title */
     gsap.to('.contact__title .ln__in',{y:0,duration:1.1,ease:'expo.out',stagger:.1,scrollTrigger:{trigger:'.contact__title',start:'top 85%',once:true}});
-    gsap.fromTo('.ticket__stub',{x:-40,opacity:0},{x:0,opacity:1,duration:1,ease:E,scrollTrigger:{trigger:'#ticket',start:'top 85%',once:true}});
-    gsap.fromTo('.ticket__main',{x:40,opacity:0},{x:0,opacity:1,duration:1,ease:E,scrollTrigger:{trigger:'#ticket',start:'top 85%',once:true,
-      onEnter:function(){gsap.delayedCall(.6,function(){document.getElementById('ticket').classList.add('lit')})}}});
   }
 
   /* ---------- journey line ---------- */
   var main=document.getElementById('top'), svg=document.getElementById('jsvg');
-  var dkG=svg.querySelector('.dk'), trackD=svg.querySelector('.track-d'), clip=svg.querySelector('#dkclip'), darkEls=[].slice.call(main.querySelectorAll('.work [data-dark], .faq [data-dark]')), DR=[];
+  var dkG=svg.querySelector('.dk'), trackD=svg.querySelector('.track-d'), clip=svg.querySelector('#dkclip'), darkEls=[].slice.call(main.querySelectorAll('[data-dark]')), DR=[];
   var track=svg.querySelector('.track'), tip=svg.querySelector('.tip'), halo=svg.querySelector('.tip-halo'), grad=svg.querySelector('#jg');
   var NS='http://www.w3.org/2000/svg';
   var stations=[].slice.call(main.querySelectorAll('[data-station]'));
@@ -212,14 +169,17 @@
     for(var j=0;j<stations.length;j++){var on=j===0||cur>=stL[j]-3; stations[j].classList.toggle('on',on); if(on) act=j;}
     for(var k=0;k<stations.length;k++) stations[k].classList.toggle('is-active',k===act);
   }
+  var raf=0, ticking=false;
+  function loop(){raf=0; var dlt=target-st.cur;
+    if(Math.abs(dlt)<.5){st.cur=target;paint();ticking=false;return}
+    st.cur+=dlt*.2; paint(); raf=requestAnimationFrame(loop);}
   function onScroll(){
-    measure();
-    if(still||!hasG){st.cur=target;paint();return}
-    if(tw) tw.kill();
-    tw=gsap.to(st,{cur:target,duration:.55,ease:'power2.out',onUpdate:paint});
+    onTop(); measure();
+    if(still){st.cur=target;paint();return}
+    if(!raf) raf=requestAnimationFrame(loop);
   }
-  var bt; function rebuild(){clearTimeout(bt);bt=setTimeout(function(){build();st.cur=target;paint();if(hasG)ScrollTrigger.refresh()},120)}
-  function jRebuild(){build(); st.cur=target; paint();}
+  var bt; function rebuild(){clearTimeout(bt);bt=setTimeout(function(){build();cacheDark();st.cur=target;paint();if(hasG)ScrollTrigger.refresh()},120)}
+  function jRebuild(){build();cacheDark(); st.cur=target; paint();}
   function maybe(){ if(main.clientWidth!==lastW||main.scrollHeight!==lastH) rebuild(); else onScroll(); }
   build(); st.cur=target; paint();
   addEventListener('scroll',onScroll,{passive:true});
@@ -227,4 +187,116 @@
   addEventListener('load',rebuild);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(rebuild);
   if('ResizeObserver' in window) new ResizeObserver(maybe).observe(main);
+})();
+
+/* ---------- site check ("בדיקה לאתר") ----------
+   ANALYZE_URL: the deployed Supabase Edge Function (backend/analyze/index.ts). Empty = self-check fallback.
+   Request:  POST ANALYZE_URL  body {"url":"https://example.co.il"}  (Content-Type: application/json)
+   Response: {
+     ok: boolean,
+     site_title: string,                    // the <title> of their site, may be ""
+     findings: [{ title: string,            // where customers may leave, plain Hebrew
+                  why: string,              // why it costs them customers, tied to a real signal
+                  fix: string }],           // what Deen would do instead
+     summary: string                        // one or two plain sentences
+   }
+   ok:false (or a network error / timeout) also falls back to the self-check. */
+(function(){
+  'use strict';
+  var ANALYZE_URL='';
+  var WA='https://wa.me/972525979520?text=';
+  var form=document.getElementById('checkForm'); if(!form) return;
+  var input=document.getElementById('siteUrl'), err=document.getElementById('siteErr');
+  var load=document.getElementById('toolLoad'), res=document.getElementById('toolRes'), self=document.getElementById('toolSelf');
+  var ticks=[].slice.call(load.querySelectorAll('.ticks li')), timers=[], site='';
+  var answers=[null,null,null];
+
+  function norm(v){
+    v=(v||'').trim().replace(/\s+/g,''); if(!v) return '';
+    if(!/^https?:\/\//i.test(v)) v='https://'+v;
+    try{var u=new URL(v); if(!/^https?:$/.test(u.protocol)) return ''; if(!/\.[a-z\u05d0-\u05ea]{2,}$/i.test(u.hostname)) return ''; return u.href;}catch(e){return ''}
+  }
+  function show(el){[form,load,res,self].forEach(function(x){x.hidden=x!==el}); }
+  function setSite(){document.querySelectorAll('#tool [data-site]').forEach(function(s){s.textContent=site.replace(/^https?:\/\//,'').replace(/\/$/,'')})}
+  function wa(text){return WA+encodeURIComponent(text)}
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function clearT(){timers.forEach(clearTimeout); timers=[]}
+
+  function startSelf(note){
+    answers=[null,null,null];
+    self.querySelectorAll('.yn__b').forEach(function(b){b.setAttribute('aria-pressed','false')});
+    var r=document.getElementById('selfRes'); r.hidden=true; r.className='self__res';
+    document.getElementById('selfIntro').textContent=note||'פתחו את האתר שלכם בטלפון, וענו בכנות.';
+    document.getElementById('selfWa').href=wa('היי דין, עשיתי את הבדיקה באתר שלך. זה האתר שלי: '+site);
+    show(self); var f=self.querySelector('.yn__b'); if(f) f.focus({preventScroll:true});
+  }
+  function selfResult(){
+    var r=document.getElementById('selfRes'), done=answers.every(function(a){return a!==null});
+    if(!done) return;
+    var no=answers.filter(function(a){return a===0}).length, i;
+    r.hidden=false;
+    if(!no){r.className='self__res';r.innerHTML='<strong>יפה. האתר שלכם עושה את העבודה.</strong>רוצים לבדוק שהוא גם מביא הודעות? אני כאן.';
+      document.getElementById('selfWa').firstElementChild.textContent='שלחו לי את האתר בוואטסאפ';
+      document.getElementById('selfWa').href=wa('היי דין, עשיתי את הבדיקה באתר שלך ויצא לי "כן" בכל השאלות. זה האתר שלי: '+site);}
+    else{var qs=[];for(i=0;i<3;i++) if(answers[i]===0) qs.push(i+1);
+      r.className='self__res is-bad';r.innerHTML='<strong>כאן לקוחות הולכים לאיבוד.</strong>החדשות הטובות: זה בדיוק מה שאני מתקן כשאני בונה אתר חדש.';
+      document.getElementById('selfWa').firstElementChild.textContent='רוצים שאתקן את זה? שלחו לי בוואטסאפ';
+      document.getElementById('selfWa').href=wa('היי דין, עשיתי את הבדיקה באתר שלך ויצא לי "לא" בשאלה '+qs.join(', ')+'. זה האתר שלי: '+site);}
+  }
+  self.addEventListener('click',function(e){
+    var b=e.target.closest('.yn__b'); if(!b) return;
+    var q=+b.closest('.q').getAttribute('data-q');
+    answers[q]=+b.getAttribute('data-a');
+    b.parentNode.querySelectorAll('.yn__b').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+    selfResult();
+  });
+
+  function renderResult(data){
+    var f=(data.findings||[]).slice(0,5);
+    if(!f.length){ startSelf('לא מצאנו בעיות ברורות מבחוץ. ענו על 3 שאלות קצרות כדי לבדוק את מה שרק אתם רואים.'); return; }
+    var head=document.getElementById('resHead');
+    head.textContent=f.length===1?'מצאנו מקום אחד שבו לקוחות עלולים ללכת':'מצאנו '+f.length+' מקומות שבהם לקוחות עלולים ללכת';
+    document.getElementById('resSum').textContent=data.summary||'';
+    document.getElementById('finds').innerHTML=f.map(function(x){return '<li><h4>'+esc(x.title)+'</h4><p>'+esc(x.why)+'</p><p class="fix"><b>מה הייתי עושה:</b> '+esc(x.fix)+'</p></li>'}).join('');
+    document.getElementById('resWa').href=wa('היי דין, בדקתי את האתר שלי בבדיקה באתר שלך ומצאנו '+f.length+' דברים לתקן. זה האתר שלי: '+site);
+    show(res); res.focus({preventScroll:true});
+  }
+  function runTicks(){
+    ticks.forEach(function(t){t.className=''});
+    ticks.forEach(function(t,i){timers.push(setTimeout(function(){ if(i) ticks[i-1].className='is-done'; t.className='is-now'; },i*1400))});
+  }
+  function analyze(){
+    show(load); runTicks();
+    var t0=Date.now(), ctl='AbortController' in window?new AbortController():null;
+    var to=setTimeout(function(){ if(ctl) ctl.abort(); },20000);
+    fetch(ANALYZE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:site}),signal:ctl?ctl.signal:undefined})
+      .then(function(r){return r.json()})
+      .then(function(data){
+        clearTimeout(to);
+        var wait=Math.max(0,ticks.length*1400-(Date.now()-t0)); /* let the honest steps finish */
+        timers.push(setTimeout(function(){clearT(); if(data&&data.ok) renderResult(data); else startSelf('לא הצלחנו לפתוח את האתר הזה מבחוץ. ענו על 3 שאלות קצרות במקום.');},Math.min(wait,2500)));
+      })
+      .catch(function(){clearTimeout(to); clearT(); startSelf('לא הצלחנו לבדוק את האתר הזה אוטומטית. ענו על 3 שאלות קצרות במקום.');});
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    site=norm(input.value);
+    if(!site){err.textContent='נראה שהכתובת לא שלמה. נסו למשל: www.your-business.co.il';err.hidden=false;input.setAttribute('aria-invalid','true');input.focus();return;}
+    err.hidden=true; input.removeAttribute('aria-invalid'); setSite();
+    if(ANALYZE_URL) analyze(); else startSelf();
+  });
+  input.addEventListener('input',function(){ if(!err.hidden){err.hidden=true;input.removeAttribute('aria-invalid')} });
+  document.querySelectorAll('#tool [data-again]').forEach(function(b){b.addEventListener('click',function(){clearT(); show(form); input.select(); input.focus({preventScroll:true});})});
+})();
+
+/* ---------- floating whatsapp on mobile: after the hero, hidden over the closing band ---------- */
+(function(){
+  var fab=document.getElementById('fab'), hero=document.getElementById('hero'), close=document.getElementById('contact');
+  if(!fab||!hero||!('IntersectionObserver' in window)) return;
+  var pastHero=false, atClose=false, hide=new Set();
+  function set(){fab.classList.toggle('is-on',pastHero&&!hide.size)}
+  new IntersectionObserver(function(e){pastHero=!e[0].isIntersecting&&e[0].boundingClientRect.top<0;set()},{rootMargin:'0px 0px -40% 0px'}).observe(hero.querySelector('.frame'));
+  /* never cover the tool's own WhatsApp button or the closing button */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting) hide.add(e.target); else hide.delete(e.target)}); set()},{threshold:0});
+  [close,document.getElementById('tool')].forEach(function(el){if(el) io.observe(el)});
 })();
