@@ -4,6 +4,8 @@
   var d=document.documentElement;
   var hasG=typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined';
   var still=!d.classList.contains('motion')||!hasG;
+  /* phones/touch: no scroll-driven drawing or scrubs, so the browser scrolls natively */
+  var lite=matchMedia('(max-width:899px),(pointer:coarse)').matches;
   window.__ready=true;
   if(hasG){gsap.registerPlugin(ScrollTrigger); if(window.__REC) gsap.globalTimeline.timeScale(window.__REC);}
 
@@ -54,7 +56,7 @@
       .to('.hero [data-intro]',{opacity:1,y:0,duration:.6,ease:E,stagger:.06},'-=.55')
       .fromTo('.fan__in',{opacity:0,yPercent:30},{opacity:1,yPercent:0,duration:.9,ease:'expo.out',stagger:.07},'-=.6');
     /* the arc opens as you leave the hero */
-    gsap.to(FP,{p:1,ease:'none',onUpdate:fanPose,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.6}});
+    if(!lite) gsap.to(FP,{p:1,ease:'none',onUpdate:fanPose,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.6}});
 
     /* generic reveals */
     gsap.utils.toArray('[data-up]').forEach(function(el){
@@ -67,7 +69,7 @@
     });
 
     /* works: band rises, screenshots zoom out + drift inside cards */
-    gsap.utils.toArray('[data-zoom]').forEach(function(img){
+    if(!lite) gsap.utils.toArray('[data-zoom]').forEach(function(img){
       gsap.fromTo(img,{yPercent:0},{yPercent:-9,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
     });
 
@@ -138,7 +140,7 @@
       stL.push(acc);
     }
     track.setAttribute('d',all); trackD.setAttribute('d',all); L=acc;
-    measure(); if(still) st.cur=target; paint();
+    measure(); if(still||lite) st.cur=target; paint();
   }
   function lenAtY(y){
     if(!S.length) return 0; if(y<=S[0][2]) return 0; if(y>=S[S.length-1][2]) return L;
@@ -152,7 +154,7 @@
     var a=S[lo],b=S[hi],t=(b[0]-a[0])?(len-a[0])/(b[0]-a[0]):0; return [a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
   }
   function measure(){
-    if(still){target=L;return}
+    if(still||lite){target=L;return}
     var tp=main.getBoundingClientRect().top;
     target=Math.max(0,lenAtY(-tp+innerHeight*.6));
     var maxY=main.scrollHeight-innerHeight; if(scrollY>=maxY-4) target=L;
@@ -174,7 +176,9 @@
     if(Math.abs(dlt)<.5){st.cur=target;paint();ticking=false;return}
     st.cur+=dlt*.2; paint(); raf=requestAnimationFrame(loop);}
   function onScroll(){
-    onTop(); measure();
+    onTop();
+    if(lite) return;
+    measure();
     if(still){st.cur=target;paint();return}
     if(!raf) raf=requestAnimationFrame(loop);
   }
@@ -182,7 +186,7 @@
   function jRebuild(){build();cacheDark(); st.cur=target; paint();}
   function maybe(){ if(main.clientWidth!==lastW||main.scrollHeight!==lastH) rebuild(); else onScroll(); }
   build(); st.cur=target; paint();
-  addEventListener('scroll',onScroll,{passive:true});
+  var topRaf=0; addEventListener('scroll',function(){ if(lite){ if(!topRaf) topRaf=requestAnimationFrame(function(){topRaf=0;onTop()}); return;} onScroll(); },{passive:true});
   addEventListener('resize',maybe);
   addEventListener('load',rebuild);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(rebuild);
@@ -203,7 +207,7 @@
    ok:false (or a network error / timeout) also falls back to the self-check. */
 (function(){
   'use strict';
-  var ANALYZE_URL='';
+  var ANALYZE_URL='https://sqxvjsadnqnnoyfialtg.supabase.co/functions/v1/dna-site-check';
   var WA='https://wa.me/972525979520?text=';
   var form=document.getElementById('checkForm'); if(!form) return;
   var input=document.getElementById('siteUrl'), err=document.getElementById('siteErr');
@@ -300,3 +304,5 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting) hide.add(e.target); else hide.delete(e.target)}); set()},{threshold:0});
   [close,document.getElementById('tool')].forEach(function(el){if(el) io.observe(el)});
 })();
+
+
