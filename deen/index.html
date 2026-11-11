@@ -104,6 +104,19 @@
     </div>
   </section>
 
+  <!-- 2b IRA (voice assistant, featured) -->
+  <section class="iraf" id="ira-sec" aria-labelledby="iraf-title">
+    <div class="iraf__panel">
+      <div class="iraf__orb" data-ira-open aria-hidden="true"><canvas class="iraf__canvas" id="irafOrb" width="600" height="600"></canvas></div>
+      <div class="iraf__copy">
+        <p class="iraf__kick" data-up><span class="iraf__live" aria-hidden="true"></span>העוזרת הקולית שלי</p>
+        <h2 class="h2 iraf__h" id="iraf-title" data-up>יש לכם שאלה? <span class="iraf__name">אירה</span> עונה עכשיו.</h2>
+        <p class="iraf__lead" data-up>מדברים איתה בעברית. בסוף היא מכינה לכם הודעה אליי בוואטסאפ.</p>
+        <button class="iraf__btn" type="button" data-ira-open aria-haspopup="dialog" data-up><span>דברו עם אירה</span></button>
+      </div>
+    </div>
+  </section>
+
   <!-- 3 WORKS + SYSTEMS + BEFORE/AFTER -->
   <section class="work" id="work" aria-labelledby="work-title">
     <span class="station station--edge" data-station></span>
@@ -473,23 +486,26 @@
 <div class="ira" id="ira" hidden>
   <div class="ira__scrim" data-ira-close></div>
   <div class="ira__sheet" role="dialog" aria-modal="true" aria-labelledby="iraTitle" aria-describedby="iraStatus" tabindex="-1">
-    <div class="ira__grab" aria-hidden="true"></div>
+    <div class="ira__grab" aria-hidden="true"><span></span></div>
     <header class="ira__head">
-      <div>
+      <div class="ira__id">
         <h2 class="ira__title" id="iraTitle">אירה</h2>
         <p class="ira__sub">העוזרת הקולית של דין. אפשר לשאול אותה על אתר לעסק שלכם.</p>
       </div>
       <button class="ira__x" type="button" data-ira-close aria-label="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </header>
     <div class="ira__stage">
-      <canvas class="ira__orb" id="iraOrb" width="560" height="560" aria-hidden="true"></canvas>
+      <div class="ira__orbwrap" aria-hidden="true">
+        <canvas class="ira__orb" id="iraOrb" width="560" height="560" aria-hidden="true"></canvas>
+      </div>
       <p class="ira__status" id="iraStatus" role="status" aria-live="polite">לחצו למטה כדי להתחיל לדבר</p>
     </div>
     <div class="ira__cap" id="iraCap" aria-live="polite" aria-atomic="true" hidden></div>
     <p class="ira__note" id="iraNote">כדי לדבר עם אירה, הדפדפן יבקש גישה למיקרופון. אפשר לסיים את השיחה בכל רגע.</p>
     <a class="ira__wa-hot" id="iraWaHot" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener" hidden>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/></svg>
-      <span>פתחו וואטסאפ עם דין</span>
+      <span class="ira__wa-top"><span class="ira__wa-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Zm0 1.6a7.4 7.4 0 1 1-3.8 13.8l-.3-.2-2.7.7.7-2.6-.2-.3A7.4 7.4 0 0 1 12 4.6Zm-3 3.6c-.2 0-.5 0-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.8 2.2.9 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3-1.6-.8c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.8c-.2-.5-.4-.5-.6-.5H9Z"/></svg></span><span class="ira__wa-t">ההודעה לדין מוכנה</span></span>
+      <span class="ira__wa-msg" id="iraWaMsg" hidden></span>
+      <span class="ira__wa-go"><span>שלחו לדין בוואטסאפ</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg></span>
     </a>
     <div class="ira__ctrl">
       <button class="ira__btn ira__btn--go" id="iraStart" type="button">התחילו שיחה</button>
@@ -499,7 +515,7 @@
       </button>
       <button class="ira__btn ira__btn--end" id="iraEnd" type="button" hidden>סיום שיחה</button>
     </div>
-    <a class="ira__wa" id="iraWa" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">שלחו לדין בוואטסאפ</a>
+    <a class="ira__wa" id="iraWa" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%90%D7%AA%D7%A8%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Zm0 1.6a7.4 7.4 0 1 1-3.8 13.8l-.3-.2-2.7.7.7-2.6-.2-.3A7.4 7.4 0 0 1 12 4.6Zm-3 3.6c-.2 0-.5 0-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.8 2.2.9 2.6.7 3.1.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.3-1.6-.8c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.7-1.8c-.2-.5-.4-.5-.6-.5H9Z"/></svg><span>שלחו לדין בוואטסאפ</span></a>
   </div>
 </div>
 

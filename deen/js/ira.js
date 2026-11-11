@@ -6,6 +6,91 @@ var IRA_MODE = "realtime";
 var IRA_SESSION_URL = "https://sqxvjsadnqnnoyfialtg.supabase.co/functions/v1/dna-voice-session";
 var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
 
+/* ---------- IraFace: shared renderer (dialog + #ira-sec). A depth image of an original face, sampled into horizontal dotted scanlines ---------- */
+(function(){
+  'use strict';
+  var HW=192, HH=240, H=null, waits=[];
+  var base = (document.currentScript && document.currentScript.src) || location.href;
+  var img = new Image();
+  img.onload = function(){
+    var c=document.createElement('canvas'); c.width=HW; c.height=HH; var x=c.getContext('2d');
+    x.drawImage(img,0,0,HW,HH); var d=x.getImageData(0,0,HW,HH).data; H=new Float32Array(HW*HH);
+    for(var i=0;i<HW*HH;i++) H[i]=d[i*4]/255;
+    waits.splice(0).forEach(function(f){ try{ f(); }catch(_){} });
+  };
+  img.src = new URL('../img/ira-face.png', base).href;
+  function hs(u,v){
+    if(u<0||u>1||v<0||v>1) return 0;
+    var x=u*(HW-1), y=v*(HH-1), x0=x|0, y0=y|0, x1=Math.min(HW-1,x0+1), y1=Math.min(HH-1,y0+1), fx=x-x0, fy=y-y0;
+    var a=H[y0*HW+x0], b=H[y0*HW+x1], c=H[y1*HW+x0], d=H[y1*HW+x1];
+    return (a*(1-fx)+b*fx)*(1-fy) + (c*(1-fx)+d*fx)*fy;
+  }
+  function hash(a,b){ var n=Math.sin(a*127.1+b*311.7)*43758.5453; return n-Math.floor(n); }
+  /* 7 brightness buckets, electric blue → ice → white. One fill per bucket keeps it to a handful of draw calls */
+  var COLS=['rgba(30,78,220,.5)','rgba(45,110,255,.66)','rgba(59,139,255,.8)','rgba(84,162,255,.9)','rgba(125,192,255,.95)','rgba(175,222,255,1)','rgba(236,248,255,1)'];
+  var NB=COLS.length, paths=[];
+  function render(ctx, W, t, v, mode, o){
+    if(!H) return;
+    o=o||{};
+    var dense=o.dense!==false, rows = dense ? 118 : 96, cols = dense ? 112 : 92;
+    var S=W*0.98, FW=S*0.8, ox=(W-FW)/2, oy=W*0.03;
+    var px=o.px||0, py=o.py||0, energy=o.energy||0;
+    var speak = mode==='speaking', listen = mode==='listening', conn = mode==='connecting', done = mode==='ended'||mode==='error';
+    var vin = listen ? v : energy, vout = speak ? v : 0;
+    var lift = S*(done ? 0.01 : 0.018);
+    var breathe = 1 + Math.sin(t*0.9)*0.006;
+    var dot = Math.max(1, W*(dense ? 0.0030 : 0.0036));
+    var glitch = !done && !o.calm && (Math.sin(t*0.73)+Math.sin(t*1.31+2)) > 1.86;   /* brief and rare */
+    var gRow = glitch ? (hash(Math.floor(t*9),3)*rows)|0 : -99;
+    var scan = conn ? ((t*0.55)%1.2)-0.1 : -9;
+    var gain = done ? 0.5 : speak ? 1.18 : listen ? 1.06 : 1;
+    for(var b=0;b<NB;b++) paths[b]=[];
+    for(var r=0;r<rows;r++){
+      var vv=r/(rows-1);
+      var shift = (Math.abs(r-gRow)<2) ? (hash(r,Math.floor(t*12))-0.5)*S*0.06 : 0;
+      for(var c=0;c<cols;c++){
+        var u=c/(cols-1);
+        var su = 0.5+(u-0.5)/breathe - px*0.02, sv = 0.5+(vv-0.5)/breathe - py*0.015;
+        var h = hs(su, sv);
+        var falling = 0;
+        if(vv>0.84 && h>0.02){   /* neck and shoulders dissolve into drifting particles */
+          var k=hash(r,c), cut=(vv-0.84)*5.5;
+          if(k<cut){ falling = ((t*0.12 + k*7) % 1); if(o.calm) falling=k*0.5; }
+        }
+        if(h<0.035 && !falling) continue;
+        var x = ox + u*FW + shift + px*S*0.035*h;
+        var y = oy + vv*S*0.92;
+        var dy = -h*lift;
+        dy += Math.sin(u*7 + t*1.3 + r*0.33) * S*0.0035*(0.3+h) * (done?0.4:1);
+        if(vin>0.01) dy += Math.sin(u*16 - t*7 + vv*3) * vin*S*0.012*h + Math.sin(vv*20 + t*5)*vin*S*0.004;
+        if(vout>0.01){
+          var mu=u-0.5, mv=vv-0.668, m=Math.exp(-(mu*mu/0.012 + mv*mv/0.0022));
+          dy += m*vout*S*0.022*(mv>0?1:-0.45);
+          var dist=Math.sqrt(mu*mu+mv*mv*1.6);
+          dy += Math.sin(dist*46 - t*11) * vout*S*0.008*Math.exp(-dist*2.6)*(0.3+h);
+        }
+        if(scan>-1){ var sd=Math.abs(vv-scan); if(sd<0.08) dy -= (0.08-sd)*S*0.12*h; }
+        var br = h*gain;
+        if(scan>-1) br *= 0.55 + Math.max(0,1-Math.abs(vv-scan)*8)*0.9;
+        if(falling){ y += falling*S*0.16; br = Math.max(br,0.35)*(1-falling); }
+        if(br<0.1) continue;
+        var bi = Math.min(NB-1, (Math.pow(br,1.45)*NB)|0);
+        paths[bi].push(x, y+dy, dot*(0.35+h*0.95));
+      }
+    }
+    ctx.save();
+    ctx.globalCompositeOperation='lighter';
+    if(glitch){   /* RGB split on the glitch frame */
+      ctx.fillStyle='rgba(255,40,90,.28)'; fillAll(ctx, paths, S*0.006, NB-3);
+      ctx.fillStyle='rgba(40,255,200,.22)'; fillAll(ctx, paths, -S*0.006, NB-3);
+    }
+    for(var bb=0;bb<NB;bb++){ var p=paths[bb]; if(!p.length) continue; ctx.fillStyle=COLS[bb]; ctx.beginPath(); for(var i=0;i<p.length;i+=3){ ctx.rect(p[i]-p[i+2]/2, p[i+1]-p[i+2]/2, p[i+2], p[i+2]); } ctx.fill(); }
+    ctx.restore();
+  }
+  function fillAll(ctx, paths, off, from){ ctx.beginPath(); for(var b=from;b<paths.length;b++){ var p=paths[b]; for(var i=0;i<p.length;i+=6){ ctx.rect(p[i]+off-p[i+2]/2, p[i+1]-p[i+2]/2, p[i+2], p[i+2]); } } ctx.fill(); }
+  window.IraFace = { render: render, ready: function(f){ if(H) f(); else waits.push(f); } };
+})();
+
 (function(){
   'use strict';
   var SDK_URL = 'https://esm.sh/@elevenlabs/client@1.36.0';
@@ -28,7 +113,7 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
     startB.hidden = live; muteB.hidden = !(s==='listening'||s==='speaking'); endB.hidden = !live;
     startB.disabled = false;
     if(s==='ended'||s==='error') startB.textContent='שיחה חדשה';
-    if(live) loop(); else drawStatic();
+    if(opened) loop(); else drawStatic();
   }
 
   /* ---------- open / close ---------- */
@@ -58,7 +143,8 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
     if(e.target.closest('[data-ira-open]')) open(e);
     else if(e.target.closest('[data-ira-close]')) close();
   });
-  root.addEventListener('keydown', function(e){
+  document.addEventListener('keydown', function(e){   /* document-level: the focused button can disappear when a call starts */
+    if(!opened) return;
     if(e.key==='Escape'){ e.preventDefault(); close(); return; }
     if(e.key!=='Tab') return;
     var f = focusables(); if(!f.length){ e.preventDefault(); return; }
@@ -74,11 +160,18 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
 
   /* ---------- WhatsApp ---------- */
   function waLink(text){ return 'https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(text||'היי דין, הגעתי מהאתר שלך ואשמח לדבר על אתר לעסק שלי.'); }
+  var waMsg = $('iraWaMsg');
   function showWa(text){
-    waHot.href = waLink(text); waHot.hidden = false;   /* iOS may block the pop-up after an async tool call, so the button is always there */
+    waHot.href = waLink(text); waHot.hidden = false;
+    if(waMsg){ waMsg.textContent = text || ''; waMsg.hidden = !text; }   /* iOS may block the pop-up after an async tool call, so the button is always there */
   }
 
   /* ---------- captions ---------- */
+  function capLine(you, her){
+    if(you){ var s=document.createElement('span'); s.className='you'; s.textContent=you; capEl.appendChild(s); }
+    if(her){ var h=document.createElement('span'); h.className='her'; h.textContent=her; capEl.appendChild(h); }
+    capEl.scrollTop = capEl.scrollHeight;
+  }
   function caption(msg){
     if(!msg || !msg.message) return;
     var role = msg.role || msg.source;
@@ -86,8 +179,7 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
     if(role==='user'){ capEl.dataset.you = msg.message; return; }
     var you = capEl.dataset.you; capEl.dataset.you = '';
     capEl.innerHTML = '';
-    if(you){ var s=document.createElement('span'); s.className='you'; s.textContent='אתם: '+you; capEl.appendChild(s); }
-    capEl.appendChild(document.createTextNode(msg.message));
+    capLine(you, msg.message);
     capEl.scrollTop = capEl.scrollHeight;
   }
 
@@ -141,9 +233,7 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
 
   function rtCaption(you, ira){
     capEl.hidden = false; capEl.innerHTML = '';
-    if(you){ var s=document.createElement('span'); s.className='you'; s.textContent='אתם: '+you; capEl.appendChild(s); }
-    if(ira) capEl.appendChild(document.createTextNode(ira));
-    capEl.scrollTop = capEl.scrollHeight;
+    capLine(you, ira);
   }
 
   function Realtime(){
@@ -308,57 +398,77 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
     muteB.setAttribute('aria-pressed', String(muted)); muteT.textContent = muted ? 'מושתק' : 'השתקה';
   });
 
-  /* ---------- orb (canvas, rAF only while a call is live and the sheet is open) ---------- */
-  var W=560, DPR=1;
-  function sizeCanvas(){ DPR=Math.min(2, window.devicePixelRatio||1); var css = canvas.getBoundingClientRect().width || 280; W=Math.round(css*DPR); canvas.width=W; canvas.height=W; drawStatic(); }
-  function level(){
-    if(!conv) return 0;
-    try{ return state==='speaking' ? conv.getOutputVolume() : (muted ? 0 : conv.getInputVolume()); }catch(_){ return 0; }
-  }
-  function draw(t, v){
-    var c=W/2, R=W*0.3;
-    ctx.clearRect(0,0,W,W);
-    /* halo */
-    var halo = ctx.createRadialGradient(c,c,R*0.6,c,c,R*1.65);
-    halo.addColorStop(0,'rgba(143,208,228,'+(0.22+v*0.35)+')'); halo.addColorStop(1,'rgba(143,208,228,0)');
-    ctx.fillStyle=halo; ctx.beginPath(); ctx.arc(c,c,R*1.65,0,Math.PI*2); ctx.fill();
-    /* body: a soft blob whose edge moves with the voice */
-    var amp = reduce ? 0 : R*(0.015 + v*0.12), n=96, sc = 1 + (reduce ? v*0.06 : v*0.08);
-    ctx.save(); ctx.translate(c,c); ctx.scale(sc,sc);
-    ctx.beginPath();
-    for(var i=0;i<=n;i++){
-      var a=i/n*Math.PI*2;
-      var r=R + amp*(Math.sin(a*3+t*1.9)*0.55 + Math.sin(a*5-t*2.6)*0.3 + Math.sin(a*2+t*1.1)*0.4);
-      var x=Math.cos(a)*r, y=Math.sin(a)*r; if(i) ctx.lineTo(x,y); else ctx.moveTo(x,y);
+  /* ---------- face (canvas): Ira as scanlines of light. rAF only while the sheet is open and the tab is visible ---------- */
+  var W=560, DPR=1, hasSim=false;
+  function sizeCanvas(){ DPR=Math.min(2, window.devicePixelRatio||1); var css = canvas.getBoundingClientRect().width || 300; W=Math.round(css*DPR); canvas.width=W; canvas.height=W; drawStatic(); }
+  function level(s){
+    if(!conv){   /* no live session (preview / QA): a believable voice envelope so every state still reads */
+      if(s!=='listening' && s!=='speaking') return 0;
+      var k=performance.now()/1000; return Math.max(0, (s==='speaking'?0.55:0.35) * (0.55+0.45*Math.sin(k*7.3)*Math.sin(k*2.1+1)) );
     }
-    ctx.closePath();
-    var g = ctx.createRadialGradient(-R*0.35,-R*0.45,R*0.05,0,0,R*1.15);
-    g.addColorStop(0,'#FFFFFF'); g.addColorStop(0.18,'#D6EEF5'); g.addColorStop(0.52,'#8FD0E4'); g.addColorStop(0.82,'#2C6A80'); g.addColorStop(1,'#123543');
-    ctx.fillStyle=g; ctx.fill();
-    /* inner light that drifts */
-    ctx.globalCompositeOperation='lighter';
-    var ix=Math.cos(t*0.7)*R*0.28, iy=Math.sin(t*0.9)*R*0.22;
-    var ig=ctx.createRadialGradient(ix,iy,0,ix,iy,R*0.75);
-    ig.addColorStop(0,'rgba(255,255,255,'+(0.18+v*0.4)+')'); ig.addColorStop(1,'rgba(255,255,255,0)');
-    ctx.fillStyle=ig; ctx.fill();
-    ctx.globalCompositeOperation='source-over';
-    /* rim */
-    ctx.lineWidth=W*0.004; ctx.strokeStyle='rgba(228,245,250,.55)'; ctx.stroke();
-    ctx.restore();
+    try{ return s==='speaking' ? conv.getOutputVolume() : (muted ? 0 : conv.getInputVolume()); }catch(_){ return 0; }
   }
-  function drawStatic(){ if(!raf) draw(0.6, state==='soon'?0:0.04); }
+  function mode(){ return root.getAttribute('data-state') || state; }
+  function drawFace(t, v){ ctx.clearRect(0,0,W,W); if(window.IraFace) IraFace.render(ctx, W, t, v, mode(), {dense: W/DPR > 300}); }
+  function drawStatic(){ if(!raf) drawFace(2.2, 0); }
   function loop(){
-    if(raf || !opened) return; t0 = performance.now();
+    if(raf || !opened) return; if(reduce && !(state==='listening'||state==='speaking')){ drawStatic(); return; }
+    t0 = t0 || performance.now();
     var tick=function(now){
-      if(!opened || !(state==='connecting'||state==='listening'||state==='speaking')){ raf=0; drawStatic(); return; }
-      var target = state==='connecting' ? 0.08+0.06*Math.sin((now-t0)/260) : Math.min(1, level()*1.6);
+      if(!opened || document.hidden){ raf=0; return; }
+      var s = mode(), live = s==='listening'||s==='speaking';
+      if(reduce && !live){ raf=0; drawStatic(); return; }
+      var target = s==='connecting' ? 0.15 : live ? Math.min(1, level(s)*1.6) : 0;
       lvl += (target-lvl) * (target>lvl ? 0.35 : 0.12);   /* fast attack, slow release */
-      draw((now-t0)/1000, lvl);
+      drawFace(reduce ? 2.2 : (now-t0)/1000, lvl);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
   }
   function stopLoop(){ if(raf){ cancelAnimationFrame(raf); raf=0; } }
+  if(window.IraFace) IraFace.ready(function(){ if(opened){ drawStatic(); loop(); } });
   addEventListener('resize', function(){ if(opened) sizeCanvas(); }, {passive:true});
   document.addEventListener('visibilitychange', function(){ if(document.hidden) stopLoop(); else if(opened) loop(); });
+
+  /* ---------- drag the phone sheet down to close ---------- */
+  var grab = root.querySelector('.ira__grab'), head = root.querySelector('.ira__head'), dy0=null, dy=0, dT=0;
+  function dStart(e){ if(innerWidth>899 || e.target.closest('button')) return; dy0=e.clientY; dy=0; dT=performance.now(); sheet.classList.add('is-drag'); try{ e.target.setPointerCapture(e.pointerId); }catch(_){} }
+  function dMove(e){ if(dy0===null) return; dy=Math.max(0, e.clientY-dy0); sheet.style.transform = dy ? 'translateY('+dy+'px)' : ''; }
+  function dEnd(){ if(dy0===null) return; var fast = dy/(performance.now()-dT) > 0.6; dy0=null; sheet.classList.remove('is-drag'); sheet.style.transform=''; if(dy>120 || (fast && dy>40)) close(); }
+  [grab, head].forEach(function(el){ if(!el) return; el.addEventListener('pointerdown', dStart); el.addEventListener('pointermove', dMove); el.addEventListener('pointerup', dEnd); el.addEventListener('pointercancel', dEnd); });
+
+  window.__iraOpened = function(){ return opened; };
+})();
+
+/* ---------- #ira-sec: the same face, ambient. Follows the pointer, wakes up on scroll and touch ---------- */
+(function(){
+  'use strict';
+  var cv = document.getElementById('irafOrb'); if(!cv || !window.IraFace) return;
+  var ctx = cv.getContext('2d'), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=600, DPR=1, raf=0, vis=false, t0=performance.now(), tx=0, ty=0, px=0, py=0, en=0, lastY=scrollY;
+  function size(){ DPR=Math.min(2, devicePixelRatio||1); var css=cv.getBoundingClientRect().width||320; W=Math.round(css*DPR); cv.width=W; cv.height=W; frame(performance.now()); }
+  function frame(now){
+    ctx.clearRect(0,0,W,W);
+    IraFace.render(ctx, W, reduce ? 2.2 : (now-t0)/1000, 0, 'idle', {px:px, py:py, energy:Math.min(1,en), dense: W/DPR>300, calm: reduce});
+  }
+  function tick(now){
+    raf=0;
+    if(!vis || document.hidden || (window.__iraOpened && window.__iraOpened())) return;
+    px += (tx-px)*0.08; py += (ty-py)*0.08; en *= 0.94;
+    frame(now); raf=requestAnimationFrame(tick);
+  }
+  function run(){ if(!raf && !reduce) raf=requestAnimationFrame(tick); }
+  function aim(x,y){ var r=cv.getBoundingClientRect(); tx=Math.max(-1,Math.min(1,(x-(r.left+r.width/2))/(r.width*0.8))); ty=Math.max(-1,Math.min(1,(y-(r.top+r.height/2))/(r.height*0.8))); }
+  addEventListener('pointermove', function(e){ if(!vis) return; aim(e.clientX,e.clientY); en=Math.min(1,en+0.04); run(); }, {passive:true});
+  addEventListener('pointerdown', function(e){ if(!vis) return; aim(e.clientX,e.clientY); en=Math.min(1,en+0.5); run(); }, {passive:true});
+  addEventListener('scroll', function(){ var d=Math.abs(scrollY-lastY); lastY=scrollY; if(!vis) return; en=Math.min(1,en+d*0.006); ty=Math.max(-1,Math.min(1,(scrollY%400)/400-0.5)); run(); }, {passive:true});
+  addEventListener('resize', function(){ if(vis) size(); }, {passive:true});
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) run(); });
+  document.addEventListener('click', function(e){ if(e.target.closest('[data-ira-close]')) setTimeout(run, 350); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') setTimeout(run, 350); });
+  IraFace.ready(function(){
+    size();
+    if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ vis = es[0].isIntersecting; if(vis){ size(); run(); } }, {rootMargin:'120px'}).observe(cv); }
+    else { vis=true; run(); }
+  });
 })();
