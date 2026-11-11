@@ -1594,3 +1594,42 @@ html.hero-a .hx--a,html.hero-b .hx--b{display:flex}
   .hx__orb--sm{width:30px;height:30px}
 }
 @media (min-width:901px){.hero__copy{padding-bottom:36px}}
+
+/* v11 footer: site palette (white, ink, teal, sky), giant wordmark filled with the sky photo (12.11.2026) */
+.fx{--mx:50%;position:relative;z-index:2;padding:0 12px calc(12px + env(safe-area-inset-bottom));margin-top:12px}
+.fx__in{position:relative;overflow:hidden;border-radius:28px;background:linear-gradient(180deg,var(--surf) 0%,#fff 70%);border:1px solid var(--hair);color:var(--ink);padding:56px clamp(22px,5vw,72px) 26px}
+.fx__top{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.fx__ira{display:flex;align-items:center;gap:16px;padding:10px 22px 10px 10px;border:1px solid var(--hair-2);border-radius:999px;background:#fff;color:var(--ink);font:inherit;cursor:pointer;text-align:right;box-shadow:0 1px 2px rgba(10,15,18,.04),0 10px 30px -14px rgba(14,42,54,.25);transition:box-shadow .25s,transform .25s,border-color .25s}
+.fx__ira:hover{transform:translateY(-2px);border-color:var(--teal);box-shadow:0 1px 2px rgba(10,15,18,.05),0 18px 40px -16px rgba(14,42,54,.35)}
+.fx__orb{width:56px;height:56px;flex:none;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#0d1e33,#03070c 72%)}
+.fx__orb canvas{width:52px;height:52px}
+.fx__iratxt{display:flex;flex-direction:column;gap:2px}
+.fx__iratxt b{font-size:17px;font-weight:700;color:var(--ink)}
+.fx__iratxt span{font-size:14px;color:var(--ink-mute)}
+.fx__cols{display:flex;gap:clamp(40px,7vw,96px)}
+.fx__col{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.fx__h{margin:0 0 8px;font-size:12px;letter-spacing:.14em;color:var(--teal)}
+.fx__col a{display:inline-flex;align-items:center;min-height:40px;font-size:16px;color:var(--ink);text-decoration:none;background:linear-gradient(currentColor,currentColor) 100% 100%/0 1px no-repeat;transition:background-size .3s}
+.fx__col a:hover{background-size:100% 1px}
+.fx__num{font-size:13px;color:var(--ink-mute);margin-top:6px;letter-spacing:.04em}
+.fx__mark{position:relative;margin:clamp(48px,8vw,96px) 0 0;line-height:.82;text-align:center;font-weight:800;letter-spacing:-.045em;font-size:clamp(76px,19.5vw,300px);white-space:nowrap;user-select:none}
+.fx__mark span{display:inline-block;color:transparent;background:var(--deep) url(../img/sky-band-1200.webp) var(--mx) 40%/170% auto no-repeat;-webkit-background-clip:text;background-clip:text;padding-bottom:.06em;transition:background-position .6s cubic-bezier(.2,.7,.2,1)}
+.fx__bot{position:relative;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:56px;padding-top:18px;border-top:1px solid var(--hair);font-size:12px;color:var(--ink-mute)}
+@media (max-width:700px){
+  .fx__in{border-radius:24px;padding:40px 22px 22px}
+  .fx__top{flex-direction:column;gap:36px}
+  .fx__ira{width:100%}
+  .fx__cols{width:100%;gap:56px}
+  .fx__mark{margin-top:44px}
+  .fx__mark span{background-image:url(../img/sky-band-m.webp);background-size:260% auto}
+  .fx__bot{flex-direction:column;align-items:center;text-align:center;gap:6px}
+  body:not(.case) .fx{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+}
+@media (min-width:701px){body:not(.case) .fx{padding-bottom:96px}}
+
+/* v11 narrow-phone fit (12.11.2026): grids never wider than their box at 360 and below */
+@media (max-width:900px){.me__grid{grid-template-columns:minmax(0,1fr)}.card-wa__btn{max-width:100%;white-space:normal;text-align:center}}
+@media (max-width:380px){.card-wa{padding-inline:20px}.card-wa__btn{padding-inline:14px 10px;gap:10px}}
+.card-wa__btn{max-width:100%;white-space:normal;text-align:center}
+@media (max-width:360px){.close__in .btn--xl{max-width:100%;white-space:normal;padding-inline:18px 12px;font-size:16px}}
+@media (min-width:901px) and (max-width:1200px){.me__grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}}
