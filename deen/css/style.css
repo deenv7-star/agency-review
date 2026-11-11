@@ -1164,3 +1164,81 @@ a.wcard__go:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
   .bento--v4:not(.bento--sys) .wcard--v4:not(.wcard--wide) .wcard__foot{padding-top:20px}
 }
 .moment__me{font-size:.7em;font-weight:600}
+
+/* ===================== mobile polish (11.11 evening) ===================== */
+@media (max-width:900px){
+  :root{--sec:clamp(64px,19vw,88px)}
+  html{scroll-padding-top:72px}
+  [id]{scroll-margin-top:72px}
+  /* top bar: slimmer, solid once scrolled, slides away while reading down */
+  .top{height:60px;padding:0 16px;padding-top:env(safe-area-inset-top);box-sizing:content-box;transition:background-color .35s var(--ease-out),color .3s var(--ease-out),box-shadow .35s var(--ease-out),transform .35s var(--ease-out)}
+  .top.is-scrolled{background:rgba(255,255,255,.97);box-shadow:0 1px 0 rgba(10,15,18,.08)}
+  .top.is-scrolled.is-dark{background:rgba(9,22,28,.97);box-shadow:0 1px 0 rgba(228,245,250,.1)}
+  @supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+    .top.is-scrolled{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px)}
+    .top.is-scrolled.is-dark{background:rgba(9,22,28,.94)}
+  }
+  .top.is-hidden{transform:translateY(-100%);box-shadow:none}
+  .top__name{font-size:14.5px}
+  .top__cta{height:36px;font-size:13.5px;padding:0 13px 0 4px;gap:8px}
+  /* type scale */
+  .h2{font-size:clamp(28px,8.2vw,34px);line-height:1.12;margin-top:0}
+  .contact__title{font-size:clamp(30px,8.6vw,36px);line-height:1.12}
+  .hero__title{font-size:clamp(38px,11vw,50px)}
+  .sec-head{margin-bottom:32px}
+  .lead{font-size:16.5px;line-height:1.6}
+  /* section rhythm */
+  .moment--v4{padding:calc(var(--sec)*.6) 0 var(--sec)}
+  .moment--v4 .moment__end{margin-top:calc(var(--sec)*.6)}
+  .wsys{margin-top:var(--sec)}
+  .ba{margin-top:var(--sec)}
+  .faq,.contact{padding-top:32px}
+  .faq>.station--edge,.contact>.station--edge{top:22px}
+  .process--v4 .process__in{padding:var(--sec) 0 calc(var(--sec)*.6)}
+  .process--v4 .step{padding-block:22px}
+  .offer--v4 .checks{margin:24px 0 28px;gap:10px}
+  .alts{margin-top:28px}
+  .band--close .band__in{padding:var(--sec) 18px 56px}
+  .band--close .close__text{margin:20px 0 26px}
+  .band--close .station--end{margin-top:36px}
+  .station--hero{margin-top:calc(var(--sec)*.8)}
+  /* FAQ: quiet list with hairlines instead of boxed cards */
+  .faq .dpanel{padding:var(--sec) 20px}
+  .acc{gap:0;max-width:none}
+  .acc__item{border-radius:0;background:none;box-shadow:none;border-bottom:1px solid rgba(228,245,250,.14)}
+  .acc__item:first-child{border-top:1px solid rgba(228,245,250,.14)}
+  .acc__q{min-height:56px;padding:15px 0;gap:12px;font-size:16.5px;line-height:1.4;font-weight:500;text-align:start}
+  .acc__n{font-size:10.5px;min-width:18px}
+  .acc__ico{width:26px;height:26px;background:none;box-shadow:inset 0 0 0 1px rgba(228,245,250,.35)}
+  .acc__ico::before,.acc__ico::after{width:10px;height:1.3px;background:#E4F0F4}
+  .acc__q[aria-expanded="true"] .acc__ico{background:#fff}
+  .acc__q[aria-expanded="true"] .acc__ico::before,.acc__q[aria-expanded="true"] .acc__ico::after{background:var(--ink)}
+  .acc__inner{padding:0 30px 18px 38px;font-size:15.5px;line-height:1.65}
+  /* before / after: a framed phone-sized preview, never taller than the screen */
+  .ba{padding:0 16px}
+  .ba__head{padding:0 4px}
+  .bb{width:min(100%,calc((70vh - 32px) * 390 / 732));margin-inline:auto;border-radius:18px}
+  @supports (height:1svh){.bb{width:min(100%,calc((70svh - 32px) * 390 / 732))}}
+  .ba__wrap{gap:20px}
+  .bb__ctrl{margin-top:0;justify-content:center;gap:10px}
+  .bb__seg button{height:40px;min-width:64px;padding:0 14px;font-size:14px}
+  .bb__replay{height:40px;padding:0 14px;font-size:14px}
+  .ba__list{margin-top:8px}
+  .ba__list li{padding:14px 2px 0;font-size:15.5px}
+  .ba__tag{height:26px;padding:0 10px;font-size:10.5px;bottom:10px}
+  .ba__tag--before{right:10px}.ba__tag--after{left:10px}
+  /* floating buttons: two small round buttons, out of the way of every CTA */
+  .fab{height:48px;width:48px;padding:0;justify-content:center;gap:0;inset-inline-start:12px;bottom:calc(12px + env(safe-area-inset-bottom));box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+  .fab span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .fab svg{width:24px;height:24px}
+  .ira-pill{height:44px;font-size:14px;bottom:calc(14px + env(safe-area-inset-bottom));inset-inline-end:12px}
+  .past-hero .ira-pill{width:48px;height:48px;bottom:calc(12px + env(safe-area-inset-bottom))}
+  .fab.is-tuck,.ira-pill.is-tuck{transition:opacity .16s,transform .2s;opacity:0;transform:translateY(16px) scale(.9);pointer-events:none}
+  /* room at the very end so the last line is never under a float */
+  body:not(.case) .foot{padding-bottom:calc(84px + env(safe-area-inset-bottom));justify-content:center;text-align:center}
+}
+@media (max-width:380px){
+  .h2{font-size:28px}
+  .acc__q{font-size:16px}
+}
+@media (min-width:901px){.foot{padding-bottom:96px}}

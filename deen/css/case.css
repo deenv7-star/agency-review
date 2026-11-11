@@ -407,3 +407,12 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
   .ctop .top__cta{transform:scale(.94);transform-origin:left center}
 }
 @media (max-width:359px){.ctop__mid{visibility:hidden}}
+
+/* mobile polish 11.11 evening: phone-shot slider reads as a framed preview, never taller than the screen */
+@media (max-width:900px){
+  .cmp:not(.cmp--single){width:min(100%,calc((70vh - 30px) * 780 / 1688));margin-inline:auto}
+  @supports (height:1svh){.cmp:not(.cmp--single){width:min(100%,calc((70svh - 30px) * 780 / 1688))}}
+  .cmp:not(.cmp--single) .cmp__stage{max-height:none}
+  .cmp--single .cmp__stage{max-height:70svh}
+  .ctop{background:#fff}
+}

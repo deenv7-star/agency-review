@@ -306,3 +306,28 @@
 })();
 
 
+
+/* ---------- mobile polish: header slides away while reading down; floats step aside for any CTA near the bottom ---------- */
+(function(){
+  var mq=matchMedia('(max-width:900px)'), top=document.getElementById('topBar');
+  var fab=document.getElementById('fab'), pill=document.getElementById('iraPill');
+  if(top){
+    var lastY=scrollY, ticking=false;
+    function hdr(){ticking=false; var y=scrollY, dy=y-lastY;
+      if(!mq.matches||y<120||document.documentElement.classList.contains('ira-lock')){top.classList.remove('is-hidden');lastY=y;return}
+      if(dy>8){top.classList.add('is-hidden');lastY=y}else if(dy<-8){top.classList.remove('is-hidden');lastY=y}}
+    addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(hdr)}},{passive:true});
+    /* jumping to a section from a link: keep the bar out of the way */
+    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a&&mq.matches&&a.getAttribute('href').length>1){setTimeout(function(){top.classList.add('is-hidden');lastY=scrollY},40)}});
+  }
+  if(!(fab||pill)||!('IntersectionObserver' in window)) return;
+  var near=new Set(), io=null;
+  function tuck(){var t=near.size>0&&mq.matches; if(fab) fab.classList.toggle('is-tuck',t); if(pill) pill.classList.toggle('is-tuck',t)}
+  function watch(){
+    if(io) io.disconnect(); near.clear();
+    var band=Math.max(0,innerHeight-96);
+    io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting) near.add(e.target); else near.delete(e.target)}); tuck()},{rootMargin:(-band)+'px 0px 0px 0px',threshold:0});
+    document.querySelectorAll('main .btn, .acc, .bb__ctrl, .wcard__foot, a.wcard__go, .hero__link, .check form, .acc__item:last-child, .alts, .foot').forEach(function(el){io.observe(el)});
+  }
+  watch(); var rt; addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(watch,200)});
+})();
