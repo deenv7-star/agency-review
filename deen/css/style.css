@@ -1535,3 +1535,62 @@ html.ira-stage-on .ira-pill{opacity:0;transform:translateY(24px);pointer-events:
 .iraf__h{letter-spacing:-.025em}
 .ira__edge{box-shadow:inset 0 0 0 1px rgba(170,200,255,.5),inset 0 0 34px 3px rgba(70,130,255,.5),inset 0 0 130px 22px rgba(95,90,255,.2)}
 .ira__title::after{background:#5B8CFF;box-shadow:0 0 0 4px rgba(91,140,255,.16),0 0 12px rgba(91,140,255,.7)}
+
+/* ---------- v8 calm hero (12.11.2026): one clear action, one quiet one, facts set small. ?hero=a Ira leads, ?hero=b WhatsApp leads ---------- */
+.hero__sub{margin-top:24px;max-width:560px;font-size:clamp(17px,1.35vw,20px);line-height:1.55;color:rgba(255,255,255,.94);letter-spacing:-.005em}
+.hx{display:none;flex-direction:column;align-items:center;gap:6px;margin-top:36px}
+html.hero-a .hx--a,html.hero-b .hx--b{display:flex}
+.hero__fine{margin-top:22px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.78);letter-spacing:.005em}
+.hero__fine b{font-weight:600;color:#fff}
+/* shared: the living orb */
+.hx__orb{flex:none;width:40px;height:40px;border-radius:50%;background:radial-gradient(closest-side,#061226,#010307);
+  box-shadow:inset 0 0 0 1px rgba(111,178,255,.32),0 0 16px rgba(59,139,255,.5)}
+.hx__orb canvas{display:block;width:100%;height:100%;border-radius:50%}
+.hx__orb--sm{width:28px;height:28px;box-shadow:inset 0 0 0 1px rgba(111,178,255,.32),0 0 12px rgba(59,139,255,.55)}
+/* A · primary: Ira, solid night pill with her light */
+.hx__ira{display:inline-flex;align-items:center;gap:14px;height:60px;padding:0 10px 0 30px;padding-inline:10px 30px;border-radius:999px;color:#fff;text-align:start;
+  background:#05090F;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 0 1px rgba(140,190,255,.14),0 18px 40px -20px rgba(2,10,30,.85);
+  transition:transform .2s var(--ease-out),box-shadow .35s var(--ease-out),background-color .35s var(--ease-out)}
+.hx__txt{display:flex;flex-direction:column;line-height:1.2}
+.hx__t{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.hx__s{font-size:13px;color:rgba(190,215,255,.72);margin-top:2px}
+.hx__ira:active{transform:scale(.97)}
+.hx__ira:focus-visible,.hx__wa:focus-visible,.hx__quiet:focus-visible,.hx__iralink:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media (hover:hover){.hx__ira:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 0 0 1px rgba(140,190,255,.28),0 0 0 6px rgba(59,139,255,.12),0 22px 44px -18px rgba(20,70,200,.75)}}
+/* A · secondary: quiet text link */
+.hx__quiet{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 10px;color:#fff;font-size:16px;font-weight:500;opacity:.92;transition:opacity .2s}
+.hx__quiet:hover{opacity:1}
+.hx__chev{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease-out)}
+.hx__quiet:hover .hx__chev{transform:translateX(-3px)}
+/* B · primary: WhatsApp, solid ink, no gloss */
+.hx__wa{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:58px;padding:0 30px;border-radius:999px;color:#fff;font-size:17px;font-weight:600;letter-spacing:-.01em;
+  background:#0A0F12;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 40px -20px rgba(2,10,30,.8);transition:transform .2s var(--ease-out),background-color .3s}
+.hx__wa:active{transform:scale(.97)}
+@media (hover:hover){.hx__wa:hover{background:#18222A;transform:translateY(-1px)}}
+.hx__waico{display:grid;place-items:center;width:22px;height:22px}
+.hx__waico svg{width:20px;height:20px;fill:currentColor}
+/* B · secondary: Ira as orb + text */
+.hx__iralink{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:4px 10px;color:#fff;font-size:16px;font-weight:500;background:none;transition:opacity .2s}
+.hx__muted{color:rgba(255,255,255,.75);font-weight:400}
+@media (hover:hover){.hx__iralink:hover .hx__orb{box-shadow:inset 0 0 0 1px rgba(150,200,255,.5),0 0 0 5px rgba(59,139,255,.16),0 0 18px rgba(59,139,255,.7)}}
+@media (max-width:900px){
+  .hero__sub{margin-top:20px;font-size:17px;max-width:320px}
+  .hx{margin-top:30px;width:100%;max-width:340px;margin-inline:auto}
+  .hx__ira,.hx__wa{width:100%}
+  .hx__ira{justify-content:flex-start}
+  .hero__fine{margin-top:18px;font-size:13.5px}
+}
+/* calm hero: rhythm tuning */
+.hero__fine{color:rgba(255,255,255,.86)}
+@media (min-width:901px){
+  .hero__sub{margin-top:20px}
+  .hx{margin-top:30px}
+  .hero__fine{margin-top:14px}
+}
+@media (max-width:900px){
+  .hero__copy{margin-top:auto}
+  .hx__ira{justify-content:center;padding-inline:10px 26px}
+  .hx__orb{width:44px;height:44px}
+  .hx__orb--sm{width:30px;height:30px}
+}
+@media (min-width:901px){.hero__copy{padding-bottom:36px}}
