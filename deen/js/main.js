@@ -298,7 +298,7 @@
   var fab=document.getElementById('fab'), hero=document.getElementById('hero'), close=document.getElementById('contact');
   if(!fab||!hero||!('IntersectionObserver' in window)) return;
   var pastHero=false, atClose=false, hide=new Set();
-  function set(){fab.classList.toggle('is-on',pastHero&&!hide.size)}
+  function set(){fab.classList.toggle('is-on',pastHero&&!hide.size);document.documentElement.classList.toggle('past-hero',pastHero)}
   new IntersectionObserver(function(e){pastHero=!e[0].isIntersecting&&e[0].boundingClientRect.top<0;set()},{rootMargin:'0px 0px -40% 0px'}).observe(hero.querySelector('.frame'));
   /* never cover the tool's own WhatsApp button or the closing button */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting) hide.add(e.target); else hide.delete(e.target)}); set()},{threshold:0});
