@@ -1061,3 +1061,8 @@ html.ira-lock,html.ira-lock body{overflow:hidden}
 .wcard__case:hover .arrow{transform:translateX(-3px)}
 .wcard__case:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
 .wcard__case+.wcard__go{padding-top:14px}
+/* card click -> case page; live-site link sits above the overlay */
+a.wcard__go{position:relative;z-index:6;text-decoration:none;align-self:flex-start;min-height:44px;border-radius:999px}
+a.wcard__go:hover span:first-child{text-decoration:underline;text-underline-offset:4px}
+a.wcard__go:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
+.wcard{cursor:pointer}
