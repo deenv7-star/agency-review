@@ -239,12 +239,12 @@
     if(!done) return;
     var no=answers.filter(function(a){return a===0}).length, i;
     r.hidden=false;
-    if(!no){r.className='self__res';r.innerHTML='<strong>יפה. האתר שלכם עושה את העבודה.</strong>רוצים לבדוק שהוא גם מביא הודעות? אני כאן.';
+    if(!no){r.className='self__res';r.innerHTML='<strong>יפה, האתר עבר את 3 השאלות.</strong>אם בכל זאת לא מגיעות ממנו מספיק פניות, שלחו לי אותו ואגיד לכם מה הייתי משנה.';
       document.getElementById('selfWa').firstElementChild.textContent='שלחו לי את האתר בוואטסאפ';
       document.getElementById('selfWa').href=wa('היי דין, עשיתי את הבדיקה באתר שלך ויצא לי "כן" בכל השאלות. זה האתר שלי: '+site);}
     else{var qs=[];for(i=0;i<3;i++) if(answers[i]===0) qs.push(i+1);
-      r.className='self__res is-bad';r.innerHTML='<strong>כאן לקוחות הולכים לאיבוד.</strong>החדשות הטובות: זה בדיוק מה שאני מתקן כשאני בונה אתר חדש.';
-      document.getElementById('selfWa').firstElementChild.textContent='רוצים שאתקן את זה? שלחו לי בוואטסאפ';
+      r.className='self__res is-bad';r.innerHTML='<strong>כאן לקוחות הולכים לאיבוד.</strong>כשאני בונה אתר חדש, את זה אני פותר מההתחלה.';
+      document.getElementById('selfWa').firstElementChild.textContent='שלחו לי את האתר בוואטסאפ';
       document.getElementById('selfWa').href=wa('היי דין, עשיתי את הבדיקה באתר שלך ויצא לי "לא" בשאלה '+qs.join(', ')+'. זה האתר שלי: '+site);}
   }
   self.addEventListener('click',function(e){
@@ -257,12 +257,12 @@
 
   function renderResult(data){
     var f=(data.findings||[]).slice(0,5);
-    if(!f.length){ startSelf('לא מצאנו בעיות ברורות מבחוץ. ענו על 3 שאלות קצרות כדי לבדוק את מה שרק אתם רואים.'); return; }
+    if(!f.length){ startSelf('לא מצאנו בעיות ברורות. 3 שאלות קצרות יבדקו את מה שרק אתם רואים.'); return; }
     var head=document.getElementById('resHead');
-    head.textContent=f.length===1?'מצאנו מקום אחד שבו לקוחות עלולים ללכת':'מצאנו '+f.length+' מקומות שבהם לקוחות עלולים ללכת';
+    head.textContent=f.length===1?'מצאנו מקום אחד שבו לקוחות עלולים לוותר עליכם':'מצאנו '+f.length+' מקומות שבהם לקוחות עלולים לוותר עליכם';
     document.getElementById('resSum').textContent=data.summary||'';
     document.getElementById('finds').innerHTML=f.map(function(x){return '<li><h4>'+esc(x.title)+'</h4><p>'+esc(x.why)+'</p><p class="fix"><b>מה הייתי עושה:</b> '+esc(x.fix)+'</p></li>'}).join('');
-    document.getElementById('resWa').href=wa('היי דין, בדקתי את האתר שלי בבדיקה באתר שלך ומצאנו '+f.length+' דברים לתקן. זה האתר שלי: '+site);
+    document.getElementById('resWa').href=wa('היי דין, עשיתי את הבדיקה באתר שלך ויצאו '+f.length+' ממצאים. זה האתר שלי: '+site);
     show(res); res.focus({preventScroll:true});
   }
   function runTicks(){
@@ -278,9 +278,9 @@
       .then(function(data){
         clearTimeout(to);
         var wait=Math.max(0,ticks.length*1400-(Date.now()-t0)); /* let the honest steps finish */
-        timers.push(setTimeout(function(){clearT(); if(data&&data.ok) renderResult(data); else startSelf('לא הצלחנו לפתוח את האתר הזה מבחוץ. ענו על 3 שאלות קצרות במקום.');},Math.min(wait,2500)));
+        timers.push(setTimeout(function(){clearT(); if(data&&data.ok) renderResult(data); else startSelf('לא הצלחנו לפתוח את האתר מכאן. אפשר לענות על 3 שאלות קצרות במקום.');},Math.min(wait,2500)));
       })
-      .catch(function(){clearTimeout(to); clearT(); startSelf('לא הצלחנו לבדוק את האתר הזה אוטומטית. ענו על 3 שאלות קצרות במקום.');});
+      .catch(function(){clearTimeout(to); clearT(); startSelf('הבדיקה לא הצליחה הפעם. אפשר לענות על 3 שאלות קצרות במקום.');});
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();

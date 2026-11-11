@@ -21,7 +21,7 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
   var conv=null, sdk=null, state='idle', muted=false, lastFocus=null, raf=0, t0=0, lvl=0, opened=false, closeT=0;
 
   /* ---------- state ---------- */
-  var LABEL = { idle:'מוכנה כשאתם מוכנים', connecting:'מתחברת', listening:'מקשיבה', speaking:'מדברת', ended:'השיחה הסתיימה', error:'משהו השתבש', soon:'אירה תעלה בקרוב' };
+  var LABEL = { idle:'לחצו למטה כדי להתחיל לדבר', connecting:'מתחברת', listening:'מקשיבה', speaking:'מדברת', ended:'השיחה הסתיימה', error:'השיחה לא התחברה', soon:'אירה תעלה בקרוב' };
   function setState(s, label){
     state=s; root.setAttribute('data-state', s); statusEl.textContent = label || LABEL[s] || '';
     var live = s==='connecting'||s==='listening'||s==='speaking';
