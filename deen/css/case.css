@@ -416,3 +416,10 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
   .cmp--single .cmp__stage{max-height:70svh}
   .ctop{background:#fff}
 }
+
+/* v6 · no visible text under 12px */
+.cmeta dt,.dbrowser__bar span,.clabel__n,.cmp__tag,.cpair__tag,.cflow__n,.ctop__sec .mono,.cmp__hint{font-size:12.5px}
+.clabel{font-size:13px}
+.cdelta small,.cidx a span{font-size:12px}
+.cspec__row dd{font-weight:400}
+@media (max-width:899px){.dbrowser__bar span{font-size:12px;height:20px;line-height:20px}.cmp__tag{font-size:12px}}

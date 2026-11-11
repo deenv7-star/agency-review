@@ -1252,3 +1252,88 @@ a.wcard__go:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
 @media (hover:hover){.alts__a:hover{background:rgba(10,15,18,.04)}.alts__a:hover b{text-decoration-color:currentColor}}
 .alts__a:focus-visible{outline:2px solid #0A0F12;outline-offset:2px}
 @media (max-width:900px){.deal__calm{text-align:center}}
+
+/* =================== v6 · audit fixes =================== */
+/* skip link */
+.skip{position:fixed;top:10px;inset-inline-start:10px;z-index:120;padding:12px 18px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:600;transform:translateY(-160%);transition:transform .2s var(--ease-out)}
+.skip:focus,.skip:focus-visible{transform:none;outline:2px solid var(--ice);outline-offset:2px}
+main:focus{outline:none}
+/* mobile: quick way to the price */
+.top__price{display:none}
+@media (max-width:900px){
+  .top{grid-template-columns:1fr auto auto;column-gap:4px}
+  .top__price{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font-size:15px;font-weight:540;color:inherit;border-radius:999px}
+  .top__cta{height:40px}
+}
+/* readable text: running copy at 400, labels at 12-14px */
+.lead,.step__t p,.me__text,.me--v4 .me__text p:first-child,.close__text,.moment__end,.wcard--v4 .wcard__lede,.ba__list li,.acc__inner p,.ira__sub{font-weight:400!important}
+@media (max-width:900px){.hero__title,.hero__title .ln--b{font-weight:400}}
+.mono{font-size:13px}
+.foot__links{font-size:13px}
+.wcard--v4 a.wcard__go{min-height:44px;font-size:14px;align-items:center}
+.acc__n{font-size:13px!important;min-width:22px}
+.ba__tag{font-size:12px!important}
+.ba__bar span,.bb__step{font-size:12px}
+.bb__lab{font-size:12px!important}
+.tool__hint,.deal__calm{font-size:15px}
+/* WhatsApp glyph inside the round icon of WhatsApp buttons */
+.arrow.arrow--wa svg{width:20px;height:20px;fill:currentColor;stroke:none;transform:none}
+.btn--xl .arrow.arrow--wa svg{width:22px;height:22px}
+.arrow--sm.arrow--wa svg{width:18px;height:18px}
+
+/* price: three clear cards */
+.offer__head{margin-bottom:clamp(36px,4vw,56px)}
+.plans{list-style:none;margin:0 auto;padding:0;max-width:1080px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto;gap:20px;align-items:stretch}
+.plan--main{grid-row:1/3}
+.plan{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:34px 30px 30px;border-radius:26px;background:#fff;color:var(--ink);
+  box-shadow:inset 0 0 0 1.5px rgba(10,15,18,.14)}
+.plan__name{font-size:22px;line-height:1.25;font-weight:700;letter-spacing:-.015em}
+.plan__price{margin-top:14px;display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+.plan__from{font-size:17px;font-weight:500;color:var(--ink-sub)}
+.plan__num{font-size:clamp(44px,4vw,56px);line-height:1;font-weight:700;letter-spacing:-.04em}
+.plan__cur{font-size:22px;font-weight:600}
+.plan__until{margin-top:8px;font-size:15px;font-weight:500}
+.plan__what{margin-top:16px;font-size:17px;line-height:1.5;color:var(--ink-sub);font-weight:400}
+.plan__btn{margin-top:auto;width:100%;justify-content:space-between;white-space:normal;font-size:16px}
+.plan .plan__what{margin-bottom:28px}
+.plan--main{isolation:isolate;overflow:hidden;color:#fff;padding:40px 36px 34px;background:var(--deep) url(../img/sky-card.webp) center/cover no-repeat;
+  box-shadow:0 0 0 1.5px var(--ink),0 40px 80px -40px rgba(11,37,48,.5)}
+.plan--main::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,18,24,.55),rgba(6,18,24,.9))}
+.plan--main .plan__name{font-size:26px}
+.plan--main .plan__from,.plan--main .plan__until{color:#E4F0F4}
+.plan--main .plan__num{font-size:clamp(60px,5.6vw,84px)}
+.plan--main .plan__what{color:#E4F0F4;margin-bottom:0}
+.plan--main .plan__checks{margin:24px 0 32px;gap:13px}
+.plan--main .plan__checks li{font-size:17px;color:#fff;font-weight:400}
+.plan--main .plan__checks li::before{background:rgba(214,238,245,.18)}
+.plan--main .plan__checks li::after{border-color:#D6EEF5}
+.plans__calm{margin:30px auto 0;max-width:640px;text-align:center;font-size:17px;line-height:1.6;color:var(--ink-sub);text-wrap:balance}
+.plans__calm b{display:block;color:var(--ink);font-weight:700}
+@media (max-width:900px){
+  .plans{grid-template-columns:1fr;gap:14px}
+  .plan--main{grid-row:auto}
+  .plan{padding:26px 22px 22px;border-radius:22px}
+  .plan--main{padding:30px 22px 24px}
+  .plan__num{font-size:46px}
+  .plan--main .plan__num{font-size:64px}
+  .plans__calm{font-size:16px;margin-top:24px;padding:0 6px}
+}
+
+/* site check: yes/no answers look like real buttons */
+.yn{gap:8px}
+.yn__b{min-width:76px;min-height:48px;padding:0 18px;border-radius:14px;background:#fff;color:var(--ink);font-size:16px;font-weight:600;cursor:pointer;
+  box-shadow:inset 0 0 0 1.5px rgba(10,15,18,.28),0 2px 0 rgba(10,15,18,.14);transition:transform .12s var(--ease-out),background-color .2s var(--ease-out),box-shadow .2s var(--ease-out),color .2s}
+@media (hover:hover){.yn__b:hover{background:#EEF7FA;box-shadow:inset 0 0 0 1.5px var(--ink),0 2px 0 rgba(10,15,18,.2)}}
+.yn__b:active{transform:translateY(1px) scale(.98);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.yn__b:focus-visible{outline:2.5px solid var(--teal);outline-offset:3px;border-radius:14px}
+.yn__b[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:0 0 0 1.5px var(--ink)}
+.yn__b[data-a="0"][aria-pressed="true"]{background:var(--coral,#B4432F);color:#fff;box-shadow:none}
+
+/* Ira: inline in "about"; one floating button on phones (WhatsApp) */
+.me__ira{margin-top:24px;display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:10px 20px 10px 16px;border-radius:999px;background:#fff;color:var(--ink);
+  font-size:16px;font-weight:540;text-align:start;box-shadow:inset 0 0 0 1.5px rgba(10,15,18,.22);cursor:pointer;transition:box-shadow .2s,transform .12s}
+.me__ira .ira-dot{flex:none}
+@media (hover:hover){.me__ira:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}}
+.me__ira:active{transform:scale(.98)}
+@media (max-width:900px){.ira-pill{display:none!important}.me__ira{width:100%}}
+@media (max-width:900px){.plan--main .plan__checks{gap:9px;margin:20px 0 26px}.plan--main .plan__checks li{font-size:16px}}

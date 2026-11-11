@@ -327,7 +327,7 @@
     if(io) io.disconnect(); near.clear();
     var band=Math.max(0,innerHeight-96);
     io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting) near.add(e.target); else near.delete(e.target)}); tuck()},{rootMargin:(-band)+'px 0px 0px 0px',threshold:0});
-    document.querySelectorAll('main .btn, .acc, .bb__ctrl, .wcard__foot, a.wcard__go, .hero__link, .check form, .acc__item:last-child, .alts, .foot').forEach(function(el){io.observe(el)});
+    document.querySelectorAll('main .btn, .acc, .bb__ctrl, .wcard__foot, a.wcard__go, .hero__link, .check form, .acc__item:last-child, .plans .btn, .me__ira, .foot').forEach(function(el){io.observe(el)});
   }
   watch(); var rt; addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(watch,200)});
 })();
