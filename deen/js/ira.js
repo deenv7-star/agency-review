@@ -247,9 +247,9 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
   /* ---------- realtime (Eleven Realtime Max, OpenAI-Realtime-compatible WebSocket) ---------- */
   /* mic → AudioWorklet → PCM16 mono 24 kHz (~40 ms chunks). Inline as a Blob so no extra file ships. */
   var WORKLET = "class C extends AudioWorkletProcessor{constructor(){super();this.r=sampleRate/24000;this.lp=this.r>1.4;this.x1=0;this.x2=0;this.f=new Float32Array(128);this.p=0;this.o=new Int16Array(960);this.n=0;this.k=0;this.m=false;this.port.onmessage=e=>{if(e.data&&'muted' in e.data)this.m=!!e.data.muted}}process(i){let c=i[0]&&i[0][0];if(!c)return true;for(let j=0;j<c.length;j++){const a=Math.abs(c[j]);if(a>this.k)this.k=a}if(this.lp){if(this.f.length!==c.length)this.f=new Float32Array(c.length);const f=this.f;for(let j=0;j<c.length;j++){const x=c[j];f[j]=(x+2*this.x1+this.x2)*0.25;this.x2=this.x1;this.x1=x}c=f}while(this.p<c.length){const j=Math.floor(this.p),f=this.p-j;const s=j+1<c.length?c[j]*(1-f)+c[j+1]*f:c[j];const v=this.m?0:Math.max(-1,Math.min(1,s));this.o[this.n++]=v<0?v*32768:v*32767;if(this.n===this.o.length){this.port.postMessage({pcm:this.o.buffer,level:this.m?0:Math.min(1,this.k*1.6)},[this.o.buffer]);this.o=new Int16Array(960);this.n=0;this.k=0}this.p+=this.r}this.p-=c.length;return true}}registerProcessor('ira-capture',C);";
-  var BARGE_IN = 0.32;   /* mic peak above which the visitor is talking over Ira (echo gate below it while she speaks) */
+  var BARGE_IN = 0.45;   /* raised 12.11: speaker echo crossed 0.32 and Ira cut herself */   /* mic peak above which the visitor is talking over Ira (echo gate below it while she speaks) */
   /* latency pass (CHANGES-ira-latency.md): jitter lead on (re)start of playback, echo-gate tail + hold, pre-roll, truncate on barge-in, stall watchdog */
-  var LEAD = 0.1, GATE_TAIL = 0.15, HOLD = 0.6, PRE_CHUNKS = 2, TRUNCATE = true, STALL_MS = 6000, SECRET_FRESH_MS = 40000;
+  var LEAD = 0.1, GATE_TAIL = 0.35, HOLD = 0.6, PRE_CHUNKS = 2, TRUNCATE = true, STALL_MS = 6000, SECRET_FRESH_MS = 40000;
   var FATAL = { session_expired:1, invalid_api_key:1, authentication_error:1, unauthorized:1, session_not_found:1, invalid_client_secret:1 };
   var KICKOFF = '(הגולש לחץ על "התחילו שיחה". פתחי עכשיו במשפט הפתיחה.)';
   function b64(buf){ var s='', u=new Uint8Array(buf); for(var i=0;i<u.length;i+=0x8000) s+=String.fromCharCode.apply(null, u.subarray(i,i+0x8000)); return btoa(s); }
@@ -306,7 +306,8 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
              Once a chunk crosses BARGE_IN the gate stays open for HOLD s (speech dips between syllables), and the last
              PRE_CHUNKS gated chunks go first so the server hears the start of the word, not a chopped fragment. */
           var now = self.ctx.currentTime, echo = !self.muted && now < self.nextTime + GATE_TAIL;
-          if(echo && lv >= BARGE_IN){
+          self.loud = (echo && lv >= BARGE_IN) ? (self.loud||0)+1 : 0;
+          if(echo && self.loud >= 2){
             if(now >= self.hold) self.pre.forEach(function(p){ self.send({ type:'input_audio_buffer.append', audio: b64(p) }); });
             self.pre = []; self.hold = now + HOLD;
           }
@@ -337,7 +338,7 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
   };
   Realtime.prototype.send = function(o){ if(this.ws && this.ws.readyState===1) this.ws.send(JSON.stringify(o)); };
   Realtime.prototype.respond = function(){ if(this.active){ this.outputs = Math.max(this.outputs,1); return; } this.active=true; this.send({type:'response.create'}); };
-  Realtime.prototype.say = function(text){ this.send({type:'conversation.item.create', item:{type:'message', role:'user', content:[{type:'input_text', text:text}]}}); this.respond(); };
+  Realtime.prototype.say = function(text){ this.kickWait=true; this.send({type:'conversation.item.create', item:{type:'message', role:'user', content:[{type:'input_text', text:text}]}}); this.respond(); };
   Realtime.prototype.play = function(buf){
     if(!this.ctx || this.closed) return;
     var i16=new Int16Array(buf), ab=this.ctx.createBuffer(1,i16.length,24000), ch=ab.getChannelData(0);
@@ -390,15 +391,16 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
   Realtime.prototype.handle = function(ev){
     var self=this, cb=this.cb;
     switch(ev.type){
-      case 'session.created': this.say(KICKOFF); break;   /* Ira speaks first (a bare response.create is ignored by Eleven) */
+      case 'session.created': if(!this.kicked){ this.kicked=true; this.say(KICKOFF); } break;   /* Ira speaks first (a bare response.create is ignored by Eleven) */
       case 'input_audio_buffer.speech_started': clearTimeout(this.waitT); this.interrupt(); this.you=''; cb.mode && cb.mode('listening'); break;
       case 'input_audio_buffer.speech_stopped':   /* show "thinking" instead of a silent "listening"; if no reply starts within STALL_MS, ask for one */
         cb.think && cb.think();
         clearTimeout(this.waitT);
-        this.waitT = setTimeout(function(){ if(!self.closed && !self.active && !self.speaking()) self.respond(); }, STALL_MS);
+        this.waitT = setTimeout(function(){ if(!self.closed && !self.active && !self.speaking() && self.you.length>1) self.respond(); }, STALL_MS);
         break;
       case 'conversation.item.input_audio_transcription.completed':
         if(ev.transcript){ this.you = clean(ev.transcript).trim(); this.ira=''; rtCaption(this.you, ''); if(this.you.length>1) this.heard.push(this.you); } break;
+      case 'conversation.item.created': case 'conversation.item.added': if(this.kickWait && ev.item && ev.item.role==='user'){ this.kickWait=false; this.kickId=ev.item.id; } break;
       case 'response.created': clearTimeout(this.waitT); this.active=true; this.drop=false; this.ira=''; break;
       case 'response.output_audio.delta': case 'response.audio.delta':
         if(this.drop || !ev.delta) break;   /* tail of a response the visitor just talked over */
@@ -422,7 +424,8 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
         if(this.outputs && !this.pending){ this.outputs=0; this.respond(); break; }
         var r = ev.response || {}, st = r.status;
         var said = (r.output||[]).some(function(o){ return o.type==='function_call' || (o.content||[]).some(function(c){ return c.transcript || c.text; }); });
-        if((st==='failed'||st==='incomplete'||!said) && st!=='cancelled' && !this.nudged){ this.nudged=true; this.respond(); break; }
+        if(said && this.kickId && !this.kickDone){ this.kickDone=true; this.send({type:'conversation.item.delete', item_id:this.kickId}); }   /* the opening cue must never be answered twice */
+        if((st==='failed'||st==='incomplete') && !this.kickDone && !this.nudged){ this.nudged=true; this.respond(); break; }
         setTimeout(function(){ if(!self.speaking() && !self.active && cb.mode) cb.mode('listening'); }, 120);
         break;
       case 'error':
