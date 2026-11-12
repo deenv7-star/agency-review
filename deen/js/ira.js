@@ -265,7 +265,7 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
     var self=this, AC = window.AudioContext || window.webkitAudioContext;
     this.ctx = null; this.ws=null; this.stream=null; this.node=null; this.sources=[]; this.nextTime=0;
     this.inLvl=0; this.outLvl=0; this.muted=false; this.closed=false; this.active=false; this.pending=0; this.outputs=0;
-    this.nudged=false; this.you=''; this.ira=''; this.cb={};
+    this.nudged=false; this.you=''; this.ira=''; this.cb={}; this.heard=[]; this.names={}; this.toolsSeen={}; this.lastTool=0;
     this.hold=0; this.pre=[]; this.drop=false; this.item=null; this.itemAt=null; this.waitT=0; this.sp=null; this.sAt=0;
     if(!AC) return;
     /* created inside the tap: iOS only starts audio from a user gesture.
@@ -360,6 +360,32 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
     if(playing || this.active) this.drop = true;
     this.flush();
   };
+  /* one place for every tool call: deduped by call_id, output sent at once, reply asked for when nothing else runs */
+  Realtime.prototype.runTool = function(name, args, callId, itemId){
+    var key = callId || itemId || ('t'+Date.now());
+    if(this.toolsSeen[key]) return; this.toolsSeen[key]=1;
+    name = name || this.names[callId] || 'open_whatsapp';
+    this.pending++;
+    var out = { ok:false }, a={};
+    try{ a = typeof args==='string' ? JSON.parse(args||'{}') : (args||{}); }catch(_){ a={}; }
+    try{ out = this.cb.tool ? this.cb.tool(name, a) : out; }catch(_){ out={ ok:false, error:'client' }; }
+    if(callId) this.send({type:'conversation.item.create', item:{type:'function_call_output', call_id:callId, output:JSON.stringify(out)}});
+    this.pending--; this.outputs++;
+    if(!this.pending && !this.active){ this.outputs=0; this.respond(); }
+  };
+  /* safety net: Ira said she opened / is preparing the WhatsApp message but no tool call arrived (model quirk, or the
+     follow-up response was cut by noise). Show the green button anyway, built from what the visitor said. */
+  Realtime.prototype.promiseCheck = function(r){
+    var said = (r.output||[]).map(function(o){ return (o.content||[]).map(function(c){ return c.transcript||c.text||''; }).join(' '); }).join(' ');
+    if(!said || !/וואטסאפ|הודעה/.test(said) || !/(מכינה|הכנתי|פתחתי|פותחת|שולחת|שלחתי|הנה)/.test(said)) return;
+    var self=this, at=Date.now();
+    setTimeout(function(){ if(self.lastTool < at && self.cb.fallbackWa) self.cb.fallbackWa(self.summary()); }, 2500);
+  };
+  Realtime.prototype.summary = function(){
+    var t = this.heard.join('. ').replace(/\s+/g,' ').trim();
+    if(t.length>380) t = t.slice(0,380).replace(/\s\S*$/,'')+'...';
+    return 'היי דין, הגעתי מהאתר שלך ודיברתי עם אירה.' + (t ? ' מה שסיפרתי לה: '+t : ' אשמח לשמוע על אתר לעסק שלי.');
+  };
   Realtime.prototype.speaking = function(){ return this.sources.length>0; };
   Realtime.prototype.handle = function(ev){
     var self=this, cb=this.cb;
@@ -372,7 +398,7 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
         this.waitT = setTimeout(function(){ if(!self.closed && !self.active && !self.speaking()) self.respond(); }, STALL_MS);
         break;
       case 'conversation.item.input_audio_transcription.completed':
-        if(ev.transcript){ this.you = clean(ev.transcript).trim(); this.ira=''; rtCaption(this.you, ''); } break;
+        if(ev.transcript){ this.you = clean(ev.transcript).trim(); this.ira=''; rtCaption(this.you, ''); if(this.you.length>1) this.heard.push(this.you); } break;
       case 'response.created': clearTimeout(this.waitT); this.active=true; this.drop=false; this.ira=''; break;
       case 'response.output_audio.delta': case 'response.audio.delta':
         if(this.drop || !ev.delta) break;   /* tail of a response the visitor just talked over */
@@ -383,15 +409,16 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
       case 'response.output_audio_transcript.done': case 'response.audio_transcript.done':
         if(ev.transcript) rtCaption(this.you, clean(ev.transcript).trim()); break;
       case 'response.function_call_arguments.done':
-        this.pending++;
-        var out = { ok:false };
-        try{ var a = JSON.parse(ev.arguments||'{}'); out = cb.tool ? cb.tool(ev.name, a) : out; }catch(_){}
-        this.send({type:'conversation.item.create', item:{type:'function_call_output', call_id:ev.call_id, output:JSON.stringify(out)}});
-        this.pending--; this.outputs++;
-        if(!this.pending && !this.active){ this.outputs=0; this.respond(); }
+        this.runTool(ev.name, ev.arguments, ev.call_id, ev.item_id); break;
+      case 'response.output_item.added': case 'response.output_item.done':   /* backup path: some servers only name the call on the item */
+        if(ev.item && ev.item.type==='function_call'){
+          if(ev.item.call_id && ev.item.name) this.names[ev.item.call_id]=ev.item.name;
+          if(ev.type==='response.output_item.done' && ev.item.arguments!=null) this.runTool(ev.item.name, ev.item.arguments, ev.item.call_id, ev.item.id);
+        }
         break;
       case 'response.done':
         this.active=false;
+        this.promiseCheck(ev.response||{});
         if(this.outputs && !this.pending){ this.outputs=0; this.respond(); break; }
         var r = ev.response || {}, st = r.status;
         var said = (r.output||[]).some(function(o){ return o.type==='function_call' || (o.content||[]).some(function(c){ return c.transcript || c.text; }); });
@@ -444,13 +471,19 @@ var IRA_AGENT_ID = "agent_1501m74vfs8ye23rkz8bms17p41x";
       mode: function(m){ if(conv===rt && (state==='listening'||state==='speaking') && (m!==state || statusEl.textContent!==LABEL[m])) setState(m); },
       think: function(){ if(conv===rt && state==='listening') statusEl.textContent='חושבת'; },
       tool: function(name, a){
-        if(name!=='open_whatsapp') return { ok:false, error:'unknown_tool' };
-        var text = (a && a.message) || ''; showWa(text);
+        if(!/whatsapp/i.test(name||'')) return { ok:false, error:'unknown_tool' };
+        rt.lastTool = Date.now();
+        var text = (a && (a.message || a.text)) || rt.summary(); showWa(text);
         try{ window.open(waLink(text), '_blank', 'noopener'); }catch(_){}
         return { ok:true, opened:true };
       },
+      fallbackWa: function(text){ if(waHot.hidden){ showWa(text); rt.lastTool = Date.now(); } },
       error: function(){ if(conv===rt){ setState('error'); noteEl.textContent='לא הצלחנו לחבר את אירה כרגע. אפשר לשלוח לדין בוואטסאפ.'; } },
-      close: function(){ if(conv===rt || conv===null) onEnded(); }
+      close: function(){
+        /* the call ended without a WhatsApp card (cut short, time ran out): offer one with what the visitor said */
+        if(waHot.hidden && rt.heard.length) showWa(rt.summary());
+        if(conv===rt || conv===null) onEnded();
+      }
     };
     if(rt.ctx) rt.secret();          /* edge function + Eleven mint run while the mic prompt is open */
     rt.mic().then(function(){ return rt.connect(); })
