@@ -434,7 +434,7 @@ html:not(.motion) .mani .mw{opacity:1;filter:none}
 .acc__q[aria-expanded=true] i::before,.acc__q[aria-expanded=true] i::after{background:var(--ink)}
 .acc__q[aria-expanded=true] i::after{transform:rotate(0)}
 .acc__a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--spring)}
-.acc__q[aria-expanded=true]+.acc__a{grid-template-rows:1fr}
+.acc__i.on .acc__a{grid-template-rows:1fr}
 .acc__a>div{overflow:hidden}
 .acc__a p{padding:0 4px 26px;padding-inline-start:44px;color:rgba(228,245,250,.8);font-weight:300;font-size:17.5px;max-width:34em}
 .acc__a p+p{margin-top:-14px}
@@ -467,18 +467,6 @@ footer{color:rgba(228,245,250,.8);padding:0 var(--gut) calc(36px + env(safe-area
 .me__p canvas{position:absolute;inset:0;width:100%;height:100%;display:none}
 .me__p.g3{color:transparent}
 .me__p.g3 canvas{display:block}
-
-/* ───── film ───── */
-.flm{padding-block:clamp(20px,5vw,80px) clamp(40px,7vw,100px)}
-.flm__g{display:grid;grid-template-columns:1fr auto;gap:clamp(28px,6vw,90px);align-items:center}
-.flm__t{display:grid;gap:20px}
-.flm__t .mono{color:var(--ice)}
-.flm .lead{color:rgba(255,255,255,.9)}
-.flm__p{perspective:1400px;justify-self:center}
-.vph{width:min(320px,74vw);aspect-ratio:9/16;border-radius:46px;padding:9px;will-change:transform;
-  background:linear-gradient(140deg,#F4FAFC,#8DB2BF 28%,#fff 50%,#9EC4D0 72%,#E8F4F8);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 4px rgba(11,37,48,.4),0 70px 90px -34px rgba(2,10,14,.85),0 0 0 1px rgba(10,15,18,.3)}
-.vph video{width:100%;height:100%;object-fit:cover;border-radius:38px;display:block;background:var(--night)}
-@media (max-width:800px){.flm__g{grid-template-columns:1fr;text-align:center}.flm__t{justify-items:center}}
 
 /* ───── preloader ───── */
 .pre{position:fixed;inset:0;z-index:90;background:var(--night);color:#fff;display:grid;place-items:center;transition:transform 1s var(--io),border-radius 1s var(--io);animation:preSafe .01s 4s forwards}
@@ -627,31 +615,12 @@ html:not(.motion) .pre{display:none}
 <!-- ═════ MARQUEE ═════ -->
 <div class="open mq" aria-hidden="true"><div class="mq__t" id="mq"></div></div>
 
-<!-- ═════ FILM ═════ -->
-<section class="open flm" id="film" data-st="FILM">
-  <div class="wrap flm__g">
-    <div class="flm__t">
-      <p class="mono" data-r>12 שניות</p>
-      <h2 class="h2" data-split>כל הסיפור, בסרטון אחד.</h2>
-      <p class="lead" data-r style="--d:3">מה אני בונה, איך זה עובד וכמה זה עולה.</p>
-    </div>
-    <div class="flm__p" data-r><div class="vph" id="vph"><video id="fv" muted playsinline loop preload="metadata" poster="media/poster.jpg" src="media/film.mp4" aria-label="סרטון קצר על השירות"></video></div></div>
-  </div>
-</section>
-
 <!-- ═════ WORK ═════ -->
 <section class="sheet sheet--paper" id="work" data-st="WORK">
   <div class="wrap">
     <div class="sec-head">
       <p class="mono" data-r>01 · עבודות</p>
       <h2 class="h2" data-split>עבודות שכבר באוויר.</h2>
-    </div>
-    <div class="brd" id="brd">
-      <div class="brd__h"><span>אתר</span><span class="brd__dc">כתובת</span><span>מצב</span></div>
-      <a class="brd__r" href="https://atlas-il.com" target="_blank" rel="noopener" aria-label="atlas, atlas-il.com, באוויר"><span data-flap="ATLAS"></span><span class="brd__dc" data-flap="ATLAS-IL.COM"></span><span class="brd__s"><i></i>באוויר</span></a>
-      <a class="brd__r" href="https://infinityhom.com" target="_blank" rel="noopener" aria-label="INFINITY HOME, infinityhom.com, באוויר"><span data-flap="INFINITY HOME"></span><span class="brd__dc" data-flap="INFINITYHOM.COM"></span><span class="brd__s"><i></i>באוויר</span></a>
-      <a class="brd__r" href="https://vinoamusic.com" target="_blank" rel="noopener" aria-label="VINOA, vinoamusic.com, באוויר"><span data-flap="VINOA"></span><span class="brd__dc" data-flap="VINOAMUSIC.COM"></span><span class="brd__s"><i></i>באוויר</span></a>
-      <a class="brd__r" href="https://hellodna.co.il" target="_blank" rel="noopener" aria-label="DNA Studio, hellodna.co.il, באוויר"><span data-flap="DNA STUDIO"></span><span class="brd__dc" data-flap="HELLODNA.CO.IL"></span><span class="brd__s"><i></i>באוויר</span></a>
     </div>
     <div class="stack" id="stack">
       <article class="wk wk--a" style="--i:0"><div class="wk__in" data-spot>
@@ -858,7 +827,7 @@ html:not(.motion) .pre{display:none}
       <h2 class="h2" data-split>מה בעלי עסקים שואלים אותי.</h2>
     </div>
     <div class="acc" id="acc">
-      <div class="acc__i"><h3 style="margin:0"><button class="acc__q" aria-expanded="true" aria-controls="a1" id="q1"><span class="mono">01</span>לא מבינים בטכנולוגיה. זה מתאים לנו?<i></i></button></h3><div class="acc__a" id="a1" role="region" aria-labelledby="q1"><div><p>כן. את כל החלק הטכני אני עושה. מכם צריך רק לספר על העסק ולהגיד מה אהבתם.</p></div></div></div>
+      <div class="acc__i on"><h3 style="margin:0"><button class="acc__q" aria-expanded="true" aria-controls="a1" id="q1"><span class="mono">01</span>לא מבינים בטכנולוגיה. זה מתאים לנו?<i></i></button></h3><div class="acc__a" id="a1" role="region" aria-labelledby="q1"><div><p>כן. את כל החלק הטכני אני עושה. מכם צריך רק לספר על העסק ולהגיד מה אהבתם.</p></div></div></div>
       <div class="acc__i"><h3 style="margin:0"><button class="acc__q" aria-expanded="false" aria-controls="a2" id="q2"><span class="mono">02</span>אין לנו טקסטים ותמונות. אפשר להתחיל?<i></i></button></h3><div class="acc__a" id="a2" role="region" aria-labelledby="q2"><div><p>כן. מספיק שתספרו לי על העסק. את הטקסטים כותבים ביחד, ומה שחסר נשלים בדרך.</p></div></div></div>
       <div class="acc__i"><h3 style="margin:0"><button class="acc__q" aria-expanded="false" aria-controls="a3" id="q3"><span class="mono">03</span>כמה זה עולה?<i></i></button></h3><div class="acc__a" id="a3" role="region" aria-labelledby="q3"><div><p>אתר לעסק החל מ-1,790 ₪ עד סוף דצמבר 2026. דף נחיתה החל מ-990 ₪, ואתר חדש במקום הישן החל מ-1,590 ₪. המחיר המדויק תלוי בכמה עמודים צריך.</p><p>לפני שמתחילים תקבלו הצעה כתובה: מה בונים, מה כלול וכמה זה עולה. בלי אותיות קטנות.</p></div></div></div>
       <div class="acc__i"><h3 style="margin:0"><button class="acc__q" aria-expanded="false" aria-controls="a4" id="q4"><span class="mono">04</span>משלמים לפני שרואים משהו?<i></i></button></h3><div class="acc__a" id="a4" role="region" aria-labelledby="q4"><div><p>לא. קודם תקבלו הצעה כתובה ותראו הדמיה של האתר. משלמים רק אחרי שראיתם אותה. לא אהבתם את ההדמיה? לא משלמים כלום.</p></div></div></div>
@@ -984,9 +953,6 @@ $$('[data-words]').forEach(function(el){
   t.forEach(function(w,i){var s=D.createElement('span');s.className='mw';s.textContent=w;el.appendChild(s);if(i<t.length-1)el.appendChild(D.createTextNode(' '));maniWords.push(s)});
 });
 
-/* film plays only while it is on screen */
-(function(){var fv=$('#fv');if(!fv||!('IntersectionObserver' in window))return;
-  new IntersectionObserver(function(es){if(es[0].isIntersecting){var pr=fv.play();if(pr&&pr.catch)pr.catch(function(){})}else fv.pause()},{threshold:.35}).observe(fv)})();
 /* split-flap board */
 function flap(el,delay){var txt=el.getAttribute('data-flap'),A='ABCDEFGHIJKLMNOPQRSTUVWXYZ-.';el.textContent='';
   var cells=txt.split('').map(function(ch){var b=D.createElement('b');b.setAttribute('aria-hidden','true');b.textContent=ch===' '?' ':ch;el.appendChild(b);return b});
@@ -1068,7 +1034,7 @@ if(D.fonts&&D.fonts.ready)D.fonts.ready.then(measure);
 addEventListener('pointermove',function(e){S.px=e.clientX/innerWidth;S.py=e.clientY/innerHeight},{passive:true});
 
 var hv=$('#hv'),hvOK=false;hv.addEventListener('canplay',function(){hvOK=true;var pr=hv.play();if(pr&&pr.catch)pr.catch(function(){})});hv.addEventListener('error',function(){hvOK=false});if(MOTION&&innerWidth>700)hv.src='media/hero.mp4';
-var litN=-1,lastStn='',tkIn=false,vph=$('#vph'),sheets=$$('.sheet'),wkScr=$$('.wk .scr'),vel=0;
+var litN=-1,lastStn='',tkIn=false,sheets=$$('.sheet'),wkScr=$$('.wk .scr'),vel=0;
 function frame(now){
   var y=window.scrollY;S.sy=MOTION?lerp(S.sy,y,.11):y;if(Math.abs(S.sy-y)<.1)S.sy=y;
   S.spx=lerp(S.spx,S.px,.06);S.spy=lerp(S.spy,S.py,.06);
@@ -1105,7 +1071,6 @@ function frame(now){
     /* marquee: moves with the scroll, leans with its speed */
     vel=lerp(vel,y-S.sy,.2);
     if(mqSeg){var mr2=mq.getBoundingClientRect();if(mr2.top<vh&&mr2.bottom>0)mq.style.transform='translate3d('+((S.sy*.55)%mqSeg).toFixed(1)+'px,0,0) skewX('+clamp(vel*-.05,-9,9).toFixed(2)+'deg)'}
-    var vr=vph.getBoundingClientRect();if(vr.top<vh&&vr.bottom>0){var vk=(vr.top+vr.height/2)/vh-.5;vph.style.transform='rotateY('+(vk*-22).toFixed(2)+'deg) rotateX('+(vk*10).toFixed(2)+'deg)'}
     /* sheets rise into place */
     for(var q=0;q<sheets.length;q++){var qr=sheets[q].getBoundingClientRect();
       if(qr.top<vh&&qr.top>vh*.2){var qt=clamp((vh-qr.top)/(vh*.8),0,1);sheets[q].style.transform='scale('+(.93+.07*qt).toFixed(4)+')';sheets[q]._s=1}
@@ -1206,9 +1171,15 @@ if(HOVER){
 (function(){var box=$('#baBox'),pos=50,drag=false,auto=null;
   function set(v){pos=clamp(v,4,96);box.style.setProperty('--pos',pos+'%');box.setAttribute('aria-valuenow',Math.round(pos))}
   function at(e){var r=box.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)}
-  box.addEventListener('pointerdown',function(e){drag=true;cancelAnimationFrame(auto);try{box.setPointerCapture(e.pointerId)}catch(_){}at(e)});
-  box.addEventListener('pointermove',function(e){if(drag)at(e)});
-  ['pointerup','pointercancel'].forEach(function(n){box.addEventListener(n,function(){drag=false})});
+  box.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;drag=true;cancelAnimationFrame(auto);try{box.setPointerCapture(e.pointerId)}catch(_){}at(e)});
+  box.addEventListener('pointermove',function(e){if(drag&&e.pointerType!=='touch')at(e)});
+  ['pointerup','pointercancel'].forEach(function(n){box.addEventListener(n,function(e){if(e.pointerType!=='touch')drag=false})});
+  var tx=0,ty=0,mode=0;
+  box.addEventListener('touchstart',function(e){var t=e.touches[0];tx=t.clientX;ty=t.clientY;mode=0;drag=true;cancelAnimationFrame(auto)},{passive:true});
+  box.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-tx,dy=t.clientY-ty;
+    if(!mode&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>=Math.abs(dy)*.7?1:2;
+    if(mode===1){e.preventDefault();at(t)}},{passive:false});
+  box.addEventListener('touchend',function(e){if(!mode&&e.changedTouches[0])at(e.changedTouches[0]);drag=false},{passive:true});
   box.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){set(pos-5);e.preventDefault()}if(e.key==='ArrowRight'){set(pos+5);e.preventDefault()}});
   if(MOTION)new IntersectionObserver(function(es,o){if(es[0].isIntersecting){o.disconnect();var t0=performance.now();
     (function run(now){var t=(now-t0)/2600;if(t>=1||drag){if(!drag)set(50);return}set(50+Math.sin(t*Math.PI*2)*32*(1-t*.3));auto=requestAnimationFrame(run)})(t0)}},{threshold:.55}).observe(box);
@@ -1216,7 +1187,7 @@ if(HOVER){
 
 /* faq */
 $$('.acc__q').forEach(function(b){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';
-  $$('.acc__q').forEach(function(o){o.setAttribute('aria-expanded','false')});b.setAttribute('aria-expanded',open?'false':'true')})});
+  $$('.acc__q').forEach(function(o){o.setAttribute('aria-expanded','false');o.closest('.acc__i').classList.remove('on')});if(!open){b.setAttribute('aria-expanded','true');b.closest('.acc__i').classList.add('on')}})});
 
 /* site check: the real server first, a short yes/no check if it can't open the site */
 (function(){
