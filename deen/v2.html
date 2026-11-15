@@ -238,6 +238,12 @@ html:not(.motion) .mani .mw{opacity:1;filter:none}
 .wk--b .wk__in{background:var(--surf);box-shadow:inset 0 0 0 1px var(--hair)}
 .wk--c .wk__in{background:#0A0F12;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
 .wk--d .wk__in{background:var(--ice-l);box-shadow:inset 0 0 0 1px rgba(30,78,96,.14)}
+.wkhint{display:none;align-items:center;gap:8px;font-size:14.5px;color:var(--ink-mute);margin:-18px 0 14px}
+.wkhint span{display:inline-block;animation:nudge 1.6s var(--io) infinite}
+@keyframes nudge{50%{transform:translateX(-6px)}}
+.wkdots{display:none;justify-content:center;gap:8px;margin-top:18px}
+.wkdots i{width:7px;height:7px;border-radius:99px;background:rgba(10,15,18,.2);transition:width .4s var(--out),background .4s}
+.wkdots i.on{width:22px;background:var(--ink)}
 .wk__t{display:grid;gap:16px;align-content:center}
 .wk__t .mono{opacity:.7;direction:ltr;text-align:right}
 .wk__t h3{font-weight:300;font-size:clamp(34px,5vw,68px);line-height:1;letter-spacing:-.04em;direction:ltr;text-align:right}
@@ -249,7 +255,13 @@ html:not(.motion) .mani .mw{opacity:1;filter:none}
 .wk__l a:hover svg{transform:translate(-3px,-3px)}
 .wk .scr{box-shadow:0 40px 70px -34px rgba(4,20,28,.7),0 0 0 1px rgba(10,15,18,.08)}
 @media (max-width:900px){
-  .wk{top:calc(74px + var(--i)*10px)}
+  .stack{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut);scroll-padding-inline:var(--gut);scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .stack::-webkit-scrollbar{display:none}
+  .wk{position:relative;top:auto;flex:0 0 84%;scroll-snap-align:start}
+  .wk .wk__in{height:100%;transform:none!important;opacity:1!important}
+  .wk .scr{transform:none!important}
+  .wkhint{display:flex}
+  .wkdots{display:flex}
   .wk__in{grid-template-columns:1fr;min-height:0;padding:14px 14px 24px;gap:18px}
   .wk__t{order:2;padding-inline:8px}
 }
@@ -277,6 +289,22 @@ html:not(.motion) .mani .mw{opacity:1;filter:none}
 @media (max-width:700px){.ba-pts{grid-template-columns:1fr}.ba{aspect-ratio:4/3.4}}
 
 /* ───── systems ───── */
+.rv{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.rvc{margin:0;background:#EFEAE2;border-radius:24px;padding:16px;display:grid;gap:10px;position:relative;
+  background-image:radial-gradient(rgba(10,15,18,.05) 1px,transparent 1px);background-size:14px 14px}
+.rvc__h{display:flex;align-items:center;gap:10px}
+.rvc__a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:600;color:#fff;background:var(--teal);flex:none}
+.rvc__h b{display:block;font-weight:600;font-size:15.5px}
+.rvc__h span{display:block;font-size:13px;color:var(--ink-mute)}
+.rvc blockquote{margin:0;justify-self:start;max-width:94%;background:#fff;border-radius:4px 18px 18px 18px;padding:11px 14px 8px;font-size:16.5px;line-height:1.5;box-shadow:0 1px 1px rgba(10,15,18,.12);display:grid;gap:4px}
+.rvc time{justify-self:end;font:400 11px var(--mono);color:#7b8a8f;direction:ltr}
+.rvc.sample{outline:2px dashed rgba(217,99,74,.7);outline-offset:-2px}
+.rvc.sample::before{content:"דוגמה. מחכה להמלצה אמיתית";position:absolute;top:-11px;inset-inline-start:16px;background:#D9634A;color:#fff;font-size:12px;font-weight:600;padding:3px 10px;border-radius:99px}
+@media (max-width:900px){
+  .rv{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(var(--gut)*-1);padding:14px var(--gut) 4px;scroll-padding-inline:var(--gut);scrollbar-width:none}
+  .rv::-webkit-scrollbar{display:none}
+  .rvc{flex:0 0 84%;scroll-snap-align:start}
+}
 .sys-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .sys{border-radius:26px;padding:clamp(16px,2.4vw,28px);background:var(--surf);box-shadow:inset 0 0 0 1px var(--hair);display:grid;gap:22px;transition:transform .6s var(--out)}
 .sys .scr{box-shadow:0 30px 60px -34px rgba(11,37,48,.55),0 0 0 1px rgba(10,15,18,.08)}
@@ -477,7 +505,7 @@ footer{color:rgba(228,245,250,.8);padding:0 var(--gut) calc(36px + env(safe-area
 .pre i::after{content:"";position:absolute;inset:0;background:var(--ice);transform:scaleX(var(--q,0));transform-origin:100% 50%}
 .pre.out{transform:translateY(-101%);border-radius:0 0 40px 40px}
 @keyframes preSafe{to{visibility:hidden}}
-html:not(.motion) .pre{display:none}
+html:not(.motion) .pre,html.nopre .pre{display:none}
 
 /* ───── marquee ───── */
 .mq{overflow:clip;padding-block:clamp(26px,5vw,60px)}
@@ -556,6 +584,7 @@ html:not(.motion) .pre{display:none}
 </head>
 <body>
 <a class="skip" href="#main">דלגו לתוכן</a>
+<script>if(innerWidth<=900)document.documentElement.classList.add('nopre')</script>
 <div class="pre" id="pre" aria-hidden="true"><div><b id="preN">000</b><span>ממריאים</span><i></i></div></div>
 <canvas id="sky" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
@@ -612,6 +641,7 @@ html:not(.motion) .pre{display:none}
       <p class="mono" data-r>01 · עבודות</p>
       <h2 class="h2" data-split>עבודות שכבר באוויר.</h2>
     </div>
+    <p class="wkhint" aria-hidden="true">החליקו לעבודה הבאה <span>←</span></p>
     <div class="stack" id="stack">
       <article class="wk wk--a" style="--i:0"><div class="wk__in" data-spot>
         <div class="wk__t"><p class="mono">01 / 04 · atlas-il.com</p><h3>atlas</h3><p>מערכת לבעלי צימרים, ואתר שמסביר אותה בשפה פשוטה.</p>
@@ -634,6 +664,7 @@ html:not(.motion) .pre{display:none}
         <div class="scr"><div class="m m-dna"><b>DNA</b><ul><li>קמפיינים<span>01</span></li><li>אתרים<span>02</span></li><li>מיתוג<span>03</span></li><li>וידאו<span>04</span></li></ul></div><img alt="צילום מסך של אתר DNA Studio" data-src="img/dna-800.webp"></div>
       </div></article>
     </div>
+    <div class="wkdots" id="wkdots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
   </div>
 </section>
 
@@ -654,11 +685,24 @@ html:not(.motion) .pre{display:none}
   </div>
 </section>
 
+<!-- ═════ REVIEWS ═════ -->
+<section class="sheet sheet--paper" id="reviews" data-st="REVIEWS">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono" data-r>03 · לקוחות</p>
+      <h2 class="h2" data-split>מה הלקוחות כותבים לי.</h2>
+      <p class="lead" data-r style="--d:3">הודעות אמיתיות מהוואטסאפ, בלי עריכה.</p>
+    </div>
+    <div class="rv" id="rv"></div>
+    <div class="wkdots" id="rvdots" aria-hidden="true"></div>
+  </div>
+</section>
+
 <!-- ═════ SYSTEMS ═════ -->
 <section class="sheet sheet--paper" id="systems" data-st="SYSTEMS">
   <div class="wrap">
     <div class="sec-head">
-      <p class="mono" data-r>03 · מערכות</p>
+      <p class="mono" data-r>04 · מערכות</p>
       <h2 class="h2" data-split>ומערכות שעיצבתי מחדש ללקוחות.</h2>
       <p class="lead" data-r style="--d:3">המסכים מוצגים עם נתונים לדוגמה.</p>
     </div>
@@ -679,7 +723,7 @@ html:not(.motion) .pre{display:none}
 <section class="sheet sheet--deep" id="ira-sec" data-st="EIRA">
   <div class="wrap irax">
     <div class="irax__t">
-      <p class="mono" data-r>04 · אירה</p>
+      <p class="mono" data-r>05 · אירה</p>
       <h2 class="h2" data-split>יש לכם שאלה? אירה עונה עכשיו.</h2>
       <p class="lead" data-r style="--d:3">העוזרת הקולית שלי. מדברים איתה בעברית, והיא מכינה לכם הודעה אליי בוואטסאפ.</p>
       <button class="btn btn--chrome" type="button" data-ira-open aria-haspopup="dialog" data-mag data-r style="--d:4">דברו עם אירה<span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="5.500" y="1.500" width="5" height="8" rx="2.500"/><path d="M3 7.500a5 5 0 0 0 10 0M8 12.500v2"/></svg></span></button>
@@ -693,7 +737,7 @@ html:not(.motion) .pre{display:none}
 <section class="sheet sheet--paper" id="process" data-st="ROUTE">
   <div class="wrap">
     <div class="sec-head">
-      <p class="mono" data-r>05 · איך זה עובד</p>
+      <p class="mono" data-r>06 · איך זה עובד</p>
       <h2 class="h2" data-split>ארבעה שלבים. בלי הפתעות.</h2>
       <p class="lead" data-r style="--d:3">אתם מספרים על העסק. את כל השאר אני עושה.</p>
     </div>
@@ -711,7 +755,7 @@ html:not(.motion) .pre{display:none}
 <section class="open price" id="offer" data-st="CRUISE">
   <div class="wrap">
     <div class="sec-head" style="text-align:center;justify-items:center">
-      <p class="mono" data-r>06 · מחיר</p>
+      <p class="mono" data-r>07 · מחיר</p>
       <h2 class="h2" data-split>רואים הדמיה לפני שמשלמים.</h2>
     </div>
     <div class="tkw" data-r>
@@ -750,7 +794,7 @@ html:not(.motion) .pre{display:none}
 <section class="sheet sheet--surf" id="check" data-st="CHECK">
   <div class="wrap chk">
     <div class="sec-head" style="margin:0">
-      <p class="mono" data-r>07 · בדיקה בחינם</p>
+      <p class="mono" data-r>08 · בדיקה בחינם</p>
       <h2 class="h2" data-split>יש לכם אתר? בדקו אותו בחינם.</h2>
       <p class="lead" data-r style="--d:3">שתי שאלות קצרות, ותדעו איפה האתר שלכם מאבד פניות.</p>
     </div>
@@ -793,7 +837,7 @@ html:not(.motion) .pre{display:none}
   <div class="wrap me">
     <div class="me__p" data-r aria-hidden="true">DV<canvas id="coin"></canvas></div>
     <div class="me__t">
-      <p class="mono" data-r style="color:var(--teal)">08 · מי בונה לכם</p>
+      <p class="mono" data-r style="color:var(--teal)">09 · מי בונה לכם</p>
       <h2 class="h2" data-split>נעים מאוד, אני דין. אני גם מי שעונה לכם.</h2>
       <p class="lead" data-r style="--d:3">הגעתי מהשיווק ומהמכירות. לכן אני שואל קודם מה הלקוח שלכם צריך לשמוע כדי לפנות, ורק אחר כך מה צבע הכפתור.</p>
       <a class="btn btn--ink" data-r style="--d:6;justify-self:start" data-wa="היי דין, רציתי לדבר איתך על אתר." href="https://wa.me/972525979520" target="_blank" rel="noopener">שלחו לדין בוואטסאפ<span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg></span></a>
@@ -805,7 +849,7 @@ html:not(.motion) .pre{display:none}
 <section class="sheet sheet--deep" id="faq" data-st="FAQ">
   <div class="wrap faq">
     <div class="sec-head">
-      <p class="mono" data-r>09 · שאלות</p>
+      <p class="mono" data-r>10 · שאלות</p>
       <h2 class="h2" data-split>מה בעלי עסקים שואלים אותי.</h2>
     </div>
     <div class="acc" id="acc">
@@ -880,7 +924,6 @@ html:not(.motion) .pre{display:none}
 
 <div class="dock" id="dock"><a class="btn btn--chrome" data-wa="היי דין, אני רוצה לספר לך על העסק שלי." href="https://wa.me/972525979520" target="_blank" rel="noopener">ספרו לי על העסק בוואטסאפ<span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg></span></a></div>
 
-<script src="js/three.min.js"></script>
 <script>
 (function(){
 'use strict';
@@ -893,11 +936,12 @@ var HOVER=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matc
 $$('[data-wa]').forEach(function(a){a.href='https://wa.me/972525979520?text='+encodeURIComponent(a.getAttribute('data-wa'))});
 
 /* real screenshots load on top of the drawn stand-ins when the host allows them */
-$$('img[data-src]').forEach(function(im){
-  im.addEventListener('load',function(){im.classList.add('ok')});
-  im.addEventListener('error',function(){im.remove()});
-  im.decoding='async'; im.src=im.getAttribute('data-src');
-});
+(function(){var small=innerWidth<700,ims=$$('img[data-src]');
+  function go(im){if(im._go)return;im._go=1;var u=im.getAttribute('data-src');if(small)u=u.replace(/-(1440|800)\.webp$/,'-m.webp');im.decoding='async';im.src=u}
+  ims.forEach(function(im){im.addEventListener('load',function(){im.classList.add('ok')});im.addEventListener('error',function(){im.remove()});im.parentNode._im=im});
+  if(!('IntersectionObserver' in window)){ims.forEach(go);return}
+  var lio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go(e.target._im);lio.unobserve(e.target)}})},{rootMargin:'900px 900px'});
+  ims.forEach(function(im){lio.observe(im.parentNode)})})();
 
 /* generated bits of the stand-in screens */
 $$('[data-gen="cal"]').forEach(function(el){var h='';for(var i=0;i<28;i++){var c=(i>=8&&i<=11)||(i>=22&&i<=24)?'a':(i>=15&&i<=17)||i===3||i===4?'b':'';h+='<i class="'+c+'"></i>'}el.innerHTML=h});
@@ -922,6 +966,7 @@ if(MOTION){
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.id==='brd')flapAll();else if(e.target.matches('.sec-head .mono'))scramble(e.target)}})},{rootMargin:'0px 0px -7% 0px',threshold:.01});
   var startReveals=function(){$$('[data-r],[data-split],.sys,#brd').forEach(function(el){io.observe(el)});$('#hero').classList.add('in')};
   var pre=$('#pre'),preN=$('#preN'),pt0=performance.now();
+  if(innerWidth<=900){pre.remove();startReveals();}else
   (function tk(now){var q=clamp((now-pt0)/1150,0,1),e=1-Math.pow(1-q,3);preN.textContent=('00'+Math.round(e*100)).slice(-3);pre.style.setProperty('--q',e.toFixed(3));
     if(q<1)requestAnimationFrame(tk);else{pre.classList.add('out');setTimeout(startReveals,220);setTimeout(function(){pre.remove()},1300)}})(pt0);
 }
@@ -1055,11 +1100,11 @@ function frame(now){
     for(var q=0;q<sheets.length;q++){var qr=sheets[q].getBoundingClientRect();
       if(qr.top<vh&&qr.top>vh*.2){var qt=clamp((vh-qr.top)/(vh*.8),0,1);sheets[q].style.transform='scale('+(.93+.07*qt).toFixed(4)+')';sheets[q]._s=1}
       else if(sheets[q]._s){sheets[q].style.transform='';sheets[q]._s=0}}
-    /* work screens tip up as their card arrives */
-    for(var u=0;u<wkScr.length;u++){var ur=wkScr[u].getBoundingClientRect();if(ur.top<vh*1.1&&ur.bottom>0){var ue=clamp((vh*1.05-ur.top)/(vh*.6),0,1);ue=1-Math.pow(1-ue,3);
+    /* work screens tip up as their card arrives (desktop) */
+    if(innerWidth>900)for(var u=0;u<wkScr.length;u++){var ur=wkScr[u].getBoundingClientRect();if(ur.top<vh*1.1&&ur.bottom>0){var ue=clamp((vh*1.05-ur.top)/(vh*.6),0,1);ue=1-Math.pow(1-ue,3);
       wkScr[u].style.transform='perspective(1000px) rotateX('+((1-ue)*18).toFixed(2)+'deg) translate3d(0,'+((1-ue)*36).toFixed(1)+'px,0) scale('+(.94+.06*ue).toFixed(3)+')'}}
-    /* work stack */
-    for(var s=0;s<stackEls.length-1;s++){var a=stackEls[s].getBoundingClientRect(),b2=stackEls[s+1].getBoundingClientRect();
+    /* work stack (desktop) */
+    if(innerWidth>900)for(var s=0;s<stackEls.length-1;s++){var a=stackEls[s].getBoundingClientRect(),b2=stackEls[s+1].getBoundingClientRect();
       var cov=clamp(1-(b2.top-a.top)/a.height,0,1),inn=stackEls[s].firstElementChild;
       inn.style.transform='scale('+(1-cov*.06)+')';inn.style.opacity=1-cov*.35;}
     /* process */
@@ -1080,7 +1125,7 @@ if(!MOTION){stepEls.forEach(function(e){e.classList.add('on')});steps.style.setP
 measure();requestAnimationFrame(frame);
 
 /* ───── real 3D: a paper plane that flies the page, and a chrome coin ───── */
-(function(){
+window.__init3D=function(){
   if(!window.THREE||!MOTION)return;
   var T=THREE,cvs=$('#fly'),R;
   try{R=new T.WebGLRenderer({canvas:cvs,alpha:true,antialias:true})}catch(e){return}
@@ -1098,7 +1143,7 @@ measure();requestAnimationFrame(frame);
   size();addEventListener('resize',size);
   function path(p,o){o.set(Math.tanh(2.4*Math.cos(p*Math.PI*6))/Math.tanh(2.4)*W*.4,-Math.cos(p*Math.PI*4.3)*H*.3+H*.02,Math.sin(p*Math.PI*9)*1.2);return o}
   path(0,cur);holder.position.copy(cur);
-  setTimeout(function(){cvs.classList.add('on')},1900);
+  setTimeout(function(){cvs.classList.add('on')},300);
   var lastY=S.sy;
   (function loop(now){requestAnimationFrame(loop);if(D.hidden)return;
     var t=now/1000,p=clamp(S.sy/S.max,0,1),dv=S.sy-lastY;lastY=S.sy;if(Math.abs(dv)>.4)dir=dv>0?1:-1;
@@ -1136,7 +1181,9 @@ measure();requestAnimationFrame(frame);
   size2();addEventListener('resize',size2);if(window.ResizeObserver)new ResizeObserver(size2).observe(box);
   (function loop2(now){requestAnimationFrame(loop2);var r=box.getBoundingClientRect();if(D.hidden||r.bottom<0||r.top>innerHeight)return;
     var t=now/1000,k=(r.top+r.height/2)/innerHeight-.5;spin.rotation.y=Math.sin(t*.8)*.55+k*1.6;spin.rotation.x=Math.cos(t*.6)*.12+k*.5;R2.render(sc2,cam2)})(performance.now());
-})();
+};
+if(MOTION)addEventListener('load',function(){setTimeout(function(){var sc=D.createElement('script');sc.src='js/three.min.js';sc.onload=function(){window.__init3D()};D.head.appendChild(sc)},innerWidth<=900?2500:900)});
+
 
 /* spotlight + magnetic (desktop only) */
 if(HOVER){
@@ -1165,6 +1212,20 @@ if(HOVER){
     (function run(now){var t=(now-t0)/2600;if(t>=1||drag){if(!drag)set(50);return}set(50+Math.sin(t*Math.PI*2)*32*(1-t*.3));auto=requestAnimationFrame(run)})(t0)}},{threshold:.55}).observe(box);
 })();
 
+/* reviews: fill REVIEWS with real client messages (name, business, text, time). sample:true marks a slot still waiting. */
+var REVIEWS=[
+  {sample:1,name:'שם הלקוח',biz:'שם העסק · אתר לעסק',text:'כאן תופיע ההודעה של הלקוח, מילה במילה מהוואטסאפ.',time:'10:24'},
+  {sample:1,name:'שם הלקוח',biz:'שם העסק · דף נחיתה',text:'כאן תופיע ההודעה של הלקוח, מילה במילה מהוואטסאפ.',time:'18:02'},
+  {sample:1,name:'שם הלקוח',biz:'שם העסק · מערכת',text:'כאן תופיע ההודעה של הלקוח, מילה במילה מהוואטסאפ.',time:'21:47'}];
+(function(){var rv=$('#rv'),sec=$('#reviews');if(!REVIEWS.length){sec.remove();return}
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  rv.innerHTML=REVIEWS.map(function(r,i){return '<figure class="rvc'+(r.sample?' sample':'')+'" data-r style="--d:'+i+'"><figcaption class="rvc__h"><span class="rvc__a" aria-hidden="true">'+esc(r.name.charAt(0))+'</span><span><b>'+esc(r.name)+'</b><span>'+esc(r.biz)+'</span></span></figcaption><blockquote>'+esc(r.text)+'<time>'+esc(r.time||'')+'</time></blockquote></figure>'}).join('');
+  $('#rvdots').innerHTML=REVIEWS.map(function(_,i){return '<i'+(i?'':' class="on"')+'></i>'}).join('');
+  if(MOTION&&window.IntersectionObserver)$$('.rvc',rv).forEach(function(el){new IntersectionObserver(function(es,o){if(es[0].isIntersecting){el.classList.add('in');o.disconnect()}}).observe(el)})})();
+/* work swipe dots + review swipe on phones */
+(function(){function dots(row,dd){if(!row||!dd)return;var ds=$$('i',dd);row.addEventListener('scroll',function(){var c=row.children,best=0,bd=1e9,rr=row.getBoundingClientRect();
+  for(var i=0;i<c.length;i++){var d=Math.abs(c[i].getBoundingClientRect().right-rr.right);if(d<bd){bd=d;best=i}}ds.forEach(function(x,i){x.classList.toggle('on',i===best)})},{passive:true})}
+  dots($('#stack'),$('#wkdots'));dots($('#rv'),$('#rvdots'))})();
 /* faq */
 $$('.acc__q').forEach(function(b){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';
   $$('.acc__q').forEach(function(o){o.setAttribute('aria-expanded','false');o.closest('.acc__i').classList.remove('on')});if(!open){b.setAttribute('aria-expanded','true');b.closest('.acc__i').classList.add('on')}})});
