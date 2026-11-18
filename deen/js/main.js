@@ -3,6 +3,7 @@
   'use strict';
   var d=document.documentElement;
   var hasG=typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined';
+  if(!hasG) d.classList.remove('motion');
   var still=!d.classList.contains('motion')||!hasG;
   /* phones/touch: no scroll-driven drawing or scrubs, so the browser scrolls natively */
   var lite=matchMedia('(max-width:899px),(pointer:coarse)').matches;
@@ -24,24 +25,11 @@
     q.addEventListener('click',function(){
       var open=q.getAttribute('aria-expanded')==='true', a=document.getElementById(q.getAttribute('aria-controls'));
       q.setAttribute('aria-expanded',String(!open));
+      a.toggleAttribute('inert',open);
       if(hasG&&!still){gsap.to(a,{height:open?0:'auto',duration:.42,ease:'power3.out',onComplete:jRebuild});}
       else{a.style.height=open?'0':'auto'; jRebuild();}
     });
   });
-
-  /* fan: screenshots on a gentle concave 3D arc */
-  var FP={p:0};
-  var fanCards=[].slice.call(document.querySelectorAll('.fan__card'));
-  function fanPose(){
-    var p=FP.p, mob=innerWidth<900;
-    fanCards.forEach(function(c){
-      var i=+c.getAttribute('data-i'), a=Math.abs(i);
-      var x=i*((mob?74:104)+p*(mob?4:30)), z=-a*(mob?60:120)+p*60*(1-a), y=a*(mob?10:18)-p*(a?24:22);
-      var ry=-i*((mob?16:30)+p*(mob?4:8)), rz=i*(1+p*1.5);
-      c.style.transform='translate3d(calc(-50% + '+x+'%),'+y.toFixed(1)+'px,'+z.toFixed(1)+'px) rotateY('+ry.toFixed(2)+'deg) rotateZ('+rz.toFixed(2)+'deg)';
-    });
-  }
-  fanPose(); addEventListener('resize',function(){fanPose()});
 
   var pills=[].slice.call(document.querySelectorAll('[data-pill]'));
   if(still){pills.forEach(function(p){p.classList.add('is-on')}); d.classList.add('still'); }
@@ -49,20 +37,25 @@
   /* ---------- motion ---------- */
   if(!still){
     var E='power3.out';
-    /* hero intro */
-    var tl=gsap.timeline();
-    tl.to('.hero__title .ln__in',{y:0,duration:.75,ease:'expo.out',stagger:.07})
-      .add(function(){document.querySelectorAll('.hero [data-pill]').forEach(function(p,i){setTimeout(function(){p.classList.add('is-on')},i*180)})},'-=.6')
-      .to('.hero [data-intro]',{opacity:1,y:0,duration:.6,ease:E,stagger:.06},'-=.55')
-      .fromTo('.fan__in',{opacity:0,yPercent:30},{opacity:1,yPercent:0,duration:.9,ease:'expo.out',stagger:.07},'-=.6');
-    /* the arc opens as you leave the hero */
-    if(!lite) gsap.to(FP,{p:1,ease:'none',onUpdate:fanPose,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:.6}});
+    /* Start with readable content, then reveal art and copy together. */
+    gsap.timeline()
+      .fromTo('.hero__metal img',{opacity:0,scale:.89},{opacity:1,scale:1,duration:1.25,ease:'power3.out'},0)
+      .to('.hero__title .ln__in',{y:0,duration:.86,ease:'expo.out',stagger:.11},.08)
+      .to('.hero [data-intro]',{opacity:1,y:0,duration:.66,ease:E,stagger:.07},.19);
 
     /* generic reveals */
     gsap.utils.toArray('[data-up]').forEach(function(el){
       gsap.to(el,{opacity:1,y:0,duration:.9,ease:E,scrollTrigger:{trigger:el,start:'top 88%',once:true}});
     });
-    ScrollTrigger.batch('[data-card]',{start:'top 90%',once:true,onEnter:function(b){gsap.to(b,{opacity:1,y:0,duration:.95,ease:E,stagger:.09,overwrite:true})}});
+    ScrollTrigger.batch('[data-card]',{
+      start:'top 92%',
+      once:true,
+      onEnter:function(cards){
+        gsap.to(cards,{opacity:1,y:0,duration:.85,ease:E,stagger:.09,overwrite:true});
+        var projectImages=cards.flatMap(function(card){return Array.from(card.querySelectorAll('.wcard__img'));});
+        if(projectImages.length) gsap.fromTo(projectImages,{clipPath:'inset(9% 0 0 0)'},{clipPath:'inset(0% 0 0 0)',duration:1.05,ease:'power4.out',stagger:.09});
+      }
+    });
     pills.forEach(function(p){
       if(p.closest('.hero')) return;
       ScrollTrigger.create({trigger:p,start:'top 80%',once:true,onEnter:function(){p.classList.add('is-on')}});
@@ -70,7 +63,7 @@
 
     /* works: band rises, screenshots zoom out + drift inside cards */
     if(!lite) gsap.utils.toArray('[data-zoom]').forEach(function(img){
-      gsap.fromTo(img,{yPercent:0},{yPercent:-9,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
+      gsap.fromTo(img,{yPercent:0},{yPercent:-6,ease:'none',scrollTrigger:{trigger:img.parentNode,start:'top bottom',end:'bottom top',scrub:true}});
     });
 
     /* process: the step crossing the middle lights */
