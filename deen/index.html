@@ -57,7 +57,24 @@
 .running .film-skip{top:9%;left:5%}
 }
 </style>
-</head>
+<style>
+#projectRoom{position:fixed;inset:0;margin:auto;width:min(960px,94vw);max-height:92dvh;padding:0;border:1px solid #698398;border-radius:22px;color:#f4f7fa;background:#112638;box-shadow:0 25px 120px #030d1d80;overflow:auto}
+#projectRoom::backdrop{background:#071321c9;backdrop-filter:blur(8px)}
+#projectRoom[open]{animation:room-enter .42s cubic-bezier(.2,.8,.2,1)}
+.room-bar,.room-tabs,.room-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.room-bar{justify-content:space-between;padding:18px 5%;border-bottom:1px solid #476072}
+.room-bar h2{font-size:clamp(20px,3vw,31px);letter-spacing:-.045em}
+.room-bar button,.room-tabs button{color:inherit;border:1px solid #698398;border-radius:30px;padding:8px 17px;min-height:44px}
+.room-tabs{padding:22px 5% 0}.room-tabs button[aria-pressed=true]{background:#d8ebfb;color:#112638;border-color:transparent}
+.room-body{padding:24px 5% 32px;display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:5%}
+.room-body h3{font:700 clamp(36px,5vw,65px)/1 Arial,sans-serif;letter-spacing:-.07em;margin-bottom:14px;text-align:right}
+.room-body p{line-height:1.6;color:#dce9f2}.room-body img{width:100%;border-radius:12px;aspect-ratio:16/11;object-fit:cover;object-position:top;background:#264057}
+.room-actions{margin-top:22px}.room-actions a{padding:10px 0;text-decoration:underline;text-underline-offset:4px}.room-actions a:first-child{background:#dfedfb;color:#112638;border-radius:40px;padding:10px 16px;text-decoration:none}
+html:has(#projectRoom[open]){overflow:hidden}
+@keyframes room-enter{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@media(max-width:650px){.room-body{grid-template-columns:1fr;gap:18px}.room-body img{grid-row:1;max-height:30vh}.room-actions{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){#projectRoom[open]{animation:none}}
+</style></head>
 <body class="deen">
 <a class="skip" href="#top">דלגו לתוכן</a>
 
@@ -107,7 +124,7 @@
         <p class="hero__sub" data-intro>אני בונה אתרים שעוזרים ללקוחות להבין למה לבחור בכם, ומערכות שעושות סדר בעבודה היומיומית.</p>
         <div class="hero__actions" data-intro>
           <a class="deen-button" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A.%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">בואו נדבר על הפרויקט <span class="deen-arrow" aria-hidden="true"></span></a>
-          <a class="hero__link" href="#work">לצפייה בעבודות <span aria-hidden="true">↓</span></a>
+          <a class="hero__link" id="projectPicker" href="#work">מה אפשר לבנות? <span aria-hidden="true">↗</span></a>
         </div>
         <p class="hero__fine" data-intro>אתר לעסק החל מ־<b>1,790&nbsp;₪</b> עד סוף דצמבר 2026. רואים הדמיה לפני שמשלמים.</p>
       </div>
@@ -592,6 +609,43 @@
   addEventListener('scroll',schedule,{passive:true});
   addEventListener('resize',schedule);
   setup();
+})();
+</script><dialog id="projectRoom" aria-labelledby="roomTitle" dir="rtl">
+<div class="room-bar"><h2 id="roomTitle">מה תרצו לבנות לעסק?</h2><button type="button" data-close>סגירה</button></div>
+<div class="room-tabs" role="group" aria-label="סוג הפרויקט"><button type="button" aria-pressed="true" data-kind="site">אתר לעסק</button><button type="button" aria-pressed="false" data-kind="system">מערכת לעסק</button></div>
+<div class="room-body"><div aria-live="polite"><h3 dir="ltr"></h3><p></p><div class="room-actions"><a target="_blank" rel="noopener"></a><a>לסיפור הפרויקט</a></div></div><img alt=""></div>
+</dialog>
+<script>
+(() => {
+  const trigger = document.getElementById('projectPicker');
+  const room = document.getElementById('projectRoom');
+  if (!room.showModal) return;
+  const choices = {
+    site: ['Infinity Home','אתר למתחם נופש בצפון הכנרת. מהתמונות של המקום עוברים ישירות לבירור זמינות בוואטסאפ.','inf-hero-960','infinity','נדבר על האתר','אתר לעסק'],
+    system: ['OptiFlow','מערכת לחנויות אופטיקה שמרכזת את התורים ואת הפעולות הבאות של הצוות. במסך מוצגים נתונים לדוגמה.','of-hero-960','optiflow','נדבר על המערכת','מערכת לעסק']
+  };
+  const body = room.querySelector('.room-body');
+  function choose(kind) {
+    const [name, description, image, story, action, subject] = choices[kind];
+    room.querySelectorAll('[data-kind]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.kind === kind)));
+    body.querySelector('h3').textContent = name;
+    body.querySelector('p').textContent = description;
+    const photo = body.querySelector('img');
+    photo.src = 'img/case/' + image + '.webp';
+    photo.alt = 'צילום מסך מתוך ' + name;
+    const [contact, details] = body.querySelectorAll('a');
+    details.href = 'case/' + story + '.html';
+    contact.textContent = action;
+    contact.href = 'https://wa.me/972525979520?text=' + encodeURIComponent('היי דין, ראיתי את ' + name + ' ואשמח לדבר על ' + subject + ' שלי.');
+    if (room.open && body.animate && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+      body.animate([{opacity:.35, transform:'translateY(7px)'},{opacity:1,transform:'none'}],{duration:320,easing:'ease-out'});
+  }
+  trigger.addEventListener('click', event => { event.preventDefault(); choose('site'); room.showModal(); room.querySelector('[data-kind]').focus(); });
+  room.addEventListener('click', event => {
+    if (event.target.matches('[data-kind]')) choose(event.target.dataset.kind);
+    if (event.target.matches('[data-close]')) room.close();
+  });
+  room.addEventListener('close', () => trigger.focus({preventScroll:true}));
 })();
 </script></body>
 </html>
