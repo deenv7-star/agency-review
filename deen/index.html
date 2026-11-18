@@ -41,13 +41,20 @@
 .film-shot strong{font-size:clamp(32px,4.4vw,78px);line-height:1.18;letter-spacing:-.05em}
 .film-skip{position:absolute;top:12px;left:14px;background:#112438;color:#fff;border:1px solid #a0c0d3;padding:10px 18px;border-radius:40px;font-size:13px;z-index:2}
 #work-index{scroll-margin-top:90px}
-@media(min-width:760px) and (prefers-reduced-motion:no-preference){
+@media(prefers-reduced-motion:no-preference){
 .deen .work,.deen .work .band--deep,.deen .work .band__in{overflow:visible}.atlas-film.running{height:255vh}.running .film-stage{position:sticky;top:70px;height:calc(100svh - 70px);overflow:hidden}
 .running .film-track{display:flex;direction:ltr;height:100%;transform:translate3d(var(--travel,0%),0,0);will-change:transform}
 .running .film-shot{flex:0 0 100%;height:100%;direction:rtl;background:radial-gradient(ellipse at 26% 47%,#4c7388,#1b3447 58%,#0c1926)}
 .running .film-shot img{position:absolute;width:64%;height:73%;left:3%;top:13%;object-fit:contain;background:transparent;filter:drop-shadow(0 26px 23px #08121d99);transform:perspective(1200px) rotateY(var(--turn,-5deg));}
 .running .film-shot figcaption{position:absolute;right:3%;top:50%;width:30%;transform:translateY(-50%);padding:0;gap:17px}
 .running .film-meter{position:absolute;bottom:0;right:0;height:3px;width:100%;background:#abdafe;transform-origin:right;transform:scaleX(var(--progress,0))}
+}
+@media(max-width:759px) and (prefers-reduced-motion:no-preference){
+.atlas-film.running{height:205svh}
+.running .film-stage{top:0;height:100svh}
+.running .film-shot img{width:90%;height:51%;top:14%;left:5%}
+.running .film-shot figcaption{top:68%;width:86%;right:7%;transform:none;gap:9px}
+.running .film-skip{top:9%;left:5%}
 }
 </style>
 </head>
@@ -567,14 +574,14 @@
 <script>
 (() => {
   const film = document.querySelector('.atlas-film');
-  const mode = matchMedia('(min-width:760px) and (prefers-reduced-motion:no-preference)');
+  const mode = matchMedia('(prefers-reduced-motion:no-preference)');
   let pending = false;
   function draw() {
     pending = false;
     if (!mode.matches) return;
     const box = film.getBoundingClientRect();
     const stage = film.firstElementChild;
-    const progress = Math.max(0, Math.min(1, (70-box.top)/(box.height-stage.offsetHeight)));
+    const progress = Math.max(0, Math.min(1, (parseFloat(getComputedStyle(stage).top)-box.top)/(box.height-stage.offsetHeight)));
     film.style.setProperty('--travel',(-200*progress)+'%');
     film.style.setProperty('--progress', progress);
     film.style.setProperty('--turn',(-5+10*progress)+'deg');
