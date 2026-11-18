@@ -74,30 +74,6 @@ html:has(#projectRoom[open]){overflow:hidden}
 @keyframes room-enter{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 @media(max-width:650px){.room-body{grid-template-columns:1fr;gap:18px}.room-body img{grid-row:1;max-height:30vh}.room-actions{margin-top:12px}}
 @media(prefers-reduced-motion:reduce){#projectRoom[open]{animation:none}}
-</style><style>
-.deen .hero .frame{isolation:isolate;background:#101e2b}
-.deen .hero .frame__bg::after{background:linear-gradient(270deg,#101e2bf9 6%,#102235e8 35%,#243a5082 63%,#8499ad33),linear-gradient(0deg,#101c2b 0%,transparent 39%,#17263399)}
-.deen .hero__copy{width:48%;z-index:2}
-.deen .hero__title{font-size:clamp(48px,5.75vw,100px)}
-.showcase{position:absolute;left:2.5%;top:16%;width:48%;bottom:15%;display:grid;align-content:center;z-index:1;color:#f6f8fc}
-.model-space{position:relative;width:100%;aspect-ratio:1.54;perspective:1100px;direction:ltr;pointer-events:none}
-.model{position:absolute;inset:6% 14% 25% 12%;transform-style:preserve-3d;transform:rotateX(calc(-6deg + var(--pitch,0deg))) rotateY(calc(17deg + var(--yaw,0deg))) rotateZ(-4deg)}
-.display-lid{position:absolute;inset:0;background:#101319;padding:1.35% 1.25% 2.1%;border-radius:3.2% / 5%;border:1px solid #e7f0f4;box-shadow:-1px 1px #828c96,-2px 2px #70808e,-3px 3px #536575;transform-origin:bottom;transform:rotateX(var(--open,-5deg));overflow:hidden}
-.model img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:inherit}
-.keyboard-deck{position:absolute;top:100%;left:0;width:100%;height:81%;transform-origin:center top;transform:rotateX(78deg);background:linear-gradient(110deg,#728899,#bccad3 44%,#798d9c);border:1px solid #cfdbe1;border-radius:2% 2% 4% 4%;box-shadow:0 4px #71818c,0 8px #455461;backface-visibility:visible}
-.keys{position:absolute;inset:8% 5% 40%;border-radius:4px;background-color:#273541;background-image:linear-gradient(90deg,transparent 86%,#98a8b4 86%),linear-gradient(transparent 78%,#98a8b4 78%);background-size:7.14% 20%}
-.touchpad{position:absolute;inset:64% 32% 6%;border:1px solid #637989;border-radius:6px}
-.handset{position:absolute;width:24%;aspect-ratio:780/1688;left:-9%;bottom:-13%;transform:translateZ(55px) rotateY(-12deg) rotateZ(8deg);border-radius:17% / 8%;background:#17212b;padding:.9%;border:1px solid #e1e8ec;box-shadow:-2px 2px #788896,-3px 3px #4e5b67,0 14px 22px #08132266}
-.handset i{position:absolute;width:26%;height:2%;border-radius:12px;background:#101821;top:3.4%;left:37%}
-.contact-shadow{position:absolute;inset:82% 7% 1%;background:#040c17;filter:blur(18px);border-radius:50%;opacity:.67;transform:rotate(-3deg)}
-.exhibit-panel{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #d2e7f35c;padding-top:12px;margin:14px 5% 0}
-.project-toggle{display:flex;gap:3px;background:#14273a;border-radius:24px;padding:3px;border:1px solid #6b8194}
-.project-toggle[hidden]{display:none}
-.project-toggle button{font:inherit;font-size:13px;min-height:44px;padding:0 14px;border:0;border-radius:24px;color:#eff6ff;background:transparent;cursor:pointer}
-.project-toggle button[aria-pressed=true]{background:#e3ebef;color:#12202b}
-.exhibit-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:white;font:600 clamp(14px,1.6vw,25px)/1 Arial,sans-serif;letter-spacing:-.05em}
-@media(max-width:800px){.deen .hero .frame{min-height:auto;padding:96px var(--studio-gutter) 0;justify-content:start}.deen .hero__copy{width:100%}.deen .hero__title{font-size:clamp(37px,8vw,65px)}.showcase{position:relative;inset:auto;width:min(100%,510px);align-self:center;order:1;margin:25px auto 15px}.exhibit-panel{margin:0;padding-top:5px}.deen .hero__rail{position:relative;inset:auto;order:2}.deen .hero .frame__bg::after{background:linear-gradient(#101e2b 0%,#162b40ed 36%,#36536c75 70%,#111f30 100%)}}
-@media(max-width:380px){.project-toggle button{padding-inline:9px}}
 </style>
 <link rel="stylesheet" href="css/edition.css?v=1">
 <script src="js/edition.js?v=1" defer></script>
@@ -135,16 +111,14 @@ html:has(#projectRoom[open]){overflow:hidden}
   <section class="hero" id="hero" aria-labelledby="hero-title">
     <div class="frame">
       <div class="frame__bg" aria-hidden="true"></div>
-      <div class="showcase" aria-label="הדמיות של עבודות נבחרות">
-  <div class="model-space" aria-hidden="true"><div class="contact-shadow"></div>
-    <div class="model"><div class="display-lid"><img class="desktop-screen" src="img/case/inf-hero-960.webp" alt="" fetchpriority="high"></div>
-    <div class="keyboard-deck"><div class="keys"></div><div class="touchpad"></div></div>
-    <div class="handset"><img class="mobile-screen" src="img/case/inf-phone.webp" alt=""><i></i></div></div>
-  </div>
-  <div class="exhibit-panel"><div class="project-toggle" role="group" aria-label="בחירת הדמיה" hidden><button type="button" data-preview="infinity" aria-pressed="true">אתר אירוח</button><button type="button" data-preview="optiflow" aria-pressed="false">מערכת תורים</button></div>
-  <a class="exhibit-link" href="case/infinity.html" aria-live="polite"><bdi>Infinity Home</bdi><span aria-hidden="true">↗</span></a></div>
-</div>
-<div class="hero__copy">
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__orbit"></div>
+        <span class="hero__word" dir="ltr">DEEN</span>
+        <div class="hero__metal">
+          <img src="img/deen-chrome.webp" alt="" width="1000" height="900" fetchpriority="high" decoding="async">
+        </div>
+      </div>
+      <div class="hero__copy">
         <p class="hero__eyebrow" data-intro><span></span> דין וינוקור · עיצוב ופיתוח</p>
         <h1 class="hero__title" id="hero-title">
           <span class="ln"><span class="ln__in">אתרים עם נוכחות.</span></span>
@@ -560,52 +534,6 @@ html:has(#projectRoom[open]){overflow:hidden}
     if (event.target.matches('[data-close]')) room.close();
   });
   room.addEventListener('close', () => trigger.focus({preventScroll:true}));
-})();
-</script><script>
-(() => {
-  const stage = document.querySelector('.showcase');
-  const hero = document.querySelector('#hero');
-  const toggle = stage.querySelector('.project-toggle');
-  const model = stage.querySelector('.model');
-  const link = stage.querySelector('.exhibit-link');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const projects = {infinity:['Infinity Home','inf-hero-960','inf-phone'],optiflow:['OptiFlow','of-d-appt','of-phone']};
-  let version = 0, raf = 0, yaw = 0, pitch = 0, visible = true;
-  function paint(){
-    raf = 0;
-    const progress = Math.max(0,Math.min(1,-hero.getBoundingClientRect().top / hero.offsetHeight));
-    model.style.setProperty('--yaw',(reduced.matches ? 0 : yaw - 25*progress)+'deg');
-    model.style.setProperty('--pitch',(reduced.matches ? 0 : pitch + progress*6)+'deg');
-    model.style.setProperty('--open',(reduced.matches ? -5 : -5-32*progress)+'deg');
-  }
-  function refresh(){if(visible && !raf) raf=requestAnimationFrame(paint)}
-  if ('IntersectionObserver' in window) new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;refresh()}).observe(hero);
-  stage.addEventListener('pointermove',e=>{
-    if(e.pointerType!=='mouse'||reduced.matches)return;
-    const box=stage.getBoundingClientRect();
-    yaw=((e.clientX-box.left)/box.width-.5)*12;
-    pitch=(.5-(e.clientY-box.top)/box.height)*6;
-    refresh();
-  });
-  stage.addEventListener('pointerleave',()=>{yaw=pitch=0;refresh()});
-  addEventListener('scroll',refresh,{passive:true});
-  reduced.addEventListener('change',refresh);
-  toggle.hidden=false;
-  toggle.addEventListener('click', async e=>{
-    const key=e.target.closest('button')?.dataset.preview;
-    if(!projects[key])return;
-    const request=++version;
-    const [name,...images]=projects[key];
-    try{
-      const ready=await Promise.all(images.map(async path=>{const img=new Image();img.src='img/case/'+path+'.webp';await img.decode();return img.src}));
-      if(request!==version)return;
-      stage.querySelector('.desktop-screen').src=ready[0];
-      stage.querySelector('.mobile-screen').src=ready[1];
-      link.querySelector('bdi').textContent=name;link.href='case/'+key+'.html';
-      toggle.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.preview===key)));
-      if(!reduced.matches && model.animate)model.animate([{transform:'rotateX(-8deg) rotateY(-9deg) rotateZ(-2deg)'},{}],{duration:680,easing:'cubic-bezier(.2,.8,.2,1)'});
-    }catch{if(request===version)location.href='case/'+key+'.html'}
-  });
 })();
 </script>
 </body>
