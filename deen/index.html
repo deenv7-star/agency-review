@@ -74,25 +74,6 @@ html:has(#projectRoom[open]){overflow:hidden}
 @keyframes room-enter{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 @media(max-width:650px){.room-body{grid-template-columns:1fr;gap:18px}.room-body img{grid-row:1;max-height:30vh}.room-actions{margin-top:12px}}
 @media(prefers-reduced-motion:reduce){#projectRoom[open]{animation:none}}
-</style><style>
-.deen .hero .frame__bg::after{background:linear-gradient(266deg,#101d2cf5 8%,#172e42e8 43%,#28496594 100%)}
-.mix{position:absolute;direction:ltr;isolation:isolate;left:4%;top:50%;transform:translateY(-50%);width:min(43%,660px);aspect-ratio:1.07;--level:0%;--rotation:-12deg;color:#e4eff8;z-index:3}
-.mix-sleeve{position:absolute;inset:5% 17% 15% 4%;overflow:hidden;transform:rotate(-8deg);border:1px solid #d2e6f5;background:linear-gradient(150deg,#dce6ee 0%,#a1bdce 55%,#56758d);color:#20394c;box-shadow:0 20px 55px #071c3280}
-.mix-sleeve b{position:absolute;top:0;left:-.055em;font:900 clamp(80px,11vw,175px)/.85 Arial,sans-serif;letter-spacing:-.11em}
-.mix-sleeve span{position:absolute;bottom:5%;left:4%;font:10px var(--mono);letter-spacing:.1em}
-.mix-disc{position:absolute;width:80%;aspect-ratio:1;right:0;top:5%;border-radius:50%;border:1px solid #91aebc;box-shadow:0 15px 25px #08152094,inset 0 0 0 6px #152633;background:repeating-radial-gradient(circle,transparent 0 2px,#ceddee44 2.4px,transparent 3.3px),conic-gradient(from var(--rotation),#0b1620,#7c96a9 12%,#101b28 24%,#07111a 40%,#7792a4 56%,#122739 68%,#0b1620 100%)}
-.mix-label{position:absolute;inset:16%;overflow:hidden;border-radius:50%;border:2px solid #a0b8c3;background:#152738}
-.mix-label img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.mix-system{clip-path:inset(0 calc(100% - var(--level)) 0 0)}
-.mix-pin{position:absolute;inset:48%;background:#c4d3db;border:2px solid #223844;border-radius:100%;box-shadow:0 1px 3px #000}
-.mix-console{position:absolute;inset:auto 3% 0 10%;border:1px solid #849aa9;background:#122434;box-shadow:0 12px 30px #091a284d;padding:13px 20px 4px;border-radius:10px}
-.mix-titles{display:flex;justify-content:space-between;font:600 16px/1 Arial,sans-serif;letter-spacing:.02em}
-.mix-titles a{padding:5px 0}.mix-console label{display:block;text-align:center;direction:rtl;font-size:12px;color:#d4e3ed}
-.mix-console input{display:block;width:100%;height:36px;margin:0;appearance:none;background:transparent;cursor:ew-resize;touch-action:pan-y}
-.mix-console input::-webkit-slider-runnable-track{height:4px;border-radius:3px;background:linear-gradient(to right,#cce6ff var(--level),#698195 var(--level))}
-.mix-console input::-webkit-slider-thumb{appearance:none;width:20px;height:26px;margin-top:-11px;border-radius:4px;border:1px solid #a9bac7;background:linear-gradient(#ebf5ff,#a3b1be 43%,#314656 48%,#eff6fa 54%,#8b9dae)}
-.mix-console input::-moz-range-track{height:4px;background:#809bb0}.mix-console input::-moz-range-thumb{height:24px;width:17px;background:#e1eef8}
-@media(max-width:650px){.mix{position:relative;inset:auto;transform:none;width:min(96%,400px);margin:22px auto 10px;align-self:center;order:1}.mix-sleeve b{font-size:23vw}.mix-console{padding:8px 12px 1px}.mix-console label{font-size:11px}.mix-titles{font-size:13px}}
 </style></head>
 <body class="deen">
 <a class="skip" href="#top">דלגו לתוכן</a>
@@ -127,17 +108,20 @@ html:has(#projectRoom[open]){overflow:hidden}
   <section class="hero" id="hero" aria-labelledby="hero-title">
     <div class="frame">
       <div class="frame__bg" aria-hidden="true"></div>
-      <section class="mix" aria-label="מיקס בין שני פרויקטים">
-<div class="mix-sleeve" aria-hidden="true"><b>DEEN</b><span>INDEPENDENT DIGITAL STUDIO</span></div>
-<div class="mix-disc" aria-hidden="true"><div class="mix-label"><img src="img/case/vinoa-hero-960.webp" alt="" fetchpriority="high"><img class="mix-system" src="img/case/atlas-d-cal.webp" alt=""></div><span class="mix-pin"></span></div>
-<div class="mix-console"><div class="mix-titles"><a href="case/vinoa.html">VINOA ↗</a><a href="case/atlas.html">ATLAS ↗</a></div><label for="crossfader">הזיזו כדי לעבור מאתר מוזיקה למערכת אירוח</label><input type="range" id="crossfader" dir="ltr" min="0" max="100" value="0" aria-valuetext="אתר המוזיקה של VINOA"></div></section>
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__orbit"></div>
+        <span class="hero__word" dir="ltr">DEEN</span>
+        <div class="hero__metal">
+          <img src="img/deen-chrome.webp" alt="" width="1000" height="900" fetchpriority="high" decoding="async">
+        </div>
+      </div>
       <div class="hero__copy">
         <p class="hero__eyebrow" data-intro><span></span> דין וינוקור · עיצוב ופיתוח</p>
         <h1 class="hero__title" id="hero-title">
           <span class="ln"><span class="ln__in">אתרים עם נוכחות.</span></span>
           <span class="ln ln--b"><span class="ln__in">מערכות שעובדות.</span></span>
         </h1>
-        <p class="hero__sub" data-intro>אני דין וינוקור, מוזיקאי ובונה אתרים ומערכות. כאן תוכלו לשחק עם שני פרויקטים שלי ולראות מה אפשר לבנות לעסק שלכם.</p>
+        <p class="hero__sub" data-intro>אני בונה אתרים שעוזרים ללקוחות להבין למה לבחור בכם, ומערכות שעושות סדר בעבודה היומיומית.</p>
         <div class="hero__actions" data-intro>
           <a class="deen-button" href="https://wa.me/972525979520?text=%D7%94%D7%99%D7%99%20%D7%93%D7%99%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A.%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8%20%D7%A2%D7%9C%20%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">בואו נדבר על הפרויקט <span class="deen-arrow" aria-hidden="true"></span></a>
           <a class="hero__link" id="projectPicker" href="#work">מה אפשר לבנות? <span aria-hidden="true">↗</span></a>
@@ -662,18 +646,6 @@ html:has(#projectRoom[open]){overflow:hidden}
     if (event.target.matches('[data-close]')) room.close();
   });
   room.addEventListener('close', () => trigger.focus({preventScroll:true}));
-})();
-</script><script>
-(() => {
- const deck=document.querySelector('.mix'), fader=document.getElementById('crossfader');
- function render(){
-   const level=Number(fader.value);
-   deck.style.setProperty('--level',level+'%');
-   deck.style.setProperty('--rotation',(-12+level*2.1)+'deg');
-   fader.setAttribute('aria-valuetext',level===0?'אתר המוזיקה של VINOA':level===100?'יומן האירוח של ATLAS':level+' אחוז ATLAS');
- }
- fader.addEventListener('input',render);
- render();
 })();
 </script></body>
 </html>
